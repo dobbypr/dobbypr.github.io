@@ -1,0 +1,185 @@
+/* Basic styling - easy to modify */
+body {
+    background-color: #0a0a0a; /* Dark background */
+    color: #ff0000; /* Red text */
+    font-family: "Courier New", Courier, monospace; /* Retro font */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Main content container */
+.container {
+    width: 800px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styling */
+.header {
+    text-align: center;
+    border-bottom: 3px solid #ff0000;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.title {
+    font-size: 48px;
+    margin: 0;
+    text-shadow: 0 0 10px #ff0000;
+    letter-spacing: 2px;
+    animation: pulse 2s infinite;
+}
+
+/* Simple animation for the title */
+@keyframes pulse {
+    0% { text-shadow: 0 0 10px #ff0000; }
+    50% { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
+    100% { text-shadow: 0 0 10px #ff0000; }
+}
+
+.subtitle {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #cccccc;
+}
+
+/* Navigation menu */
+.nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    background-color: #1a1a1a;
+    padding: 10px;
+    border: 1px solid #ff0000;
+}
+
+.nav a {
+    color: #ff0000;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.nav a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 5px #ff0000;
+}
+
+/* Content sections */
+.section {
+    background-color: rgba(20, 20, 20, 0.8);
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ff0000;
+}
+
+.section-title {
+    font-size: 24px;
+    border-bottom: 1px solid #ff0000;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+/* Ruleboard */
+.ruleboard {
+    font-weight: bold;
+    font-size:x-large;
+}
+
+/* Project cards grid */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.project-card {
+    background-color: #1a1a1a;
+    border: 1px solid #660000;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px #ff0000;
+}
+
+.project-card h3 {
+    margin-top: 0;
+    color: #ff0000;
+}
+
+/* Marquee text */
+.marquee {
+    background-color: #000000;
+    color: #ff0000;
+    white-space: nowrap;
+    overflow: hidden;
+    border: 1px solid #ff0000;
+    padding: 5px 0;
+    margin: 20px 0;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    color: #cccccc;
+}
+
+table, th, td {
+    border: 1px solid #660000;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #330000;
+    color: #ff0000;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-top: 1px solid #ff0000;
+    font-size: 14px;
+    color: #888888;
+}
+
+/* Blood effect - can be removed if not wanted */
+.blood {
+    position: absolute;
+    background-color: #ff0000;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: blood 1s forwards;
+    pointer-events: none;
+}
+
+@keyframes blood {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+}
