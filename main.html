@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULTRAWEB</title>
+    <style>
+        /* Basic styling - easy to modify */
+        body {
+            background-color: #0a0a0a; /* Dark background */
+            color: #ff0000; /* Red text */
+            font-family: "Courier New", Courier, monospace; /* Retro font */
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Main content container */
+        .container {
+            width: 800px;
+            max-width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header styling */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #ff0000;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+        .title {
+            font-size: 48px;
+            margin: 0;
+            text-shadow: 0 0 10px #ff0000;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Simple animation for the title */
+        @keyframes pulse {
+            0% { text-shadow: 0 0 10px #ff0000; }
+            50% { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
+            100% { text-shadow: 0 0 10px #ff0000; }
+        }
+
+        .subtitle {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #cccccc;
+        }
+
+        /* Navigation menu */
+        .nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            background-color: #1a1a1a;
+            padding: 10px;
+            border: 1px solid #ff0000;
+        }
+
+        .nav a {
+            color: #ff0000;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        /* Content sections */
+        .section {
+            background-color: rgba(20, 20, 20, 0.8);
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ff0000;
+        }
+
+        .section-title {
+            font-size: 24px;
+            border-bottom: 1px solid #ff0000;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        /* Project cards grid */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background-color: #1a1a1a;
+            border: 1px solid #660000;
+            padding: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 10px #ff0000;
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: #ff0000;
+        }
+
+        /* Marquee text */
+        .marquee {
+            background-color: #000000;
+            color: #ff0000;
+            white-space: nowrap;
+            overflow: hidden;
+            border: 1px solid #ff0000;
+            padding: 5px 0;
+            margin: 20px 0;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            color: #cccccc;
+        }
+
+        table, th, td {
+            border: 1px solid #660000;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #330000;
+            color: #ff0000;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(20, 20, 20, 0.8);
+            border-top: 1px solid #ff0000;
+            font-size: 14px;
+            color: #888888;
+        }
+
+        /* Blood effect - can be removed if not wanted */
+        .blood {
+            position: absolute;
+            background-color: #ff0000;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: blood 1s forwards;
+            pointer-events: none;
+        }
+
+        @keyframes blood {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER: Change the title and subtitle here -->
+        <header class="header">
+            <h1 class="title">ULTRAWEB</h1>
+            <p class="subtitle">// MANKIND IS DEAD. BLOOD IS FUEL. WEBSITE IS FULL. //</p>
+        </header>
+
+        <!-- NAVIGATION: Add or remove menu items as needed -->
+        <nav class="nav">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#projects">PROJECTS</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+
+        <!-- MARQUEE: Change the scrolling text here -->
+        <div class="marquee">
+            <div class="marquee-content">
+                WELCOME TO MY PERSONAL WEBSITE // INSPIRED BY ULTRAKILL // RETRO WEB DESIGN // BLOOD IS FUEL // MANKIND IS DEAD // HELL IS FULL //
+            </div>
+        </div>
+
+        <!-- HOME SECTION: Add your introduction here -->
+        <section id="home" class="section">
+            <h2 class="section-title">HOME</h2>
+            <p>WELCOME TO MY PERSONAL CORNER OF CYBERSPACE</p>
+            <p>THIS WEBSITE IS A TRIBUTE TO THE RETRO WEB AND THE CHAOTIC ENERGY OF ULTRAKILL</p>
+            <p>SCROLL DOWN TO LEARN MORE ABOUT ME AND MY PROJECTS</p>
+        </section>
+
+        <!-- ABOUT SECTION: Edit your personal info here -->
+        <section id="about" class="section">
+            <h2 class="section-title">ABOUT ME</h2>
+            <p>I AM A HUMAN WHO ENJOYS CREATING DIGITAL CONTENT AND PLAYING GAMES LIKE ULTRAKILL</p>
+            <p>MY SKILLS INCLUDE:</p>
+            
+            <!-- SKILLS TABLE: Edit skills and ratings here -->
+            <table>
+                <tr>
+                    <th>SKILL</th>
+                    <th>PROFICIENCY</th>
+                </tr>
+                <tr>
+                    <td>WEB DEVELOPMENT</td>
+                    <td>█████████░</td>
+                </tr>
+                <tr>
+                    <td>DIGITAL ART</td>
+                    <td>███████░░░</td>
+                </tr>
+                <tr>
+                    <td>GAME DESIGN</td>
+                    <td>████░░░░░░</td>
+                </tr>
+                <tr>
+                    <td>PARRYING PROJECTILES</td>
+                    <td>██████████</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- PROJECTS SECTION: Edit or add your own projects -->
+        <section id="projects" class="section">
+            <h2 class="section-title">PROJECTS</h2>
+            <div class="projects">
+                <!-- PROJECT CARD: Copy this block to add more projects -->
+                <div class="project-card">
+                    <h3>RETRO WEBSITES</h3>
+                    <p>Collection of nostalgic web designs from the early internet era</p>
+                </div>
+                
+                <!-- PROJECT CARD -->
+                <div class="project-card">
+                    <h3>DIGITAL ART</h3>
+                    <p>Pixel art and digital illustrations inspired by retro games</p>
+                </div>
+                
+                <!-- PROJECT CARD -->
+                <div class="project-card">
+                    <h3>GAME MODS</h3>
+                    <p>Custom modifications for ULTRAKILL and other games</p>
+                </div>
+                
+                <!-- PROJECT CARD -->
+                <div class="project-card">
+                    <h3>MUSIC</h3>
+                    <p>Experimental electronic tracks with industrial influences</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION: Add your contact information -->
+        <section id="contact" class="section">
+            <h2 class="section-title">CONTACT</h2>
+            <p>YOU CAN REACH ME AT THE FOLLOWING COORDINATES:</p>
+            <p>EMAIL: YOUR.EMAIL@DOMAIN.COM</p>
+            <p>DISCORD: YOUR_USERNAME#0000</p>
+            <p>TWITTER: @YOUR_USERNAME</p>
+        </section>
+    </div>
+
+    <!-- FOOTER: Edit with your information -->
+    <footer class="footer">
+        <p>&copy; 2025 ULTRAWEB // BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 OR HIGHER</p>
+        <p>CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 15, 2025</p>
+    </footer>
+
+    <!-- Simple blood effect script - you can remove this if you don't want it -->
+    <script>
+        // Blood splatter effect when clicking
+        document.addEventListener('click', function(e) {
+            const blood = document.createElement('div');
+            blood.className = 'blood';
+            blood.style.left = (e.pageX - 50) + 'px';
+            blood.style.top = (e.pageY - 50) + 'px';
+            blood.style.width = '100px';
+            blood.style.height = '100px';
+            document.body.appendChild(blood);
+            
+            // Remove the blood splatter after animation completes
+            setTimeout(() => {
+                blood.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
