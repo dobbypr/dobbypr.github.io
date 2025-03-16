@@ -1,12 +1,21 @@
+@font-face {
+    font-family: "Droid Serif Pro WGL Bold";
+    src: url("fonts/DroidSerifProWGLBold.woff2") format("woff2"),
+         url("fonts/DroidSerifProWGLBold.woff") format("woff"),
+         url("fonts/droid-serif.bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
 /* Basic styling - easy to modify */
 body {
-    background-color: #0a0a0a; /* Dark background as fallback */
-    color: #ff0000; /* Red text */
-    font-family: "Courier New", Courier, monospace; /* Retro font */
+    background-color: #0a0a0a;
+    color: #ff0000;
+    font-family: "Droid Serif Pro WGL Bold", serif; /* Changed from Courier New */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    position: relative; /* For positioning the pseudo-elements */
+    position: relative;
 }
 
 /* Base background image */
