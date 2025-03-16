@@ -1,11 +1,44 @@
 /* Basic styling - easy to modify */
 body {
-    background-color: #0a0a0a; /* Dark background */
+    background-color: #0a0a0a; /* Dark background as fallback */
     color: #ff0000; /* Red text */
     font-family: "Courier New", Courier, monospace; /* Retro font */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    position: relative; /* For positioning the pseudo-elements */
+}
+
+/* Base background image */
+body::before {
+    content: "";
+    position: fixed; /* Fixed to viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('v1-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%) brightness(0.3) contrast(1.5) sepia(1) hue-rotate(320deg); /* Makes it red-tinted */
+    image-rendering: pixelated; /* Pixelation effect */
+    z-index: -2; /* Behind everything */
+}
+
+/* Pixel overlay */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, rgba(255,0,0,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255,0,0,0.1) 1px, transparent 1px);
+    background-size: 8px 8px; /* Size of pixels */
+    z-index: -1; /* Between the image and content */
 }
 
 /* Main content container */
@@ -14,6 +47,7 @@ body {
     max-width: 90%;
     margin: 0 auto;
     padding: 20px;
+    position: relative; /* Keep content above the background */
 }
 
 /* Header styling */
@@ -22,6 +56,8 @@ body {
     border-bottom: 3px solid #ff0000;
     margin-bottom: 20px;
     padding-bottom: 10px;
+    background-color: rgba(10, 10, 10, 0.85); /* Added background */
+    padding: 15px;
 }
 
 .title {
@@ -50,7 +86,7 @@ body {
     display: flex;
     justify-content: center;
     margin: 20px 0;
-    background-color: #1a1a1a;
+    background-color: rgba(26, 26, 26, 0.9); /* More opaque background */
     padding: 10px;
     border: 1px solid #ff0000;
 }
@@ -69,12 +105,25 @@ body {
     text-shadow: 0 0 5px #ff0000;
 }
 
+/* General link styling */
+a {
+    color: #ffffff; 
+    text-decoration: none; 
+    transition: color 0.3s; 
+}
+
+a:hover {
+    color: #ffffff; 
+    text-shadow: 0 0 5px #ff0000; 
+}
+
 /* Content sections */
 .section {
-    background-color: rgba(20, 20, 20, 0.8);
+    background-color: rgba(10, 10, 10, 0.85); /* More opacity for better readability */
     margin-bottom: 30px;
     padding: 15px;
     border: 1px solid #ff0000;
+    text-shadow: 1px 1px 2px black; /* Helps text stand out */
 }
 
 .section-title {
