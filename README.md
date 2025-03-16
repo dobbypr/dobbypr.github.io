@@ -1,12 +1,12 @@
-# ULTRAWEB
+# ULTRALAYER
 
 A chaotic, retro-styled personal website inspired by ULTRAKILL's aesthetic with a blood-red-on-black color scheme and interactive blood splatter effects.
 
-![ULTRAWEB Screenshot](https://placeholder-for-screenshot.com)
+![ULTRALAYER Screenshot](https://placeholder-for-screenshot.com)
 
 ## Description
 
-ULTRAWEB is a tribute to both old-school web design and the indie FPS game ULTRAKILL. The site features:
+ULTRALAYER is a tribute to both old-school web design and the indie FPS game ULTRAKILL. The site features:
 
 - Pulsing text animations
 - Interactive blood splatter effects on click
@@ -16,7 +16,7 @@ ULTRAWEB is a tribute to both old-school web design and the indie FPS game ULTRA
 
 ## Live Demo
 
-Visit the live site: [ULTRAWEB](https://dobbypr.github.io)
+Visit the live site: [ULTRALAYER](https://dobbypr.github.io)
 
 ## Installation
 
