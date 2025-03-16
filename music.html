@@ -19,6 +19,8 @@
             border: 1px solid #660000;
             padding: 15px;
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
         }
         
         .music-item:hover {
@@ -39,6 +41,274 @@
             margin-top: 30px;
             border-top: 1px solid #660000;
             padding-top: 15px;
+        }
+        
+        /* Album art styling */
+        .album-art {
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin-right: 15px;
+            margin-bottom: 5px;
+            border: 1px solid #660000;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .music-item:hover .album-art {
+            transform: rotate(5deg);
+        }
+        
+        .music-item:hover .album-art img {
+            transform: scale(1.1);
+        }
+        
+        /* Details section that expands */
+        .music-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            margin-top: 10px;
+            clear: both;
+            border-top: 1px dashed #660000;
+        }
+        
+        .music-item.expanded .music-details {
+            max-height: 500px; /* Large enough to fit all content */
+            padding-top: 10px;
+        }
+        
+        /* Button styling */
+        .expand-btn, .play-btn {
+            background-color: #330000;
+            color: #ff0000;
+            border: 1px solid #660000;
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: "Courier New", Courier, monospace;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .expand-btn:hover, .play-btn:hover {
+            background-color: #ff0000;
+            color: #000000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+        
+        .music-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        /* Track list styling */
+        .track-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+        
+        .track-list li {
+            padding: 5px 0;
+            border-bottom: 1px dotted #660000;
+        }
+        
+        .track-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Game-specific styling */
+        /* NITW - Blue/purple theme */
+        #nitw {
+            background-color: #1a1a24;
+            border-color: #4a3b78;
+        }
+        
+        #nitw .album-art {
+            border-color: #4a3b78;
+        }
+        
+        #nitw h3, #nitw h4 {
+            color: #7762c6;
+            text-shadow: 0 0 5px #4a3b78;
+        }
+        
+        #nitw p {
+            color: #b4a7e8;
+        }
+        
+        #nitw .expand-btn, #nitw .play-btn {
+            background-color: #1d1836;
+            border-color: #4a3b78;
+            color: #7762c6;
+        }
+        
+        #nitw .expand-btn:hover, #nitw .play-btn:hover {
+            background-color: #7762c6;
+            color: #1d1836;
+            box-shadow: 0 0 10px #7762c6;
+        }
+        
+        #nitw .music-details {
+            border-top-color: #4a3b78;
+        }
+        
+        #nitw .track-list li {
+            border-bottom-color: #4a3b78;
+            color: #b4a7e8;
+        }
+        
+        /* ULTRAKILL - Enhanced red theme with machine elements */
+        #ultrakill {
+            background-color: #220000;
+            background-image: linear-gradient(to bottom, #220000, #290000);
+            border-color: #800000;
+            position: relative;
+        }
+        
+        #ultrakill::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 5px, #800000 5px, #800000 10px);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        #ultrakill h3 {
+            color: #ff3000;
+            text-shadow: 0 0 8px #ff0000;
+            letter-spacing: 1px;
+        }
+        
+        #ultrakill p {
+            color: #ff6666;
+            text-shadow: 0 0 2px #ff0000;
+        }
+        
+        #ultrakill .album-art {
+            border-color: #800000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+        
+        #ultrakill .expand-btn, #ultrakill .play-btn {
+            background-color: #3a0000;
+            border-color: #800000;
+            color: #ff3000;
+            text-shadow: 0 0 3px #ff0000;
+        }
+        
+        #ultrakill .expand-btn:hover, #ultrakill .play-btn:hover {
+            background-color: #ff3000;
+            color: #000000;
+            box-shadow: 0 0 15px #ff3000;
+        }
+        
+        #ultrakill .track-list li {
+            border-bottom: 1px dotted #800000;
+            color: #ff6666;
+        }
+        
+        /* Metal placeholder - dark steel theme */
+        #metal1 {
+            background-color: #1c1c1c;
+            background-image: linear-gradient(to bottom, #1c1c1c, #0e0e0e);
+            border-color: #444;
+        }
+        
+        #metal1 h3 {
+            color: #aaa;
+            text-shadow: 0 0 5px #555;
+        }
+        
+        #metal1 p {
+            color: #888;
+        }
+        
+        #metal1 .album-art {
+            border-color: #444;
+        }
+        
+        #metal1 .expand-btn, #metal1 .play-btn {
+            background-color: #222;
+            border-color: #444;
+            color: #aaa;
+        }
+        
+        #metal1 .expand-btn:hover, #metal1 .play-btn:hover {
+            background-color: #aaa;
+            color: #111;
+            box-shadow: 0 0 10px #555;
+        }
+        
+        #metal1 .track-list li {
+            border-bottom-color: #444;
+            color: #888;
+        }
+        
+        /* Section header styling */
+        .section-title {
+        text-transform: uppercase;
+        position: relative;
+        font-size: 32px;
+        color: #ff0000;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        letter-spacing: 2px;
+        font-weight: bold;
+        border-bottom: 1px solid #ff0000;
+        display: block;
+        width: 100%;
+    }
+        
+        .section-title::after {
+            position: absolute;
+            height: 2px;
+            background-color: #ff0000;
+            left: 0;
+            right: -100vw;
+            bottom: -5px;
+        }
+
+        #music .section-title {
+        text-shadow: 0 0 10px #ff0000;
+        border-bottom: 2px solid #ff0000;
+    }
+        
+        /* Intro text styling with glitch effect */
+        .intro-text {
+            position: relative;
+            color: #ff3000;
+            text-shadow: 0 0 5px #ff0000;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        @keyframes glitch {
+            0% { text-shadow: 0 0 5px #ff0000; }
+            25% { text-shadow: -1px 0 #ff0000, 1px 0 #00ffff; }
+            50% { text-shadow: 0 0 5px #ff0000; }
+            75% { text-shadow: 1px 0 #ff0000, -1px 0 #00ffff; }
+            100% { text-shadow: 0 0 5px #ff0000; }
+        }
+        
+        .intro-text:hover {
+            animation: glitch 0.3s infinite;
         }
     </style>
 </head>
@@ -70,40 +340,108 @@
         <!-- MUSIC SECTION -->
         <section id="music" class="section">
             <h2 class="section-title">MY MUSICAL HELL</h2>
-            <p>THESE BEATS FUEL MY DESCENT</p>
+            <p class="intro-text">THESE BEATS FUEL MY DESCENT</p>
             
             <!-- Music categories and lists go here -->
             <div class="music-category">
                 <h3>GAME SOUNDTRACKS</h3>
                 <div class="music-list">
-                    <!-- Example music items - You'll fill these in yourself -->
-                    <div class="music-item">
+                    <!-- Night in the Woods -->
+                    <div class="music-item" id="nitw">
+                        <div class="album-art">
+                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2Fimages7%2F1080p-Night-In-The-Woods-Wallpaper-HD.jpg&f=1&nofb=1&ipt=5177dac421ebf43c306271d5863a1d0d22d9284490e41811f7de31aa90608dce&ipo=images" alt="Night in the Woods Album Art">
+                        </div>
                         <h3>NITW Vol.1 & Vol.2</h3>
                         <p>ARTIST: Alec Holowka</p>
                         <p>GAME: Night in the Woods</p>
                         <p>FAVORITE TRACK: Vol.1 & Vol.2 (both are so very AWESOME!!)</p>
+                        
+                        <div class="music-controls">
+                            <button class="expand-btn" onclick="toggleDetails('nitw')">SHOW MORE</button>
+                            <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-1-at-the-end-of-everything" target="_blank" class="play-btn">LISTEN Vol.1</a>
+                            <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-2-hold-onto-anything" target="_blank" class="play-btn">LISTEN Vol.2</a>
+                        </div>
+                        
+                        <div class="music-details">
+                            <p>Night in the Woods is an adventure game focused on exploration, story, and character. The soundtrack perfectly captures the game's mood of autumn in a dying rust belt town.</p>
+                            
+                            <h4>TOP TRACKS:</h4>
+                            <ul class="track-list">
+                                <li>Die Anywhere Else</li>
+                                <li>Durkillesburg</li>
+                                <li>Mallard's Tomb</li>
+                                <li>Astral Alley</li>
+                                <li>Rainy Day</li>
+                            </ul>
+                            
+                            <p>Released in 2017, this atmospheric soundtrack blends indie folk influences with electronic elements.</p>
+                        </div>
                     </div>
-                    <div class="music-item">
+                    
+                    <!-- ULTRAKILL -->
+                    <div class="music-item" id="ultrakill">
+                        <div class="album-art">
+                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F9374593.png&f=1&nofb=1&ipt=427b916e415359473e1b131ee4548b920bbed0a37918145c60794bc503ef8661&ipo=images" alt="ULTRAKILL Album Art">
+                        </div>
                         <h3>ULTRAKILL OST</h3>
                         <p>ARTIST: Hakita</p>
                         <p>GAME: ULTRAKILL</p>
                         <p>FAVORITE TRACK: INFINITE HYPERDEATH</p>
+                        
+                        <div class="music-controls">
+                            <button class="expand-btn" onclick="toggleDetails('ultrakill')">SHOW MORE</button>
+                            <a href="https://heavenpierceher.bandcamp.com/album/ultrakill-infinite-hyperdeath" target="_blank" class="play-btn">LISTEN</a>
+                        </div>
+                        
+                        <div class="music-details">
+                            <p>ULTRAKILL's soundtrack is a brutal mix of industrial metal, drum and bass, and experimental electronic music that perfectly complements the game's fast-paced, ultra-violent gameplay.</p>
+                            
+                            <h4>TOP TRACKS:</h4>
+                            <ul class="track-list">
+                                <li>Into The Fire</li>
+                                <li>A Thousand Greetings</li>
+                                <li>The Fire Is Gone</li>
+                                <li>A Cyber Grind</li>
+                                <li>INFINITE HYPERDEATH</li>
+                            </ul>
+                            
+                            <p>The music drives the action with intense beats and distorted guitars, making every encounter feel like a blood-pumping battle.</p>
+                        </div>
                     </div>
-                    <!-- Add more items as needed -->
                 </div>
             </div>
             
             <div class="music-category">
                 <h3>METAL & ROCK</h3>
                 <div class="music-list">
-                    <!-- Example music items - You'll fill these in yourself -->
-                    <div class="music-item">
+                    <!-- Example metal album -->
+                    <div class="music-item" id="metal1">
+                        <div class="album-art">
+                            <img src="https://place-hold.it/100x100/333/aaa/000&text=METAL" alt="Metal Album Art">
+                        </div>
                         <h3>ALBUM TITLE</h3>
                         <p>ARTIST: [ARTIST NAME]</p>
                         <p>YEAR: [YEAR]</p>
                         <p>FAVORITE TRACK: [TRACK NAME]</p>
+                        
+                        <div class="music-controls">
+                            <button class="expand-btn" onclick="toggleDetails('metal1')">SHOW MORE</button>
+                            <a href="#" class="play-btn">LISTEN</a>
+                        </div>
+                        
+                        <div class="music-details">
+                            <p>Add your description here. Talk about why you love this album, its significance, or anything else interesting about it.</p>
+                            
+                            <h4>TOP TRACKS:</h4>
+                            <ul class="track-list">
+                                <li>Track 1</li>
+                                <li>Track 2</li>
+                                <li>Track 3</li>
+                            </ul>
+                            
+                            <p>Additional notes about the album can go here.</p>
+                        </div>
                     </div>
-                    <!-- Add more items as needed -->
                 </div>
             </div>
             
@@ -118,5 +456,57 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Function to toggle details section visibility
+        function toggleDetails(id) {
+            const item = document.getElementById(id);
+            item.classList.toggle('expanded');
+            
+            const btn = item.querySelector('.expand-btn');
+            if (item.classList.contains('expanded')) {
+                btn.textContent = 'SHOW LESS';
+            } else {
+                btn.textContent = 'SHOW MORE';
+            }
+            
+            // Create extra blood splatters on expand/collapse
+            createBloodSplatter(item);
+        }
+        
+        // Function to create blood splatters
+        function createBloodSplatter(element) {
+            const rect = element.getBoundingClientRect();
+            
+            // Create 3 blood splatters at random positions within the element
+            for (let i = 0; i < 3; i++) {
+                const x = rect.left + Math.random() * rect.width;
+                const y = rect.top + Math.random() * rect.height;
+                
+                const blood = document.createElement('div');
+                blood.className = 'blood';
+                blood.style.left = (x - 50) + 'px';
+                blood.style.top = (y - 50) + 'px';
+                blood.style.width = '100px';
+                blood.style.height = '100px';
+                
+                // For ULTRAKILL items, make more intense red blood
+                if (element.id === 'ultrakill') {
+                    blood.style.backgroundColor = '#ff3000';
+                    blood.style.boxShadow = '0 0 10px #ff0000';
+                }
+                // For NITW items, make blue-purple blood
+                else if (element.id === 'nitw') {
+                    blood.style.backgroundColor = '#7762c6';
+                    blood.style.boxShadow = '0 0 10px #4a3b78';
+                }
+                
+                document.body.appendChild(blood);
+                
+                setTimeout(() => {
+                    blood.remove();
+                }, 1000);
+            }
+        }
+    </script>
 </body>
 </html>
