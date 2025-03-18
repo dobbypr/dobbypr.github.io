@@ -6,6 +6,183 @@
     <title>ULTRALAYER - MUSIC</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+        .section {
+    overflow: hidden; /* Prevent content from spilling out */
+}
+
+#music .section-title,
+.intro-text,
+.music-category h3 {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#music .section-title {
+    font-size: 40px;
+    letter-spacing: 5px;
+    margin-bottom: 25px;
+    text-align: center;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+#music .section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 0, 0, 0.3) 50%, 
+        transparent 100%
+    );
+    z-index: -1;
+}
+
+/* Fix the red line under section titles */
+#music .section-title::after {
+    content: "";
+    position: absolute;
+    width: 100%; /* Constrain to parent width */
+    height: 2px;
+    background-color: currentColor;
+    left: 0;
+    bottom: -5px;
+    right: auto; /* Remove right -100vw which causes overflow */
+}
+
+/* Terminal mode enhancements for music page */
+body.terminal-mode .music-item {
+    background-color: #001500;
+    border: 1px solid #00ff00;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+body.terminal-mode .music-item::before {
+    content: "file://music_data/";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    color: #00aa00;
+    font-family: monospace;
+}
+
+body.terminal-mode #music .section-title::before {
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 255, 0, 0.3) 50%, 
+        transparent 100%
+    );
+}
+
+body.terminal-mode .album-art {
+    border-color: #00ff00;
+    filter: brightness(0.8) sepia(0.4) hue-rotate(70deg);
+}
+
+body.terminal-mode .album-art::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 255, 0, 0.1) 50%, 
+        rgba(0, 0, 0, 0) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+body.terminal-mode .music-controls {
+    border-top: 1px dashed #00ff00;
+    padding-top: 10px;
+}
+
+body.terminal-mode .expand-btn,
+body.terminal-mode .play-btn {
+    background-color: #001500;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    text-transform: lowercase;
+    font-family: monospace;
+}
+
+body.terminal-mode .expand-btn::before {
+    content: "$ ";
+}
+
+body.terminal-mode .play-btn::before {
+    content: "> ";
+}
+
+body.terminal-mode .expand-btn:hover,
+body.terminal-mode .play-btn:hover {
+    background-color: #00ff00;
+    color: #000000;
+}
+
+body.terminal-mode .music-item h3 {
+    position: relative;
+    padding-left: 15px;
+}
+
+body.terminal-mode .music-item h3::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: #00ff00;
+}
+
+body.terminal-mode .track-list li {
+    border-bottom: 1px dotted #00aa00;
+    font-family: monospace;
+}
+
+body.terminal-mode .track-list li::before {
+    content: "$ play ";
+    color: #00aa00;
+}
+
+/* Game-specific terminal mode styles */
+body.terminal-mode #nitw {
+    background-color: #001522;
+    border-color: #00aaff;
+}
+
+body.terminal-mode #nitw h3,
+body.terminal-mode #nitw h4 {
+    color: #00aaff;
+}
+
+body.terminal-mode #nitw p {
+    color: #88ccff;
+}
+
+body.terminal-mode #nitw .expand-btn,
+body.terminal-mode #nitw .play-btn {
+    background-color: #001522;
+    border-color: #00aaff;
+    color: #00aaff;
+}
+
+body.terminal-mode #ultrakill {
+    background-color: #150000;
+    border-color: #ff3000;
+}
+
+body.terminal-mode #ultrakill h3,
+body.terminal-mode #ultrakill h4 {
+    color: #ff3000;
+    text-shadow: 0 0 5px #ff0000;
+}
+
         /* Additional styles specific to the music page */
         .music-list {
             display: grid;
@@ -471,7 +648,7 @@
     <!-- FOOTER -->
     <footer class="footer">
         <p>&copy; 2025 ULTRALAYER // BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 OR HIGHER</p>
-        <p>CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 17, 2025</p>
+        <p>CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 18, 2025</p>
     </footer>
 
     <script src="script.js"></script>
@@ -526,6 +703,77 @@
                 }, 1000);
             }
         }
+
+        // Add terminal typing effect in terminal mode
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.querySelector('.terminal-mode-toggle');
+    
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            if (document.body.classList.contains('terminal-mode')) {
+                // Add typing effect to headings
+                const titles = document.querySelectorAll('h3, .intro-text');
+                titles.forEach(title => {
+                    const originalText = title.textContent;
+                    let visibleText = '';
+                    title.textContent = '';
+                    
+                    const typeEffect = setInterval(() => {
+                        if (visibleText.length < originalText.length) {
+                            visibleText += originalText[visibleText.length];
+                            title.textContent = visibleText + (Math.random() > 0.7 ? '_' : '');
+                        } else {
+                            clearInterval(typeEffect);
+                            title.textContent = originalText;
+                        }
+                    }, 30);
+                });
+                
+                // Add data stream effect
+                const dataStream = document.createElement('div');
+                dataStream.className = 'terminal-data-stream';
+                dataStream.style.position = 'fixed';
+                dataStream.style.top = '0';
+                dataStream.style.right = '0';
+                dataStream.style.width = '150px';
+                dataStream.style.height = '100%';
+                dataStream.style.background = 'transparent';
+                dataStream.style.zIndex = '999';
+                dataStream.style.pointerEvents = 'none';
+                dataStream.style.overflow = 'hidden';
+                document.body.appendChild(dataStream);
+                
+                const streamInterval = setInterval(() => {
+                    if (!document.body.classList.contains('terminal-mode')) {
+                        clearInterval(streamInterval);
+                        dataStream.remove();
+                        return;
+                    }
+                    
+                    const dataChar = document.createElement('div');
+                    dataChar.textContent = Math.random() > 0.5 ? '1' : '0';
+                    dataChar.style.position = 'absolute';
+                    dataChar.style.color = '#00ff00';
+                    dataChar.style.opacity = '0.5';
+                    dataChar.style.fontSize = '10px';
+                    dataChar.style.top = '-20px';
+                    dataChar.style.left = Math.floor(Math.random() * 150) + 'px';
+                    dataStream.appendChild(dataChar);
+                    
+                    let pos = -20;
+                    const fall = setInterval(() => {
+                        pos += 2;
+                        dataChar.style.top = pos + 'px';
+                        if (pos > window.innerHeight) {
+                            clearInterval(fall);
+                            dataChar.remove();
+                        }
+                    }, 30);
+                }, 100);
+            }
+        });
+    }
+});
     </script>
 </body>
 </html>

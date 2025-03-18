@@ -50,10 +50,13 @@ dobbypr.github.io/
 - **Pulsing Title**: Main title pulses with a red glow
 - **Scrolling Text**: Marquee-style text banner that scrolls across the page
 - **Project Cards**: Interactive cards that rise on hover with a glowing effect
+- **Parallax Background**: Background elements move at different speeds while scrolling for a depth effect
+- **Loading Screen**: Dramatic loading screen with blood animations when first visiting the site
+- **Terminal Mode**: Toggle between blood-red and terminal-green aesthetics
 
 ## Credits
 
-- Inspired by the aesthetic of [ULTRAKILL](https://devilmayquake.com/)
+- Inspired by the aesthetic of [ULTRAKILL](https://hakita.itch.io/ultrakill-prelude)
 - Built with vanilla HTML, CSS, and JavaScript
 
 ## License

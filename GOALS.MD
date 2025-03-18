@@ -3,19 +3,19 @@
 ## VISUAL ENHANCEMENTS
 - [ ] **Animated Blood Drips** - Add CSS animation for blood drips that slowly flow down section edges
 - [ ] **Glitch Effect** - Implement text distortion animations on headings (especially on hover)
-- [ ] **Parallax Background** - Create subtle depth effect when scrolling through the site
+- [X] **Parallax Background** - Create subtle depth effect when scrolling through the site
 - [ ] **Interactive Pixel Overlay** - Make the grid background subtly respond to mouse movement
 - [ ] **Image Distortion** - Add hover effects to make project images look corrupted or glitched
 
 ## USER EXPERIENCE IMPROVEMENTS
 - [ ] **Custom Cursor** - Replace default cursor with a targeting reticle or bloody pointer
 - [ ] **Audio Elements** - Add optional background ambience and interactive sound effects
-- [ ] **Loading Screen** - Create a thematic transition when first loading the site
+- [X] **Loading Screen** - Create a thematic transition when first loading the site
 - [ ] **Easter Eggs** - Hide interactive secrets throughout the website
 - [ ] **Expanded Project Cards** - Add more details and visuals to project showcases
 
 ## FUNCTIONAL ADDITIONS
-- [ ] **Terminal Mode** - Create an alternate green-on-black aesthetic with a toggle switch
+- [X] **Terminal Mode** - Create an alternate green-on-black aesthetic with a toggle switch
 - [ ] **Mobile-Optimized Menu** - Replace standard navigation with a themed dropdown for mobile
 - [ ] **Section Transitions** - Add animated transitions between different sections
 - [ ] **Enhanced Contact Form** - Style a form with ULTRAKILL-themed inputs and validation
