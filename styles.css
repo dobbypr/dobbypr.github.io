@@ -862,3 +862,144 @@ th {
     0% { transform: scale(0); opacity: 1; }
     100% { transform: scale(1); opacity: 0; }
 }
+
+/* Weapon pickup animation */
+.weapon-pickup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: weaponPulse 1.5s ease-out forwards;
+    z-index: 10000;
+}
+
+.weapon-icon {
+    width: 100px;
+    height: 100px;
+    background-image: url('revolver-icon.png'); /* Replace with actual revolver icon */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 10px #ff0000);
+    margin-bottom: 15px;
+    animation: iconRotate 1s ease-out forwards;
+}
+
+.pickup-text {
+    font-size: 24px;
+    color: #ff0000;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff0000;
+    font-family: "Droid Serif Pro WGL Bold", serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: textGlow 1.5s ease-out forwards;
+}
+
+/* Start screen to bypass autoplay restrictions */
+.start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.start-title {
+    font-size: 80px;
+    color: #ff0000;
+    font-family: "Droid Serif Pro WGL Bold", serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 20px #ff0000;
+    margin-bottom: 20px;
+    animation: pulsateTitle 2s infinite alternate;
+}
+
+.start-subtitle {
+    font-size: 30px;
+    color: #cc0000;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+}
+
+.start-button {
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #330000;
+    border: 2px solid #ff0000;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s;
+    animation: pulsateButton 1.5s infinite alternate;
+}
+
+.start-note {
+    margin-top: 40px;
+    color: #cc0000;
+    font-size: 14px;
+}
+
+.blink {
+    animation: blink 1s infinite;
+}
+
+@keyframes pulsateTitle {
+    0% { transform: scale(1); text-shadow: 0 0 20px #ff0000; }
+    100% { transform: scale(1.05); text-shadow: 0 0 40px #ff0000, 0 0 60px #ff0000; }
+}
+
+@keyframes pulsateButton {
+    0% { box-shadow: 0 0 5px #ff0000; }
+    100% { box-shadow: 0 0 20px #ff0000; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Terminal mode adjustments for start screen */
+body.terminal-mode .start-screen {
+    background-color: #000000;
+}
+
+body.terminal-mode .start-title {
+    color: #00ff00;
+    text-shadow: 0 0 20px #00ff00;
+}
+
+body.terminal-mode .start-subtitle {
+    color: #00aa00;
+}
+
+body.terminal-mode .start-button {
+    color: #ffffff;
+    background-color: #001500;
+    border: 2px solid #00ff00;
+}
+
+body.terminal-mode .start-note {
+    color: #00aa00;
+}
+
+body.terminal-mode .start-title,
+body.terminal-mode .start-button {
+    animation-name: pulsateTitleGreen;
+}
+
+@keyframes pulsateTitleGreen {
+    0% { transform: scale(1); text-shadow: 0 0 20px #00ff00; }
+    100% { transform: scale(1.05); text-shadow: 0 0 40px #00ff00, 0 0 60px #00ff00; }
+}
