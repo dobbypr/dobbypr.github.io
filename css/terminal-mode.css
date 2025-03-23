@@ -1,0 +1,411 @@
+/* ==================== */
+/* TERMINAL MODE STYLES */
+/* ==================== */
+
+/* Terminal Mode Toggle */
+body.terminal-mode .terminal-mode-toggle {
+    background-color: rgba(0, 10, 0, 0.7);
+    border-color: var(--terminal-green);
+}
+
+body.terminal-mode .toggle-switch {
+    background-color: var(--terminal-dark);
+    border-color: var(--terminal-green);
+}
+
+body.terminal-mode .toggle-switch::after {
+    background-color: var(--terminal-green);
+    transform: translateX(25px);
+}
+
+body.terminal-mode .toggle-label {
+    color: var(--terminal-green);
+}
+
+/* Basic Terminal Mode Styles */
+body.terminal-mode {
+    background-color: #000000;
+    color: var(--terminal-green);
+}
+
+body.terminal-mode::before {
+    filter: grayscale(100%) brightness(0.2) sepia(1) hue-rotate(100deg);
+}
+
+body.terminal-mode::after {
+    background-image: 
+        linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px);
+}
+
+/* CRT scan line effect for terminal mode */
+body.terminal-mode::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 999;
+}
+
+/* Terminal Mode Text Elements */
+body.terminal-mode .title {
+    color: var(--terminal-green);
+    text-shadow: 0 0 10px var(--terminal-green), 0 0 15px var(--terminal-green);
+}
+
+body.terminal-mode .title::after {
+    color: var(--terminal-green);
+    text-shadow: 0 0 10px var(--terminal-green);
+}
+
+body.terminal-mode .subtitle,
+body.terminal-mode p,
+body.terminal-mode a,
+body.terminal-mode h1,
+body.terminal-mode h2,
+body.terminal-mode h3,
+body.terminal-mode h4,
+body.terminal-mode td,
+body.terminal-mode th {
+    color: var(--terminal-green);
+}
+
+body.terminal-mode .subhead {
+    animation: greenNeonFlicker 3s infinite;
+}
+
+@keyframes greenNeonFlicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px var(--terminal-green), 0 0 10px var(--terminal-green), 0 0 15px var(--terminal-green);
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.4;
+        text-shadow: none;
+    }
+}
+
+/* Terminal Mode UI Elements */
+body.terminal-mode .section,
+body.terminal-mode .project-card,
+body.terminal-mode .nav,
+body.terminal-mode .header,
+body.terminal-mode .footer {
+    background: linear-gradient(to bottom, rgba(0, 15, 0, 0.9), rgba(0, 10, 0, 0.85));
+    border-color: var(--terminal-green);
+}
+
+body.terminal-mode .section::before,
+body.terminal-mode .nav::before,
+body.terminal-mode .nav::after,
+body.terminal-mode .header::before {
+    background-color: var(--terminal-green);
+}
+
+body.terminal-mode .section-title {
+    color: var(--terminal-green);
+    border-color: var(--terminal-green);
+    text-shadow: 0 0 5px var(--terminal-dark);
+    font-family: monospace;
+}
+
+body.terminal-mode .section-title::after {
+    background-color: var(--terminal-green);
+}
+
+body.terminal-mode .section-title::before {
+    content: "[system] accessing module:";
+    position: absolute;
+    top: -15px;
+    left: 0;
+    font-size: 10px;
+    color: var(--terminal-highlight);
+    opacity: 0.8;
+}
+
+/* Blinking cursor effect */
+body.terminal-mode .section-title::after {
+    content: "█";
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    line-height: 1;
+    margin-left: 5px;
+    animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Terminal Mode Navigation */
+body.terminal-mode .nav a {
+    color: var(--terminal-green);
+    font-family: monospace;
+}
+
+body.terminal-mode .nav a:hover {
+    color: var(--text-light);
+    text-shadow: 0 0 8px var(--terminal-green);
+}
+
+body.terminal-mode .nav a::after {
+    background-color: var(--terminal-green);
+}
+
+body.terminal-mode .nav a.active::before {
+    background-color: var(--terminal-green);
+    box-shadow: 0 0 5px var(--terminal-green);
+}
+
+/* Terminal Mode Marquee */
+body.terminal-mode .marquee {
+    background-color: #000000;
+    color: var(--terminal-green);
+    border-color: var(--terminal-green);
+}
+
+/* Terminal Mode Tables */
+body.terminal-mode table, 
+body.terminal-mode th, 
+body.terminal-mode td {
+    border-color: var(--terminal-dark);
+    font-family: monospace;
+}
+
+body.terminal-mode th {
+    background-color: var(--terminal-dark);
+    color: var(--text-light);
+}
+
+/* Terminal Mode Project Cards */
+body.terminal-mode .project-card {
+    background: linear-gradient(to bottom, #001500, #000800);
+    border: 1px solid var(--terminal-green);
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+body.terminal-mode .project-card::before {
+    content: "project_id:";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 10px;
+    color: var(--terminal-highlight);
+    font-family: monospace;
+    opacity: 0.7;
+}
+
+body.terminal-mode .project-card:nth-child(1)::before {
+    content: "project_id: 001";
+}
+
+body.terminal-mode .project-card:nth-child(2)::before {
+    content: "project_id: 002";
+}
+
+body.terminal-mode .project-card h3 {
+    font-family: monospace;
+    position: relative;
+    padding-left: 15px;
+    color: var(--terminal-green);
+}
+
+body.terminal-mode .project-card h3::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--terminal-green);
+}
+
+body.terminal-mode .project-card h3::after {
+    background-color: var(--terminal-dark);
+}
+
+body.terminal-mode .project-card:hover h3::after {
+    background-color: var(--terminal-green);
+}
+
+body.terminal-mode .project-card p {
+    font-family: monospace;
+    border-top: 1px dashed var(--terminal-green);
+    padding-top: 8px;
+    margin-top: 8px;
+    color: var(--terminal-green-dim);
+}
+
+/* Terminal Mode Links */
+body.terminal-mode a {
+    color: var(--text-light);
+}
+
+body.terminal-mode a:hover {
+    text-shadow: 0 0 5px var(--terminal-green);
+}
+
+/* Terminal Mode Home Section */
+body.terminal-mode #home p {
+    font-family: monospace;
+    position: relative;
+    padding-left: 15px;
+    line-height: 1.6;
+}
+
+body.terminal-mode #home p::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--terminal-green);
+}
+
+/* Terminal Mode Rules Board */
+body.terminal-mode .ruleboard {
+    border: 1px dashed var(--terminal-green);
+    padding: 15px;
+    background-color: rgba(0, 20, 0, 0.3);
+    font-family: monospace;
+}
+
+body.terminal-mode .ruleboard p {
+    position: relative;
+    padding-left: 20px;
+}
+
+body.terminal-mode .ruleboard p::before {
+    position: absolute;
+    left: 0;
+    color: var(--terminal-highlight);
+}
+
+body.terminal-mode .ruleboard p:nth-child(1)::before {
+    content: "#1";
+}
+
+body.terminal-mode .ruleboard p:nth-child(2)::before {
+    content: "#2";
+}
+
+body.terminal-mode .ruleboard p:nth-child(3)::before {
+    content: "#3";
+}
+
+/* Terminal Mode Blood Effects */
+body.terminal-mode .blood {
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.9) 0%, rgba(0, 128, 0, 0.7) 70%, rgba(0, 80, 0, 0.5) 100%);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+body.terminal-mode .blood-drip {
+    background: linear-gradient(to bottom, var(--terminal-green), var(--terminal-dark));
+    box-shadow: 0 0 3px var(--terminal-green);
+}
+
+/* Terminal Mode Loading Screen */
+body.terminal-mode .loading-screen {
+    background-color: #000000;
+}
+
+body.terminal-mode .loading-title {
+    color: var(--terminal-green);
+    animation: terminalLoadingPulse 2s infinite alternate;
+}
+
+@keyframes terminalLoadingPulse {
+    0% { text-shadow: 0 0 10px var(--terminal-green); }
+    100% { text-shadow: 0 0 30px var(--terminal-green), 0 0 50px var(--terminal-green); }
+}
+
+body.terminal-mode .loading-bar-container {
+    background-color: #001500;
+    border: 2px solid var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+body.terminal-mode .loading-bar {
+    background: linear-gradient(to right, var(--terminal-dark), var(--terminal-green));
+}
+
+body.terminal-mode .loading-message {
+    color: var(--terminal-green);
+    font-family: monospace;
+}
+
+/* Terminal Mode Weapon Pickup */
+body.terminal-mode .weapon-pickup .weapon-icon {
+    filter: drop-shadow(0 0 10px var(--terminal-green));
+}
+
+body.terminal-mode .pickup-text {
+    color: var(--terminal-green);
+    text-shadow: 0 0 10px var(--terminal-green);
+    font-family: monospace;
+}
+
+/* Terminal Mode Start Screen */
+body.terminal-mode .start-screen {
+    background-color: #000000;
+}
+
+body.terminal-mode .start-title {
+    color: var(--terminal-green);
+    text-shadow: 0 0 20px var(--terminal-green);
+}
+
+body.terminal-mode .start-subtitle {
+    color: var(--terminal-green-dim);
+}
+
+body.terminal-mode .start-button {
+    color: var(--text-light);
+    background: linear-gradient(to bottom, #002200, #001100);
+    border: 2px solid var(--terminal-green);
+}
+
+body.terminal-mode .start-note {
+    color: var(--terminal-green-dim);
+}
+
+body.terminal-mode .start-title,
+body.terminal-mode .start-button {
+    animation-name: pulsateTitleGreen;
+}
+
+@keyframes pulsateTitleGreen {
+    0% { transform: scale(1); text-shadow: 0 0 20px var(--terminal-green); }
+    100% { transform: scale(1.05); text-shadow: 0 0 40px var(--terminal-green), 0 0 60px var(--terminal-green); }
+}
+
+/* Terminal Mode Parallax */
+body.terminal-mode .parallax-layer-1 {
+    filter: grayscale(100%) brightness(0.2) sepia(1) hue-rotate(100deg);
+}
+
+body.terminal-mode .parallax-layer-2 {
+    background-image: 
+        linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px);
+}
+
+/* Terminal Mode Screen Flash */
+body.terminal-mode .screen-flash {
+    background-color: var(--terminal-green);
+}
+
+/* Responsive Terminal Mode Adjustments */
+@media (max-width: 768px) {
+    body.terminal-mode .section-title::before {
+        font-size: 8px;
+    }
+}

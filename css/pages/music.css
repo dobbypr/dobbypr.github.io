@@ -1,0 +1,558 @@
+/* ==================== */
+/* MUSIC PAGE STYLES */
+/* ==================== */
+
+/* Music Section Header */
+#music .section-title {
+    font-size: 40px;
+    letter-spacing: 5px;
+    margin-bottom: 25px;
+    text-align: center;
+    padding-bottom: 15px;
+    position: relative;
+    text-shadow: 0 0 10px var(--blood-red);
+    border-bottom: 2px solid var(--blood-red);
+}
+
+#music .section-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 48, 0, 0.3) 50%, 
+        transparent 100%
+    );
+    z-index: -1;
+    animation: headerPulse 4s infinite alternate;
+}
+
+/* Music Introduction Text */
+.intro-text {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    color: var(--blood-red);
+    text-shadow: 0 0 5px var(--blood-red);
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+
+.intro-text::before, .intro-text::after {
+    content: "//";
+    padding: 0 10px;
+    opacity: 0.7;
+}
+
+.intro-text:hover {
+    animation: glitchText 0.3s infinite;
+}
+
+/* Music categories and items */
+.music-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.music-item {
+    background: linear-gradient(to bottom, #1a1a1a, #111111);
+    border: 1px solid var(--dark-red);
+    padding: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.music-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, transparent 50%, var(--dark-red) 50%);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.music-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--blood-red);
+    border-color: var(--blood-red);
+}
+
+.music-item:hover::after {
+    background: linear-gradient(135deg, transparent 50%, var(--blood-red) 50%);
+}
+
+.music-item h3 {
+    margin-top: 0;
+    color: var(--blood-red);
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.music-item h3::after {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 1px;
+    background-color: var(--dark-red);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.music-item:hover h3::after {
+    width: 80%;
+    background-color: var(--blood-red);
+}
+
+.music-item p {
+    margin: 8px 0;
+    color: var(--text-dim);
+    font-size: 14px;
+}
+
+/* Album art styling */
+.album-art {
+    width: 120px;
+    height: 120px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    border: 2px solid var(--dark-red);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.album-art::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 48, 0, 0.2));
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.music-item:hover .album-art {
+    transform: rotate(5deg) scale(1.05);
+    border-color: var(--blood-red);
+    box-shadow: 0 0 15px rgba(255, 48, 0, 0.3);
+}
+
+.music-item:hover .album-art::before {
+    opacity: 1;
+}
+
+.music-item:hover .album-art img {
+    transform: scale(1.1);
+}
+
+.music-category {
+    margin-top: 40px;
+    border-top: 2px solid var(--dark-red);
+    padding-top: 25px;
+    position: relative;
+}
+
+.music-category:first-of-type {
+    margin-top: 0;
+    border-top: none;
+    padding-top: 0;
+}
+
+.music-category h3 {
+    color: var(--blood-red);
+    font-size: 28px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+}
+
+.music-category h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blood-red), transparent);
+}
+
+/* Track list styling */
+.track-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 15px 0;
+}
+
+.track-list li {
+    padding: 8px 5px;
+    border-bottom: 1px dotted var(--dark-red);
+    color: var(--text-dim);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 20px;
+}
+
+.track-list li:last-child {
+    border-bottom: none;
+}
+
+.track-list li::before {
+    content: "▶";
+    position: absolute;
+    left: 0;
+    color: var(--blood-red);
+    font-size: 10px;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.track-list li:hover {
+    color: var(--text-light);
+    background-color: rgba(255, 48, 0, 0.1);
+    padding-left: 25px;
+}
+
+.track-list li:hover::before {
+    opacity:
+ 1;
+    transform: scale(1.2);
+}
+
+/* Game-specific styling */
+/* NITW theme */
+#nitw {
+    background: linear-gradient(to bottom, #1a1a24, #12121a);
+    border-color: #4a3b78;
+}
+
+#nitw .album-art {
+    border-color: #4a3b78;
+}
+
+#nitw h3, #nitw h4 {
+    color: #7762c6;
+    text-shadow: 0 0 5px #4a3b78;
+}
+
+#nitw p {
+    color: #b4a7e8;
+}
+
+#nitw .expand-btn, #nitw .play-btn {
+    background: linear-gradient(to bottom, #1d1836, #15122a);
+    border-color: #4a3b78;
+    color: #7762c6;
+}
+
+#nitw .expand-btn:hover, #nitw .play-btn:hover {
+    background: linear-gradient(to bottom, #2a2452, #1d1836);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(119, 98, 198, 0.4);
+}
+
+#nitw .music-details {
+    border-top-color: #4a3b78;
+}
+
+#nitw .track-list li {
+    border-bottom-color: #4a3b78;
+    color: #b4a7e8;
+}
+
+#nitw .track-list li::before {
+    color: #7762c6;
+}
+
+#nitw:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 15px #7762c6;
+    border-color: #4a3b78;
+}
+
+/* ULTRAKILL theme */
+#ultrakill {
+    background: linear-gradient(to bottom, #220000, #190000);
+    border-color: #800000;
+    position: relative;
+}
+
+#ultrakill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 5px, #800000 5px, #800000 10px);
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+#ultrakill h3 {
+    color: #ff3000;
+    text-shadow: 0 0 8px #ff0000;
+    letter-spacing: 1px;
+}
+
+#ultrakill p {
+    color: #ff6666;
+    text-shadow: 0 0 2px #ff0000;
+}
+
+#ultrakill .album-art {
+    border-color: #800000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+#ultrakill .expand-btn, #ultrakill .play-btn {
+    background: linear-gradient(to bottom, #3a0000, #220000);
+    border-color: #800000;
+    color: #ff3000;
+    text-shadow: 0 0 3px #ff0000;
+}
+
+#ultrakill .expand-btn:hover, #ultrakill .play-btn:hover {
+    background: linear-gradient(to bottom, #4a0000, #330000);
+    color: #ffffff;
+    box-shadow: 0 0 15px #ff3000;
+}
+
+#ultrakill .track-list li {
+    border-bottom: 1px dotted #800000;
+    color: #ff6666;
+}
+
+#ultrakill .track-list li::before {
+    color: #ff3000;
+}
+
+#ultrakill:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 15px #ff3000;
+    border-color: #800000;
+}
+
+/* Metal placeholder theme */
+#metal1 {
+    background: linear-gradient(to bottom, #1c1c1c, #0e0e0e);
+    border-color: #444;
+}
+
+#metal1 h3 {
+    color: #aaa;
+    text-shadow: 0 0 5px #555;
+}
+
+#metal1 p {
+    color: #888;
+}
+
+#metal1 .album-art {
+    border-color: #444;
+}
+
+#metal1 .expand-btn, #metal1 .play-btn {
+    background: linear-gradient(to bottom, #222, #111);
+    border-color: #444;
+    color: #aaa;
+}
+
+#metal1 .expand-btn:hover, #metal1 .play-btn:hover {
+    background: linear-gradient(to bottom, #333, #222);
+    color: #ffffff;
+    box-shadow: 0 0 10px #555;
+}
+
+#metal1 .track-list li {
+    border-bottom-color: #444;
+    color: #888;
+}
+
+#metal1 .track-list li::before {
+    color: #aaa;
+}
+
+#metal1:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 12px #aaa;
+    border-color: #666;
+}
+
+/* Terminal Mode Music Page Styles */
+body.terminal-mode #music .section-title::before {
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 255, 0, 0.3) 50%, 
+        transparent 100%
+    );
+}
+
+body.terminal-mode .music-item {
+    background: linear-gradient(to bottom, #001500, #000800);
+    border: 1px solid var(--terminal-green);
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+body.terminal-mode .music-item::before {
+    content: "file://music_data/";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    color: var(--terminal-highlight);
+    font-family: monospace;
+}
+
+body.terminal-mode .music-item h3 {
+    color: var(--terminal-green);
+    font-family: monospace;
+    position: relative;
+    padding-left: 15px;
+}
+
+body.terminal-mode .music-item h3::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--terminal-green);
+}
+
+body.terminal-mode .music-item h3::after {
+    background-color: var(--terminal-dark);
+}
+
+body.terminal-mode .music-item:hover h3::after {
+    background-color: var(--terminal-green);
+}
+
+body.terminal-mode .music-item p {
+    color: var(--terminal-green-dim);
+    font-family: monospace;
+}
+
+body.terminal-mode .music-category {
+    border-top-color: var(--terminal-green);
+}
+
+body.terminal-mode .music-category h3 {
+    color: var(--terminal-green);
+    font-family: monospace;
+}
+
+body.terminal-mode .music-category h3::after {
+    background: linear-gradient(to right, var(--terminal-green), transparent);
+}
+
+body.terminal-mode .album-art {
+    border-color: var(--terminal-green);
+    filter: brightness(0.8) sepia(0.4) hue-rotate(70deg);
+}
+
+body.terminal-mode .album-art::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(0, 255, 0, 0.1) 50%, 
+        rgba(0, 0, 0, 0) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+body.terminal-mode .music-details {
+    border-top: 1px dashed var(--terminal-green);
+}
+
+body.terminal-mode .track-list li {
+    border-bottom: 1px dotted var(--terminal-highlight);
+    font-family: monospace;
+    color: var(--terminal-green-dim);
+}
+
+body.terminal-mode .track-list li::before {
+    color: var(--terminal-highlight);
+}
+
+body.terminal-mode .track-list li:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+/* Responsive adjustments for music page */
+@media (max-width: 768px) {
+    .music-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .album-art {
+        width: 100px;
+        height: 100px;
+    }
+    
+    #music .section-title {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .album-art {
+        float: none;
+        margin: 0 auto 15px;
+        width: 120px;
+        height: 120px;
+    }
+    
+    .music-item h3 {
+        text-align: center;
+        padding-left: 0;
+    }
+    
+    .music-item h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    body.terminal-mode .music-item h3::before {
+        position: static;
+        margin-right: 5px;
+    }
+}

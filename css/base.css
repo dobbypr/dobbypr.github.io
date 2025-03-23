@@ -1,0 +1,119 @@
+/* Font Declaration */
+@font-face {
+    font-family: "Droid Serif Pro WGL Bold";
+    src: url("fonts/DroidSerifProWGLBold.woff2") format("woff2"),
+         url("fonts/DroidSerifProWGLBold.woff") format("woff"),
+         url("fonts/droid-serif.bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Core Variables for easier theme management */
+:root {
+    --blood-red: #ff3000;
+    --blood-red-dim: #cc2800;
+    --dark-red: #800000;
+    --shadow-red: #660000;
+    --bg-dark: #0a0a0a;
+    --bg-darker: #050505;
+    --text-light: #ffffff;
+    --text-dim: #cccccc;
+    
+    /* Terminal Mode Colors */
+    --terminal-green: #00ff00;
+    --terminal-green-dim: #00cc00;
+    --terminal-dark: #003300;
+    --terminal-bg: #001000;
+    --terminal-text: #00ff00;
+    --terminal-highlight: #00aa00;
+}
+
+/* Core Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--blood-red);
+    font-family: "Droid Serif Pro WGL Bold", serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Base Background with Improved Texture */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('v1-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%) brightness(0.3) contrast(1.5) sepia(1) hue-rotate(320deg);
+    image-rendering: pixelated;
+    z-index: -2;
+    transition: filter 0.5s ease;
+}
+
+/* Pixel Grid Overlay */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, rgba(255,48,0,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255,48,0,0.1) 1px, transparent 1px);
+    background-size: 8px 8px;
+    z-index: -1;
+    opacity: 0.7;
+    pointer-events: none;
+    transition: background-image 0.5s ease;
+}
+
+/* Main Container */
+.container {
+    width: 850px;
+    max-width: 92%;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+/* Links */
+a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+a:hover {
+    color: var(--text-light);
+    text-shadow: 0 0 5px var(--blood-red);
+}
+
+/* Responsive Design Base Rules */
+@media (max-width: 768px) {
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 0.9em;
+    }
+}

@@ -1,0 +1,226 @@
+/* Animation Keyframes */
+@keyframes scanline {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes titleAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 48, 0, 0.7));
+    }
+    50% {
+        filter: drop-shadow(0 0 10px rgba(255, 48, 0, 0.9));
+        letter-spacing: 4.5px;
+    }
+}
+
+@keyframes glitchText {
+    0%, 91%, 93%, 95%, 100% { transform: translate(0, 0) skew(0deg); }
+    92% { transform: translate(-2px, 1px) skew(1deg); }
+    94% { transform: translate(3px, -1px) skew(-1deg); }
+    96% { transform: translate(-2px, 0) skew(0.5deg); }
+}
+
+@keyframes neonPowerOn {
+    0%, 60% { color: #333; text-shadow: none; }
+    70% { color: #992200; text-shadow: 0 0 2px #ff3000; }
+    80% { color: #cc3000; text-shadow: 0 0 5px #ff3000, 0 0 7px #ff3000; }
+    100% { color: #ff3000; text-shadow: 0 0 5px #ff3000, 0 0 10px #ff3000, 0 0 15px #ff3000; }
+}
+
+@keyframes neonFlicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 5px #ff3000, 0 0 10px #ff3000, 0 0 15px #ff3000, 0 0 20px #ff3000;
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.4;
+        text-shadow: none;
+    }
+}
+
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes blood {
+    0% { transform: scale(0); opacity: 0.9; }
+    50% { opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+@keyframes drip {
+    0% { height: 0; top: 0; opacity: 0.8; }
+    10% { opacity: 0.9; }
+    70% { opacity: 0.7; }
+    100% { height: 120px; top: 60%; opacity: 0; }
+}
+
+@keyframes loadingPulse {
+    0% { text-shadow: 0 0 10px var(--blood-red); }
+    100% { text-shadow: 0 0 30px var(--blood-red), 0 0 50px var(--blood-red); }
+}
+
+@keyframes loadingBarPulse {
+    0%, 100% { box-shadow: 0 0 5px var(--blood-red); }
+    50% { box-shadow: 0 0 15px var(--blood-red); }
+}
+
+@keyframes weaponPulse {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+    30% { transform: translate(-50%, -50%) scale(0.95); }
+    40% { transform: translate(-50%, -50%) scale(1.02); }
+    50%, 90% { transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes iconRotate {
+    0% { transform: rotate(-20deg) scale(0.8); opacity: 0; }
+    100% { transform: rotate(0) scale(1); opacity: 1; }
+}
+
+@keyframes textGlow {
+    0% { opacity: 0; transform: translateY(10px); }
+    50% { opacity: 1; transform: translateY(0); }
+    75%, 85%, 95% { text-shadow: 0 0 20px var(--blood-red), 0 0 30px var(--blood-red); }
+    80%, 90% { text-shadow: 0 0 10px var(--blood-red); }
+    100% { opacity: 1; }
+}
+
+@keyframes pulsateTitle {
+    0% { transform: scale(1); text-shadow: 0 0 20px var(--blood-red); }
+    100% { transform: scale(1.05); text-shadow: 0 0 40px var(--blood-red), 0 0 60px var(--blood-red); }
+}
+
+@keyframes pulsateButton {
+    0% { box-shadow: 0 0 5px var(--blood-red); }
+    100% { box-shadow: 0 0 20px var(--blood-red); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes flash {
+    0% { opacity: 0.8; }
+    100% { opacity: 0; }
+}
+
+@keyframes headerPulse {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.7; }
+}
+
+/* Blood Effects */
+.blood {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 48, 0, 0.9) 0%, rgba(128, 0, 0, 0.7) 70%, rgba(80, 0, 0, 0.5) 100%);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: blood 1.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(255, 48, 0, 0.3);
+    z-index: 1000;
+}
+
+/* Blood Drips */
+.blood-drip {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--blood-red), var(--dark-red));
+    transform-origin: top center;
+    animation: drip 2.5s ease-in forwards;
+    opacity: 0.8;
+    box-shadow: 0 0 3px var(--blood-red);
+}
+
+/* Screen flash for transitions */
+.screen-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--blood-red);
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0;
+    animation: flash 0.8s ease-out forwards;
+}
+
+/* Parallax Background Layers */
+.parallax-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.parallax-layer-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('v1-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%) brightness(0.3) contrast(1.5) sepia(1) hue-rotate(320deg);
+    image-rendering: pixelated;
+    transform: translateY(0);
+    will-change: transform;
+    transition: filter 0.5s ease;
+}
+
+.parallax-layer-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(90deg, rgba(255,0,0,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255,0,0,0.1) 1px, transparent 1px);
+    background-size: 8px 8px;
+    transform: translateY(0);
+    will-change: transform;
+    transition: background-image 0.5s ease;
+}
+
+.parallax-layer-3 {
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 70%);
+    transform: translateY(0);
+    will-change: transform;
+}
+
+.blink {
+    animation: blink 1s infinite;
+}

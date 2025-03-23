@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ULTRALAYER</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="ULTRALAYER - A chaotic, retro-styled personal website inspired by ULTRAKILL.">
+        <meta name="keywords" content="ULTRAKILL, retro, gaming, web design, blood, pixel art">
+        <meta name="author" content="ULTRALAYER">
+        <title>ULTRALAYER - HOME</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="images/favicon.png">
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/animations.css">
+        <link rel="stylesheet" href="css/components.css">
+        <link rel="stylesheet" href="css/interactive.css">
+        <link rel="stylesheet" href="css/terminal-mode.css">
+        <!-- Page-specific CSS -->
+        <link rel="stylesheet" href="css/pages/home.css">
+    </head>
 <body>
     <div class="container">
         <!-- HEADER: Change the title and subtitle here -->
@@ -17,16 +29,14 @@
 
         <!-- NAVIGATION: Add or remove menu items as needed -->
         <!-- Modified NAVIGATION with dropdown for index.html -->
-<nav class="nav">
-    <a href="#home">HOME</a>
-    <a href="#about">ABOUT</a>
-    <a href="#projects">PROJECTS</a>
-    <div class="dropdown">
-        <a href="music.html">MUSIC</a>
-    </div>
-    <a href="#contact">CONTACT</a>
-    <a href="#my sins">SINS</a>
-</nav>
+        <nav class="nav">
+            <a href="index.html" class="[ACTIVE-IF-INDEX]">HOME</a>
+            <a href="index.html#about">ABOUT</a>
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="music.html" class="[ACTIVE-IF-MUSIC]">MUSIC</a>
+            <a href="index.html#contact">CONTACT</a>
+            <a href="sins.html" class="[ACTIVE-IF-SINS]">SINS</a>
+        </nav>
 
         <!-- MARQUEE: Change the scrolling text here -->
         <div class="marquee">
@@ -112,7 +122,7 @@
     <!-- FOOTER: Edit with your information -->
     <footer class="footer">
         <p>&copy; 2025 ULTRALAYER // BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 OR HIGHER</p>
-        <p>CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 19, 2025</p>
+        <p>CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 22, 2025</p>
     </footer>
 
     <script src="script.js"></script>
