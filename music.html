@@ -28,15 +28,18 @@
         </header>
 
         <!-- NAVIGATION: Include the same nav as your index page -->
-        <nav class="nav">
-            <a href="index.html">HOME</a>
-            <a href="index.html#about">ABOUT</a>
-            <a href="index.html#projects">PROJECTS</a>
-            <a href="music.html">MUSIC</a>
-            <a href="blog.html">BLOG</a>  <!-- Add this line -->
-            <a href="index.html#contact">CONTACT</a>
-            <a href="sins.html">SINS</a>
-        </nav>
+              
+<nav class="nav">
+    <a href="index.html" class="active">HOME</a> <!-- Add active class here -->
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#projects">PROJECTS</a>
+    <a href="music.html">MUSIC</a>
+    <a href="blog.html">BLOG</a>  <!-- Ensure this points to blog.html -->
+    <a href="index.html#contact">CONTACT</a>
+    <a href="sins.html">SINS</a>
+</nav>
+
+
 
         <!-- MARQUEE -->
         <div class="marquee">
@@ -159,8 +162,8 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-        <p>&copy; 2025 ULTRALAYER // BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 OR HIGHER</p>
-        <p>CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 22, 2025</p>
+        <p>© <span id="current-year">2025</span> ULTRALAYER // ... </p>
+        <p id="last-updated">CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 23, 2025</p>
     </footer>
 
     <!-- JavaScript Files -->

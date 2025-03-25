@@ -1,5 +1,28 @@
 // Main initialization and core functionality
 document.addEventListener('DOMContentLoaded', function() {
+    // Dynamic Copyright Year
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
+    // Dynamic "Last Updated" Date Illusion
+    const lastUpdatedP = document.getElementById('last-updated');
+    if (lastUpdatedP) {
+        const today = new Date();
+        const day = today.getDate();
+        const year = today.getFullYear();
+        // Array of month names in your desired style
+        const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+                           "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
+        const month = monthNames[today.getMonth()]; // getMonth() is 0-indexed
+
+        // Replace the date part of the text content
+        // This assumes the format "LAST UPDATED: Month Day, Year"
+        const prefix = "CREATED WITH BLOOD AND CSS // LAST SYSTEM UPDATE: "; // Or whatever your prefix is
+        lastUpdatedP.textContent = `${prefix}${month} ${day}, ${year}`;
+    }
+
     // Create start screen to get user interaction first
     const startScreen = document.createElement('div');
     startScreen.className = 'start-screen';
@@ -255,3 +278,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call page specific initializations
     initPageSpecific();
 });
+
