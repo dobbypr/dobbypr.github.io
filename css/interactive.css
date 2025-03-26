@@ -18,7 +18,7 @@
 .loading-title {
     font-size: 60px;
     color: var(--blood-red);
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     text-transform: uppercase;
     letter-spacing: 4px;
     margin-bottom: 40px;
@@ -34,6 +34,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(255, 48, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-sm);
 }
 
 .loading-bar {
@@ -45,6 +46,17 @@
     animation: loadingBarPulse 1s infinite;
 }
 
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: skillShimmer 2s ease-in-out infinite;
+}
+
 .loading-message {
     margin-top: 25px;
     color: var(--blood-red);
@@ -52,6 +64,14 @@
     letter-spacing: 1px;
     min-height: 1.2em;
     text-shadow: 0 0 5px rgba(255, 48, 0, 0.5);
+}
+
+/* Added typing animation to loading message */
+.typing-effect {
+    border-right: 2px solid var(--blood-red);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3.5s steps(40, end), cursor 0.5s step-end infinite alternate;
 }
 
 /* Weapon Pickup */
@@ -70,7 +90,7 @@
 .weapon-icon {
     width: 100px;
     height: 100px;
-    background-image: url('revolver-icon.png');
+    background-image: url('/images/revolver-icon.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -84,7 +104,7 @@
     color: var(--blood-red);
     font-weight: bold;
     text-shadow: 0 0 10px var(--blood-red);
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     text-transform: uppercase;
     letter-spacing: 2px;
     animation: textGlow 1.5s ease-out forwards;
@@ -93,7 +113,7 @@
 .weapon-stats {
     font-size: 14px;
     color: var(--text-dim);
-    font-family: monospace;
+    font-family: var(--font-secondary);
     margin-top: 10px;
     letter-spacing: 1px;
 }
@@ -117,7 +137,7 @@
 .start-title {
     font-size: 80px;
     color: var(--blood-red);
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     text-transform: uppercase;
     letter-spacing: 4px;
     text-shadow: 0 0 20px var(--blood-red);
@@ -140,9 +160,15 @@
     padding: 15px 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    transition: all 0.3s;
+    transition: all var(--transition-medium);
     animation: pulsateButton 1.5s infinite alternate;
-    border-radius: 2px;
+    border-radius: var(--radius-sm);
+}
+
+.start-button:hover {
+    background: linear-gradient(to bottom, #4a0000, #330000);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--blood-red);
 }
 
 .start-note {
@@ -163,9 +189,15 @@
     padding: 8px 12px;
     background-color: rgba(10, 10, 10, 0.7);
     border: 1px solid var(--blood-red);
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
+    transition: all var(--transition-medium) ease;
+}
+
+.terminal-mode-toggle:hover {
+    background-color: rgba(20, 10, 10, 0.8);
+    border-color: var(--blood-red);
+    box-shadow: 0 0 15px rgba(255, 48, 0, 0.3);
 }
 
 .toggle-switch {
@@ -175,7 +207,7 @@
     border-radius: 12px;
     border: 1px solid var(--blood-red);
     position: relative;
-    transition: all 0.3s;
+    transition: all var(--transition-medium);
     margin-left: 10px;
 }
 
@@ -188,7 +220,7 @@
     background-color: var(--blood-red);
     top: 1px;
     left: 2px;
-    transition: all 0.3s;
+    transition: all var(--transition-medium);
 }
 
 .toggle-label {
@@ -196,7 +228,7 @@
     font-size: 14px;
     text-transform: uppercase;
     font-weight: bold;
-    transition: all 0.3s;
+    transition: all var(--transition-medium);
     user-select: none;
     letter-spacing: 1px;
 }
@@ -216,14 +248,14 @@
     border: 1px solid var(--dark-red);
     padding: 8px 12px;
     cursor: pointer;
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     text-transform: uppercase;
     font-weight: bold;
-    transition: all 0.3s;
+    transition: all var(--transition-medium);
     flex: 1;
     min-width: 100px;
     text-align: center;
-    border-radius: 2px;
+    border-radius: var(--radius-sm);
     position: relative;
     overflow: hidden;
 }
@@ -258,12 +290,211 @@
     margin-top: 10px;
     clear: both;
     border-top: 1px dashed var(--dark-red);
-    transition: border-color 0.3s ease;
+    transition: border-color var(--transition-medium) ease;
 }
 
 .music-item.expanded .music-details {
     max-height: 500px;
     padding-top: 15px;
+}
+
+/* Interactive Cards With Flip Effect */
+.flip-card {
+    perspective: 1000px;
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--dark-red);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.flip-card-front {
+    background: linear-gradient(to bottom, #1a0000, #0a0000);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-card-back {
+    background: linear-gradient(to bottom, #0a0000, #050000);
+    transform: rotateY(180deg);
+    overflow-y: auto;
+}
+
+.flip-card-title {
+    color: var(--blood-red);
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.flip-card-content {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Scroll To Top Button */
+.scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(30, 0, 0, 0.7);
+    color: var(--blood-red);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all var(--transition-medium) ease;
+    z-index: 900;
+    border: 1px solid var(--dark-red);
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    background-color: rgba(50, 0, 0, 0.9);
+    color: var(--text-light);
+    box-shadow: 0 0 15px var(--blood-red);
+    border-color: var(--blood-red);
+}
+
+/* Modal Popup */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom, #1a0000, #0a0000);
+    border: 2px solid var(--blood-red);
+    border-radius: var(--radius-sm);
+    padding: 25px;
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 30px rgba(255, 48, 0, 0.3);
+}
+
+.modal.open .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--blood-red);
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--text-light);
+    transform: rotate(90deg);
+}
+
+.modal-title {
+    color: var(--blood-red);
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 1px solid var(--dark-red);
+    padding-bottom: 10px;
+}
+
+.modal-body {
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Blood Click Effect */
+.create-blood {
+    cursor: crosshair;
+}
+
+/* Glitch Effect Text */
+.glitch-text {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch-text::before {
+    animation: glitch-text 0.3s infinite;
+    color: var(--blood-red);
+    z-index: -2;
+}
+
+.glitch-text::after {
+    animation: glitch-text 0.3s infinite reverse;
+    color: var(--blood-red-dim);
+    z-index: -1;
 }
 
 /* Responsive adjustments for interactive elements */
@@ -291,6 +522,23 @@
     
     .music-controls {
         flex-direction: column;
+    }
+    
+    .flip-card {
+        height: 250px;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        padding: 15px;
+    }
+    
+    .modal-title {
+        font-size: 20px;
+    }
+    
+    .modal-body {
+        font-size: 14px;
     }
 }
 
@@ -322,5 +570,9 @@
     
     .expand-btn, .play-btn {
         margin-bottom: 10px;
+    }
+    
+    .flip-card {
+        height: 200px;
     }
 }

@@ -1,15 +1,17 @@
 /* Font Declaration */
 @font-face {
     font-family: "Droid Serif Pro WGL Bold";
-    src: url("fonts/DroidSerifProWGLBold.woff2") format("woff2"),
-         url("fonts/DroidSerifProWGLBold.woff") format("woff"),
-         url("fonts/droid-serif.bold.ttf") format("truetype");
+    src: url("/fonts/DroidSerifProWGLBold.woff2") format("woff2"),
+         url("/fonts/DroidSerifProWGLBold.woff") format("woff"),
+         url("/fonts/droid-serif.bold.ttf") format("truetype");
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 /* Core Variables for easier theme management */
 :root {
+    /* Base Colors */
     --blood-red: #ff3000;
     --blood-red-dim: #cc2800;
     --dark-red: #800000;
@@ -18,7 +20,7 @@
     --bg-darker: #050505;
     --text-light: #ffffff;
     --text-dim: #cccccc;
-    
+
     /* Terminal Mode Colors */
     --terminal-green: #00ff00;
     --terminal-green-dim: #00cc00;
@@ -26,6 +28,38 @@
     --terminal-bg: #001000;
     --terminal-text: #00ff00;
     --terminal-highlight: #00aa00;
+
+    /* Accent Colors - New */
+    --accent-yellow: #ffcc00;
+    --accent-purple: #8800cc;
+    --accent-blue: #0066ff;
+    
+    /* Fonts */
+    --font-primary: "Droid Serif Pro WGL Bold", serif;
+    --font-secondary: 'Courier New', Courier, monospace;
+    
+    /* Sizes and Spaces */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 25px;
+    --spacing-xl: 40px;
+    
+    /* Transition Speeds */
+    --transition-fast: 0.15s;
+    --transition-medium: 0.3s;
+    --transition-slow: 0.5s;
+    
+    /* Shadow Effects */
+    --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 15px var(--blood-red);
+    --shadow-hard: 0 8px 20px rgba(0, 0, 0, 0.5);
+    
+    /* Border Radii */
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --radius-lg: 8px;
+    --radius-circle: 50%;
 }
 
 /* Core Styling */
@@ -35,19 +69,37 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+    font-size: 16px;
+}
+
 body {
     background-color: var(--bg-dark);
     color: var(--blood-red);
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     position: relative;
     line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100%;
+    transition: background-color var(--transition-medium) ease, 
+                color var(--transition-medium) ease;
+
+    /* Custom Crosshair Cursor */
+    cursor: crosshair;
 }
 
-/* Base Background with Improved Texture */
+/* Force cursor for interactive elements */
+a, button, .expand-btn, .play-btn, .read-more, .back-button, .toggle-switch, 
+input[type="submit"], input[type="button"], select, input[type="checkbox"], 
+input[type="radio"], .tab, .card, .clickable {
+    cursor: inherit;
+}
+
+/* Base Background with Noise Texture */
 body::before {
     content: "";
     position: fixed;
@@ -55,14 +107,13 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('v1-background.jpg');
+    background-image: url('/images/v1-background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     filter: grayscale(100%) brightness(0.3) contrast(1.5) sepia(1) hue-rotate(320deg);
-    image-rendering: pixelated;
     z-index: -2;
-    transition: filter 0.5s ease;
+    transition: filter var(--transition-medium) ease;
 }
 
 /* Pixel Grid Overlay */
@@ -73,14 +124,14 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
+    background-image:
         linear-gradient(90deg, rgba(255,48,0,0.1) 1px, transparent 1px),
         linear-gradient(rgba(255,48,0,0.1) 1px, transparent 1px);
     background-size: 8px 8px;
     z-index: -1;
     opacity: 0.7;
     pointer-events: none;
-    transition: background-image 0.5s ease;
+    transition: background-image var(--transition-medium) ease;
 }
 
 /* Main Container */
@@ -90,13 +141,39 @@ body::after {
     margin: 0 auto;
     padding: 20px;
     position: relative;
+    z-index: 1;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 1rem;
+    line-height: 1.2;
+    font-weight: bold;
+    font-family: var(--font-primary);
+    color: var(--blood-red);
+    transition: color var(--transition-medium) ease;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+    margin: 0 0 1rem;
+    transition: color var(--transition-medium) ease;
 }
 
 /* Links */
 a {
-    color: var(--text-light);
+    color: var(--blood-red);
     text-decoration: none;
-    transition: color 0.3s, text-shadow 0.3s;
+    transition: color var(--transition-medium), 
+                text-shadow var(--transition-medium);
+    position: relative;
+    display: inline-block;
 }
 
 a:hover {
@@ -104,16 +181,232 @@ a:hover {
     text-shadow: 0 0 5px var(--blood-red);
 }
 
+a:focus {
+    outline: 1px dashed var(--blood-red);
+    outline-offset: 2px;
+}
+
+a:active {
+    transform: scale(0.98);
+}
+
+/* Added underline effect */
+a.underline-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+a.underline-effect::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--blood-red);
+    transition: width var(--transition-medium) ease;
+}
+
+a.underline-effect:hover::after {
+    width: 100%;
+}
+
+/* Lists */
+ul, ol {
+    margin: 0 0 1rem 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Form Elements */
+input, textarea, select, button {
+    font-family: var(--font-secondary);
+    padding: 8px 12px;
+    border: 1px solid var(--dark-red);
+    background: linear-gradient(to bottom, #1a0000, #0a0000);
+    color: var(--text-dim);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-medium) ease;
+}
+
+button, input[type="submit"], input[type="button"] {
+    background: linear-gradient(to bottom, #3a0000, #220000);
+    color: var(--blood-red);
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: 1px solid var(--dark-red);
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+    background: linear-gradient(to bottom, #4a0000, #330000);
+    color: var(--text-light);
+    border-color: var(--blood-red);
+    box-shadow: var(--shadow-glow);
+}
+
+button:active, input[type="submit"]:active, input[type="button"]:active {
+    transform: scale(0.97);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--blood-red);
+    box-shadow: 0 0 8px rgba(255, 48, 0, 0.4);
+}
+
+/* Helper Classes */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.align-stretch { align-items: stretch; }
+.flex-wrap { flex-wrap: wrap; }
+
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+.m-0 { margin: 0; }
+.p-0 { padding: 0; }
+
+.hidden { display: none; }
+.visible { display: block; }
+
+/* Typography applications with secondary font */
+.skill-label, .skill-rank, .project-card p, .music-item p,
+.music-details p, .music-details h4, .track-list li,
+.ruleboard p, #contact p:not(:first-of-type),
+.post-summary, .post-date, .post-tags span, .post-content p, .post-content li,
+.sin-description, .sin-quote,
+.loading-message, .pickup-text, .weapon-stats, .start-note, .toggle-label,
+.footer p, .hud-style-meter, .code-block, .terminal-text, .meta-info {
+    font-family: var(--font-secondary);
+    letter-spacing: 0.5px;
+}
+
+/* Primary font applications */
+.title, .subhead, .subtitle,
+.nav a,
+.section-title,
+.expand-btn, .play-btn, .read-more, .back-button,
+th, h1, h2, h3, h4, h5, h6,
+.nav-button, .hero-text, .btn-primary, .btn-secondary {
+    font-family: var(--font-primary);
+}
+
+/* Added scroll-to-top button */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-circle);
+    background: rgba(30, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blood-red);
+    border: 1px solid var(--dark-red);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-medium) ease, 
+                transform var(--transition-medium) ease,
+                background var(--transition-medium) ease;
+}
+
+.scroll-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-top:hover {
+    background: rgba(50, 0, 0, 0.9);
+    color: var(--text-light);
+    border-color: var(--blood-red);
+    box-shadow: var(--shadow-glow);
+}
+
 /* Responsive Design Base Rules */
 @media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+    
     .container {
         max-width: 95%;
         padding: 15px;
     }
+    
+    .scroll-top {
+        bottom: 20px;
+        right: 20px;
+        width: 35px;
+        height: 35px;
+    }
 }
 
 @media (max-width: 480px) {
-    body {
-        font-size: 0.9em;
+    html {
+        font-size: 14px;
     }
+    
+    body {
+        font-size: 0.9rem;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
+
+/* New - Dark/Light theme toggle (future addition) */
+.theme-toggle {
+    position: fixed;
+    top: 70px; /* Below terminal mode toggle */
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: rgba(10, 10, 10, 0.7);
+    border: 1px solid var(--dark-red);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-medium) ease;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(20, 10, 10, 0.8);
+    border-color: var(--blood-red);
+}
+
+.theme-label {
+    color: var(--blood-red);
+    font-size: 14px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    user-select: none;
 }

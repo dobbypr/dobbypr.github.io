@@ -3,10 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="ULTRALAYER - A chaotic, retro-styled personal website inspired by ULTRAKILL.">
-        <meta name="keywords" content="ULTRAKILL, retro, gaming, web design, blood, pixel art">
+        <meta name="description" content="ULTRALAYER - MUSIC // Sounds from the Abyss.">
+        <meta name="keywords" content="ULTRAKILL, retro, gaming, music, soundtrack, blood, pixel art">
         <meta name="author" content="ULTRALAYER">
-        <title>ULTRALAYER - MUSIC</title>
+        <title>ULTRALAYER - MUSIC // REVAMP</title>
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="images/favicon.png">
         <!-- CSS Files -->
@@ -19,6 +19,11 @@
         <link rel="stylesheet" href="css/pages/music.css">
     </head>
 <body>
+    <!-- HUD Element -->
+    <div class="hud-style-meter">
+        STYLE // <span class="style-rank blink">ULTRAKILL</span>
+    </div>
+
     <div class="container">
         <!-- HEADER -->
         <header class="header">
@@ -27,149 +32,133 @@
             <p class="subtitle">// MANKIND IS DEAD. BLOOD IS FUEL. MUSIC IS ETERNAL. //</p>
         </header>
 
-        <!-- NAVIGATION: Include the same nav as your index page -->
-              
-<nav class="nav">
-    <a href="index.html" class="active">HOME</a> <!-- Add active class here -->
-    <a href="index.html#about">ABOUT</a>
-    <a href="index.html#projects">PROJECTS</a>
-    <a href="music.html">MUSIC</a>
-    <a href="blog.html">BLOG</a>  <!-- Ensure this points to blog.html -->
-    <a href="index.html#contact">CONTACT</a>
-    <a href="sins.html">SINS</a>
-</nav>
-
-
+        <!-- NAVIGATION -->
+        <nav class="nav">
+            <a href="index.html">HOME</a>
+            <a href="index.html#about">ABOUT</a>
+            <a href="index.html#projects">PROJECTS</a>
+            <a href="music.html" class="active">MUSIC</a>
+            <a href="blog.html">BLOG</a>
+            <a href="index.html#contact">CONTACT</a>
+            <a href="sins.html">SINS</a>
+        </nav>
 
         <!-- MARQUEE -->
         <div class="marquee">
             <div class="marquee-content">
-                ULTRAKILL OST // ANDREW HULSHULT // MUSIC IS FUEL // MANKIND IS RHYTHM // HELL IS SONOROUS // YOUR SPEAKERS BLEED //
+                ++ AUDIO CHANNEL OPEN ++ ULTRAKILL OST // ANDREW HULSHULT // MUSIC IS FUEL // MANKIND IS RHYTHM // HELL IS SONOROUS // YOUR SPEAKERS BLEED ++ NOW PLAYING: CHAOS ++
             </div>
         </div>
 
-        <!-- MUSIC SECTION -->
-        <section id="music" class="section">
-            <h2 class="section-title">MY MUSICAL HELL</h2>
-            <p class="intro-text">THESE BEATS FUEL MY DESCENT</p>
-            
-            <!-- Music categories and lists go here -->
-            <div class="music-category">
-                <h3>GAME SOUNDTRACKS</h3>
-                <div class="music-list">
-                    <!-- Night in the Woods -->
-                    <div class="music-item" id="nitw">
-                        <div class="album-art">
-                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2Fimages7%2F1080p-Night-In-The-Woods-Wallpaper-HD.jpg&f=1&nofb=1&ipt=5177dac421ebf43c306271d5863a1d0d22d9284490e41811f7de31aa90608dce&ipo=images" alt="Night in the Woods Album Art">
+        <main>
+            <!-- MUSIC SECTION (Cards updated via CSS) -->
+            <section id="music" class="section">
+                <h2 class="section-title">MY MUSICAL HELL // AUDIO LOGS</h2>
+                <p class="intro-text">THESE BEATS FUEL MY DESCENT</p>
+
+                <div class="music-category">
+                    <h3>GAME SOUNDTRACKS // SOURCE MATERIAL</h3>
+                    <div class="music-list">
+                        <!-- Night in the Woods -->
+                        <div class="music-item" id="nitw">
+                            <div class="album-art">
+                                <img src="images/music/nitw-art.jpg" alt="Night in the Woods Album Art">
+                            </div>
+                            <h3>NITW Vol.1 & Vol.2</h3>
+                            <p>ARTIST: Alec Holowka</p>
+                            <p>GAME: Night in the Woods</p>
+                            <p>FAVORITE TRACK: Vol.1 & Vol.2 (SYNERGY)</p>
+                            <div class="music-controls">
+                                <button class="expand-btn" onclick="toggleDetails('nitw')">ANALYZE</button>
+                                <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-1-at-the-end-of-everything" target="_blank" class="play-btn">ACQUIRE V1</a>
+                                <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-2-hold-onto-anything" target="_blank" class="play-btn">ACQUIRE V2</a>
+                            </div>
+                            <div class="music-details">
+                                <p>Atmospheric resonance protocol for decaying urban simulation. Autumnal frequency modulation detected.</p>
+                                <h4>PRIORITY SIGNATURES:</h4>
+                                <ul class="track-list">
+                                    <li>Die Anywhere Else</li>
+                                    <li>Durkillesburg</li>
+                                    <li>Mallard's Tomb</li>
+                                    <li>Astral Alley</li>
+                                    <li>Rainy Day</li>
+                                </ul>
+                                <p>LOG DATE: 2017 // INDIE FOLK / ELECTRONIC HYBRID</p>
+                            </div>
                         </div>
-                        <h3>NITW Vol.1 & Vol.2</h3>
-                        <p>ARTIST: Alec Holowka</p>
-                        <p>GAME: Night in the Woods</p>
-                        <p>FAVORITE TRACK: Vol.1 & Vol.2 (both are so very AWESOME!!)</p>
-                        
-                        <div class="music-controls">
-                            <button class="expand-btn" onclick="toggleDetails('nitw')">SHOW MORE</button>
-                            <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-1-at-the-end-of-everything" target="_blank" class="play-btn">LISTEN Vol.1</a>
-                            <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-2-hold-onto-anything" target="_blank" class="play-btn">LISTEN Vol.2</a>
-                        </div>
-                        
-                        <div class="music-details">
-                            <p>Night in the Woods is an adventure game focused on exploration, story, and character. The soundtrack perfectly captures the game's mood of autumn in a dying rust belt town.</p>
-                            
-                            <h4>TOP TRACKS:</h4>
-                            <ul class="track-list">
-                                <li>Die Anywhere Else</li>
-                                <li>Durkillesburg</li>
-                                <li>Mallard's Tomb</li>
-                                <li>Astral Alley</li>
-                                <li>Rainy Day</li>
-                            </ul>
-                            
-                            <p>Released in 2017, this atmospheric soundtrack blends indie folk influences with electronic elements.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- ULTRAKILL -->
-                    <div class="music-item" id="ultrakill">
-                        <div class="album-art">
-                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F9374593.png&f=1&nofb=1&ipt=427b916e415359473e1b131ee4548b920bbed0a37918145c60794bc503ef8661&ipo=images" alt="ULTRAKILL Album Art">
-                        </div>
-                        <h3>ULTRAKILL OST</h3>
-                        <p>ARTIST: Hakita</p>
-                        <p>GAME: ULTRAKILL</p>
-                        <p>FAVORITE TRACK: INFINITE HYPERDEATH</p>
-                        
-                        <div class="music-controls">
-                            <button class="expand-btn" onclick="toggleDetails('ultrakill')">SHOW MORE</button>
-                            <a href="https://heavenpierceher.bandcamp.com/album/ultrakill-infinite-hyperdeath" target="_blank" class="play-btn">LISTEN</a>
-                        </div>
-                        
-                        <div class="music-details">
-                            <p>ULTRAKILL's soundtrack is a brutal mix of industrial metal, drum and bass, and experimental electronic music that perfectly complements the game's fast-paced, ultra-violent gameplay.</p>
-                            
-                            <h4>TOP TRACKS:</h4>
-                            <ul class="track-list">
-                                <li>Into The Fire</li>
-                                <li>A Thousand Greetings</li>
-                                <li>The Fire Is Gone</li>
-                                <li>A Cyber Grind</li>
-                                <li>INFINITE HYPERDEATH</li>
-                            </ul>
-                            
-                            <p>The music drives the action with intense beats and distorted guitars, making every encounter feel like a blood-pumping battle.</p>
+
+                        <!-- ULTRAKILL -->
+                        <div class="music-item" id="ultrakill">
+                            <div class="album-art">
+                                <img src="images/music/ultrakill-art.jpg" alt="ULTRAKILL Album Art">
+                            </div>
+                            <h3>ULTRAKILL OST</h3>
+                            <p>ARTIST: HEAVEN PIERCE HER (Hakita)</p>
+                            <p>GAME: ULTRAKILL // CORE DIRECTIVE</p>
+                            <p>FAVORITE TRACK: INFINITE HYPERDEATH</p>
+                            <div class="music-controls">
+                                <button class="expand-btn" onclick="toggleDetails('ultrakill')">ANALYZE</button>
+                                <a href="https://heavenpierceher.bandcamp.com/album/ultrakill-infinite-hyperdeath" target="_blank" class="play-btn">ACQUIRE</a>
+                            </div>
+                            <div class="music-details">
+                                <p>Brutal chaotic waveform analysis. Industrial / DnB / Breakcore synthesis optimized for maximum bloodshed velocity.</p>
+                                <h4>MAXIMUM VIOLENCE SIGNATURES:</h4>
+                                <ul class="track-list">
+                                    <li>Into The Fire</li>
+                                    <li>A Thousand Greetings</li>
+                                    <li>The Fire Is Gone</li>
+                                    <li>A Cyber Grind</li>
+                                    <li>INFINITE HYPERDEATH</li>
+                                </ul>
+                                <p>COMBAT EFFECTIVENESS: //ULTRAKILL//</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="music-category">
-                <h3>METAL & ROCK</h3>
-                <div class="music-list">
-                    <!-- Example metal album -->
-                    <div class="music-item" id="metal1">
-                        <div class="album-art">
-                            <img src="https://place-hold.it/100x100/333/aaa/000&text=METAL" alt="Metal Album Art">
-                        </div>
-                        <h3>ALBUM TITLE</h3>
-                        <p>ARTIST: [ARTIST NAME]</p>
-                        <p>YEAR: [YEAR]</p>
-                        <p>FAVORITE TRACK: [TRACK NAME]</p>
-                        
-                        <div class="music-controls">
-                            <button class="expand-btn" onclick="toggleDetails('metal1')">SHOW MORE</button>
-                            <a href="#" class="play-btn">LISTEN</a>
-                        </div>
-                        
-                        <div class="music-details">
-                            <p>Add your description here. Talk about why you love this album, its significance, or anything else interesting about it.</p>
-                            
-                            <h4>TOP TRACKS:</h4>
-                            <ul class="track-list">
-                                <li>Track 1</li>
-                                <li>Track 2</li>
-                                <li>Track 3</li>
-                            </ul>
-                            
-                            <p>Additional notes about the album can go here.</p>
+
+                <div class="music-category">
+                    <h3>METAL & ROCK // HIGH-VELOCITY OSCILLATIONS</h3>
+                    <div class="music-list">
+                        <!-- Example metal album -->
+                        <div class="music-item" id="metal1">
+                            <div class="album-art">
+                                <img src="images/music/metal-placeholder.jpg" alt="Metal Album Art">
+                            </div>
+                            <h3>[ALBUM TITLE]</h3>
+                            <p>ARTIST: [ARTIST NAME]</p>
+                            <p>YEAR: [YEAR]</p>
+                            <p>FAVORITE TRACK: [TRACK NAME]</p>
+                            <div class="music-controls">
+                                <button class="expand-btn" onclick="toggleDetails('metal1')">ANALYZE</button>
+                                <a href="#" class="play-btn">[LINK]</a>
+                            </div>
+                            <div class="music-details">
+                                <p>Description of sonic assault protocols.</p>
+                                <h4>SIGNIFICANT FREQUENCIES:</h4>
+                                <ul class="track-list">
+                                    <li>Track 1</li>
+                                    <li>Track 2</li>
+                                    <li>Track 3</li>
+                                </ul>
+                                <p>CLASSIFICATION: [SUBGENRE]</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Add more categories as needed -->
-        </section>
+            </section>
+        </main>
     </div>
 
-    <!-- FOOTER -->
+    <!-- FOOTER (With ID for dynamic date) -->
     <footer class="footer">
-        <p>© <span id="current-year">2025</span> ULTRALAYER // ... </p>
-        <p id="last-updated">CREATED WITH BLOOD AND CSS // LAST UPDATED: MARCH 23, 2025</p>
+        <p>© <span id="current-year">2025</span> ULTRALAYER // THIS TERMINAL BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 OR HIGHER // REALITY IS OPTIONAL</p>
+        <p id="last-updated">FORGED IN BLOOD AND CODE // LAST SYSTEM UPDATE: MARCH 23, 2025</p>
     </footer>
 
     <!-- JavaScript Files -->
-    <script src="js/core.js"></script>
+    <script src="js/core.js"></script> <!-- Make sure dynamic date JS is in here -->
     <script src="js/audio.js"></script>
-    <script src="js/effects.js"></script>
+    <script src="js/effects.js"></script> <!-- Ensure toggleDetails() is defined here or in core.js -->
     <script src="js/terminal.js"></script>
 </body>
 </html>
