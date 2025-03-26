@@ -1,3 +1,7 @@
+/* ==================== */
+/* LOADING SCREEN STYLES */
+/* ==================== */
+
 /* Loading Screen */
 .loading-screen {
     position: fixed;
@@ -5,7 +9,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000000;
+    background-color: #0a0000;
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -15,25 +19,69 @@
     overflow: hidden;
 }
 
+.loading-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-container {
+    max-width: 600px;
+    width: 90%;
+    padding: 30px;
+    background-color: rgba(20, 0, 0, 0.7);
+    border: 1px solid var(--dark-red);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add scanline effect to container */
+.loading-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(20, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.1) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 1;
+    pointer-events: none;
+    animation: scanline-slow 8s linear infinite;
+}
+
 .loading-title {
     font-size: 60px;
     color: var(--blood-red);
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     text-transform: uppercase;
     letter-spacing: 4px;
     margin-bottom: 40px;
     position: relative;
+    text-align: center;
     animation: loadingPulse 2s infinite alternate;
 }
 
+.loading-title-layer {
+    position: relative;
+    color: #ffffff;
+    text-shadow: 0 0 15px var(--shadow-red);
+}
+
 .loading-bar-container {
-    width: 300px;
+    width: 100%;
     height: 20px;
     background-color: #1a0000;
-    border: 2px solid var(--blood-red);
+    border: 2px solid var(--dark-red);
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(255, 48, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
 }
 
 .loading-bar {
@@ -43,6 +91,32 @@
     transition: width 0.5s ease-out;
     position: relative;
     animation: loadingBarPulse 1s infinite;
+    box-shadow: 0 0 8px var(--shadow-red);
+}
+
+/* Glitch effect for loading bar */
+.loading-bar-glitch {
+    position: absolute;
+    height: 100%;
+    width: 10%;
+    background-color: rgba(255, 255, 255, 0.7);
+    mix-blend-mode: overlay;
+    z-index: 3;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    transition: opacity 0.1s;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: skillShimmer 2s ease-in-out infinite;
 }
 
 .loading-message {
@@ -52,6 +126,118 @@
     letter-spacing: 1px;
     min-height: 1.2em;
     text-shadow: 0 0 5px rgba(255, 48, 0, 0.5);
+    font-family: var(--font-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.loading-prefix {
+    color: var(--blood-red);
+    margin-right: 10px;
+    animation: blink 1s step-end infinite;
+}
+
+.loading-text {
+    position: relative;
+}
+
+.loading-percent {
+    color: var(--blood-red);
+    font-family: var(--font-secondary);
+    font-size: 24px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px var(--shadow-red);
+}
+
+.loading-percent.complete {
+    animation: percent-complete 0.5s ease-in-out 3;
+    font-size: 28px;
+    color: #ffffff;
+    text-shadow: 0 0 15px var(--blood-red);
+}
+
+/* Terminal Mode Loading Screen */
+body.terminal-mode .loading-container {
+    background-color: rgba(0, 20, 0, 0.7);
+    border-color: var(--terminal-dark);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+body.terminal-mode .loading-title {
+    color: var(--terminal-green);
+    animation: terminalLoadingPulse 2s infinite alternate;
+}
+
+body.terminal-mode .loading-bar-container {
+    background-color: #001500;
+    border: 2px solid var(--terminal-green);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3), inset 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+body.terminal-mode .loading-bar {
+    background: linear-gradient(to right, var(--terminal-dark), var(--terminal-green));
+    box-shadow: 0 0 8px var(--terminal-green-dim);
+}
+
+body.terminal-mode .loading-bar::after {
+    background: linear-gradient(90deg, transparent, rgba(200, 255, 200, 0.3), transparent);
+}
+
+body.terminal-mode .loading-message {
+    color: var(--terminal-green);
+    font-family: var(--font-secondary);
+    text-shadow: 0 0 5px var(--terminal-dark);
+}
+
+body.terminal-mode .loading-prefix {
+    color: var(--terminal-green);
+}
+
+body.terminal-mode .loading-percent {
+    color: var(--terminal-green);
+    text-shadow: 0 0 5px var(--terminal-dark);
+}
+
+body.terminal-mode .loading-percent.complete {
+    text-shadow: 0 0 15px var(--terminal-green);
+}
+
+/* Final stage effects */
+.loading-screen.final-stage {
+    background-color: #1a0000;
+}
+
+.loading-screen.final-stage .loading-container {
+    border-color: var(--blood-red);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    animation: container-pulse 1s ease-in-out infinite;
+}
+
+.loading-screen.final-stage .loading-title {
+    font-size: 64px;
+    animation: title-glitch 0.3s step-end infinite;
+}
+
+.loading-screen.final-stage .loading-message {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px var(--shadow-red);
+}
+
+/* Terminal mode final stage */
+body.terminal-mode .loading-screen.final-stage {
+    background-color: #001a00;
+}
+
+body.terminal-mode .loading-screen.final-stage .loading-container {
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+    animation: container-pulse-green 1s ease-in-out infinite;
 }
 
 /* Weapon Pickup */
@@ -63,39 +249,70 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: weaponPulse 1.5s ease-out forwards;
+    animation: weaponPulse 2.5s ease-out forwards;
     z-index: 10000;
+}
+
+.pickup-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(20, 0, 0, 0.8);
+    border: 2px solid var(--blood-red);
+    padding: 20px;
+    box-shadow: 0 0 30px var(--shadow-red);
+    border-radius: var(--radius-sm);
 }
 
 .weapon-icon {
     width: 100px;
     height: 100px;
-    background-image: url('revolver-icon.png');
+    background-image: url('/images/revolver-icon.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     filter: drop-shadow(0 0 10px var(--blood-red));
-    margin-bottom: 15px;
+    margin-right: 20px;
     animation: iconRotate 1s ease-out forwards;
 }
 
 .pickup-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.pickup-title {
     font-size: 24px;
     color: var(--blood-red);
     font-weight: bold;
     text-shadow: 0 0 10px var(--blood-red);
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     text-transform: uppercase;
     letter-spacing: 2px;
     animation: textGlow 1.5s ease-out forwards;
+    margin-bottom: 8px;
 }
 
-.weapon-stats {
+.pickup-desc {
     font-size: 14px;
     color: var(--text-dim);
-    font-family: monospace;
-    margin-top: 10px;
+    font-family: var(--font-secondary);
     letter-spacing: 1px;
+}
+
+/* Terminal Mode Weapon Pickup */
+body.terminal-mode .pickup-container {
+    background-color: rgba(0, 20, 0, 0.8);
+    border-color: var(--terminal-green);
+    box-shadow: 0 0 30px var(--terminal-dark);
+}
+
+body.terminal-mode .weapon-icon {
+    filter: drop-shadow(0 0 10px var(--terminal-green));
+}
+
+body.terminal-mode .pickup-title {
+    color: var(--terminal-green);
+    text-shadow: 0 0 10px var(--terminal-green);
 }
 
 /* Start Screen */
@@ -112,14 +329,17 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .start-title {
     font-size: 80px;
     color: var(--blood-red);
-    font-family: "Droid Serif Pro WGL Bold", serif;
+    font-family: var(--font-primary);
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 6px;
     text-shadow: 0 0 20px var(--blood-red);
     margin-bottom: 20px;
     animation: pulsateTitle 2s infinite alternate;
@@ -127,9 +347,11 @@
 
 .start-subtitle {
     font-size: 30px;
-    color: var(--blood-red-dim);
+    color: var(--text-light);
     margin-bottom: 40px;
     letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--shadow-red);
+    font-family: var(--font-secondary);
 }
 
 .start-button {
@@ -140,140 +362,142 @@
     padding: 15px 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    transition: all 0.3s;
+    transition: all var(--transition-medium);
     animation: pulsateButton 1.5s infinite alternate;
-    border-radius: 2px;
+    border-radius: var(--radius-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.start-button::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                               transparent, 
+                               rgba(255, 0, 0, 0.2), 
+                               transparent);
+    left: -100%;
+    top: 0;
+    animation: button-shine 3s infinite;
+}
+
+.start-button:hover {
+    background: linear-gradient(to bottom, #4a0000, #330000);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--blood-red);
 }
 
 .start-note {
     margin-top: 40px;
     color: var(--blood-red-dim);
     font-size: 14px;
+    font-family: var(--font-secondary);
 }
 
-/* Terminal Mode Toggle */
-.terminal-mode-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 8px 12px;
-    background-color: rgba(10, 10, 10, 0.7);
-    border: 1px solid var(--blood-red);
-    border-radius: 3px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
+/* Terminal Mode Start Screen */
+body.terminal-mode .start-screen {
+    background-color: #000a00;
 }
 
-.toggle-switch {
-    width: 50px;
-    height: 24px;
-    background-color: #330000;
-    border-radius: 12px;
-    border: 1px solid var(--blood-red);
-    position: relative;
-    transition: all 0.3s;
-    margin-left: 10px;
+body.terminal-mode .start-title {
+    color: var(--terminal-green);
+    text-shadow: 0 0 20px var(--terminal-green);
+    animation-name: pulsateTitleGreen;
 }
 
-.toggle-switch::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: var(--blood-red);
-    top: 1px;
-    left: 2px;
-    transition: all 0.3s;
+body.terminal-mode .start-subtitle {
+    color: var(--text-light);
+    text-shadow: 0 0 10px var(--terminal-green);
 }
 
-.toggle-label {
-    color: var(--blood-red);
-    font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: all 0.3s;
-    user-select: none;
-    letter-spacing: 1px;
+body.terminal-mode .start-button {
+    background: linear-gradient(to bottom, #002200, #001100);
+    border-color: var(--terminal-green);
+    color: var(--text-light);
+    animation-name: pulsateButtonGreen;
 }
 
-/* Interactive Elements for Music Page */
-.music-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    flex-wrap: wrap;
-    gap: 10px;
+body.terminal-mode .start-button::after {
+    background: linear-gradient(90deg, 
+                             transparent, 
+                             rgba(0, 255, 0, 0.2), 
+                             transparent);
 }
 
-.expand-btn, .play-btn {
-    background: linear-gradient(to bottom, #3a0000, #220000);
-    color: var(--blood-red);
-    border: 1px solid var(--dark-red);
-    padding: 8px 12px;
-    cursor: pointer;
-    font-family: "Droid Serif Pro WGL Bold", serif;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: all 0.3s;
-    flex: 1;
-    min-width: 100px;
-    text-align: center;
-    border-radius: 2px;
-    position: relative;
-    overflow: hidden;
+body.terminal-mode .start-button:hover {
+    background: linear-gradient(to bottom, #003300, #002200);
+    box-shadow: 0 0 20px var(--terminal-green);
 }
 
-.expand-btn::before, .play-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 48, 0, 0.2), transparent);
-    transition: left 0.5s;
+body.terminal-mode .start-note {
+    color: var(--terminal-green-dim);
 }
 
-.expand-btn:hover::before, .play-btn:hover::before {
-    left: 100%;
+/* Additional animations for loading effects */
+@keyframes container-pulse {
+    0%, 100% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); }
+    50% { box-shadow: 0 0 50px rgba(255, 0, 0, 0.8); }
 }
 
-.expand-btn:hover, .play-btn:hover {
-    background: linear-gradient(to bottom, #4a0000, #330000);
-    color: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 48, 0, 0.4);
-    border-color: var(--blood-red);
+@keyframes container-pulse-green {
+    0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 0, 0.5); }
+    50% { box-shadow: 0 0 50px rgba(0, 255, 0, 0.8); }
 }
 
-/* Music details section that expands */
-.music-details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out;
-    margin-top: 10px;
-    clear: both;
-    border-top: 1px dashed var(--dark-red);
-    transition: border-color 0.3s ease;
+@keyframes percent-complete {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }
 
-.music-item.expanded .music-details {
-    max-height: 500px;
-    padding-top: 15px;
+@keyframes button-shine {
+    0% { left: -100%; }
+    50% { left: 100%; }
+    100% { left: 100%; }
 }
 
-/* Responsive adjustments for interactive elements */
+@keyframes scanline-slow {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+@keyframes title-glitch {
+    0%, 100% { transform: translate(0); filter: none; }
+    25% { transform: translate(-2px, 1px); filter: saturate(200%) brightness(150%); }
+    50% { transform: translate(1px, -1px); filter: saturate(150%) brightness(120%); }
+    75% { transform: translate(-1px, -2px); filter: saturate(250%) brightness(140%); }
+}
+
+@keyframes terminalLoadingPulse {
+    0% { text-shadow: 0 0 10px var(--terminal-green); }
+    100% { text-shadow: 0 0 30px var(--terminal-green), 0 0 50px var(--terminal-green); }
+}
+
+@keyframes pulsateTitleGreen {
+    0% { transform: scale(1); text-shadow: 0 0 20px var(--terminal-green); }
+    100% { transform: scale(1.05); text-shadow: 0 0 40px var(--terminal-green), 0 0 60px var(--terminal-green); }
+}
+
+@keyframes pulsateButtonGreen {
+    0% { box-shadow: 0 0 5px var(--terminal-green); }
+    100% { box-shadow: 0 0 20px var(--terminal-green); }
+}
+
+/* Responsive adjustments for loading screen */
 @media (max-width: 768px) {
     .loading-title {
         font-size: 40px;
     }
     
+    .loading-container {
+        width: 85%;
+        padding: 25px;
+    }
+    
     .loading-bar-container {
-        width: 250px;
+        width: 100%;
+        height: 15px;
     }
     
     .start-title {
@@ -284,23 +508,48 @@
         font-size: 22px;
     }
     
-    .terminal-mode-toggle {
-        top: 10px;
-        right: 10px;
+    .start-button {
+        font-size: 20px;
+        padding: 12px 25px;
     }
     
-    .music-controls {
-        flex-direction: column;
+    .weapon-icon {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .pickup-title {
+        font-size: 20px;
+    }
+    
+    .pickup-desc {
+        font-size: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .loading-title {
-        font-size: 30px;
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+    
+    .loading-container {
+        width: 90%;
+        padding: 20px;
     }
     
     .loading-bar-container {
-        width: 200px;
+        height: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .loading-message {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+    
+    .loading-percent {
+        font-size: 20px;
     }
     
     .start-title {
@@ -309,18 +558,28 @@
     
     .start-subtitle {
         font-size: 18px;
+        margin-bottom: 30px;
+    }
+    
+    .start-button {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+    
+    .pickup-container {
+        flex-direction: column;
+        padding: 15px;
+        text-align: center;
     }
     
     .weapon-icon {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .pickup-text {
-        font-size: 20px;
-    }
-    
-    .expand-btn, .play-btn {
+        width: 60px;
+        height: 60px;
+        margin-right: 0;
         margin-bottom: 10px;
+    }
+    
+    .pickup-title {
+        font-size: 18px;
     }
 }
