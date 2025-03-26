@@ -1,3 +1,5 @@
+--- START OF FILE music.html ---
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +8,7 @@
         <meta name="description" content="ULTRALAYER - MUSIC // Sounds from the Abyss.">
         <meta name="keywords" content="ULTRAKILL, retro, gaming, music, soundtrack, blood, pixel art">
         <meta name="author" content="ULTRALAYER">
-        <title>ULTRALAYER - MUSIC // REVAMP</title>
+        <title>ULTRALAYER - MUSIC // ULTRAMUSIC_REVAMP</title> <!-- Updated Title -->
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="images/favicon.png">
         <!-- CSS Files -->
@@ -16,7 +18,7 @@
         <link rel="stylesheet" href="css/interactive.css">
         <link rel="stylesheet" href="css/terminal-mode.css">
         <!-- Page-specific CSS -->
-        <link rel="stylesheet" href="css/pages/music.css">
+        <link rel="stylesheet" href="css/pages/music.css"> <!-- Will update this file -->
     </head>
 <body>
     <!-- HUD Element -->
@@ -46,104 +48,205 @@
         <!-- MARQUEE -->
         <div class="marquee">
             <div class="marquee-content">
-                ++ AUDIO CHANNEL OPEN ++ ULTRAKILL OST // ANDREW HULSHULT // MUSIC IS FUEL // MANKIND IS RHYTHM // HELL IS SONOROUS // YOUR SPEAKERS BLEED ++ NOW PLAYING: CHAOS ++
+                ++ AUDIO CHANNEL OPEN ++ ACCESSING SONIC ARCHIVES // ULTRAMUSIC_REVAMP PROTOCOL ENGAGED // CLASSIFIED BY SOURCE SIGNATURE // HELL IS SONOROUS ++ NOW PLAYING: CHAOS ++
             </div>
         </div>
 
         <main>
-            <!-- MUSIC SECTION (Cards updated via CSS) -->
-            <section id="music" class="section">
-                <h2 class="section-title">MY MUSICAL HELL // AUDIO LOGS</h2>
-                <p class="intro-text">THESE BEATS FUEL MY DESCENT</p>
+            <!-- MUSIC SECTION (ULTRAMUSIC_REVAMP using Tabs) -->
+            <section id="music" class="section ultramusic-revamp">
+                <h2 class="section-title">AUDIO DATABANKS // ULTRAMUSIC_REVAMP</h2>
+                <p class="intro-text">SELECT DATASTREAM // THESE BEATS FUEL THE MACHINE</p>
 
-                <div class="music-category">
-                    <h3>GAME SOUNDTRACKS // SOURCE MATERIAL</h3>
-                    <div class="music-list">
-                        <!-- Night in the Woods -->
-                        <div class="music-item" id="nitw">
-                            <div class="album-art">
-                                <img src="images/music/nitw-art.jpg" alt="Night in the Woods Album Art">
-                            </div>
-                            <h3>NITW Vol.1 & Vol.2</h3>
-                            <p>ARTIST: Alec Holowka</p>
-                            <p>GAME: Night in the Woods</p>
-                            <p>FAVORITE TRACK: Vol.1 & Vol.2 (SYNERGY)</p>
-                            <div class="music-controls">
-                                <button class="expand-btn" onclick="toggleDetails('nitw')">ANALYZE</button>
-                                <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-1-at-the-end-of-everything" target="_blank" class="play-btn">ACQUIRE V1</a>
-                                <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-2-hold-onto-anything" target="_blank" class="play-btn">ACQUIRE V2</a>
-                            </div>
-                            <div class="music-details">
-                                <p>Atmospheric resonance protocol for decaying urban simulation. Autumnal frequency modulation detected.</p>
-                                <h4>PRIORITY SIGNATURES:</h4>
-                                <ul class="track-list">
-                                    <li>Die Anywhere Else</li>
-                                    <li>Durkillesburg</li>
-                                    <li>Mallard's Tomb</li>
-                                    <li>Astral Alley</li>
-                                    <li>Rainy Day</li>
-                                </ul>
-                                <p>LOG DATE: 2017 // INDIE FOLK / ELECTRONIC HYBRID</p>
-                            </div>
-                        </div>
-
-                        <!-- ULTRAKILL -->
-                        <div class="music-item" id="ultrakill">
-                            <div class="album-art">
-                                <img src="images/music/ultrakill-art.jpg" alt="ULTRAKILL Album Art">
-                            </div>
-                            <h3>ULTRAKILL OST</h3>
-                            <p>ARTIST: HEAVEN PIERCE HER (Hakita)</p>
-                            <p>GAME: ULTRAKILL // CORE DIRECTIVE</p>
-                            <p>FAVORITE TRACK: INFINITE HYPERDEATH</p>
-                            <div class="music-controls">
-                                <button class="expand-btn" onclick="toggleDetails('ultrakill')">ANALYZE</button>
-                                <a href="https://heavenpierceher.bandcamp.com/album/ultrakill-infinite-hyperdeath" target="_blank" class="play-btn">ACQUIRE</a>
-                            </div>
-                            <div class="music-details">
-                                <p>Brutal chaotic waveform analysis. Industrial / DnB / Breakcore synthesis optimized for maximum bloodshed velocity.</p>
-                                <h4>MAXIMUM VIOLENCE SIGNATURES:</h4>
-                                <ul class="track-list">
-                                    <li>Into The Fire</li>
-                                    <li>A Thousand Greetings</li>
-                                    <li>The Fire Is Gone</li>
-                                    <li>A Cyber Grind</li>
-                                    <li>INFINITE HYPERDEATH</li>
-                                </ul>
-                                <p>COMBAT EFFECTIVENESS: //ULTRAKILL//</p>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Tab Buttons -->
+                <div class="music-tabs" role="tablist" aria-label="Music Categories">
+                    <button class="tab-button active" role="tab" aria-selected="true" aria-controls="game-ost-pane" id="game-ost-tab" data-tab-target="#game-ost-pane">
+                        GAME OST // SOURCE MATERIAL
+                    </button>
+                    <button class="tab-button" role="tab" aria-selected="false" aria-controls="metal-rock-pane" id="metal-rock-tab" data-tab-target="#metal-rock-pane">
+                        METAL/ROCK // HIGH-VELOCITY
+                    </button>
+                    <!-- Add more tab buttons here if needed -->
                 </div>
 
-                <div class="music-category">
-                    <h3>METAL & ROCK // HIGH-VELOCITY OSCILLATIONS</h3>
-                    <div class="music-list">
-                        <!-- Example metal album -->
-                        <div class="music-item" id="metal1">
-                            <div class="album-art">
-                                <img src="images/music/metal-placeholder.jpg" alt="Metal Album Art">
+                <!-- Tab Content Panes -->
+                <div class="music-tab-content-container">
+                    <!-- Game OST Pane -->
+                    <div class="music-tab-pane active" id="game-ost-pane" role="tabpanel" aria-labelledby="game-ost-tab">
+                        <!-- No category h3 needed here now, title is in the tab -->
+                        <div class="music-list">
+                            <!-- Night in the Woods -->
+                            <div class="music-item" id="nitw">
+                                <div class="album-art">
+                                    <img src="images/music/nitw-art.jpg" alt="Night in the Woods Album Art">
+                                </div>
+                                <h3>NITW Vol.1 & Vol.2</h3>
+                                <p>ARTIST: Alec Holowka</p>
+                                <p>GAME: Night in the Woods</p>
+                                <p>FAVORITE TRACK: Vol.1 & Vol.2 (SYNERGY)</p>
+                                <div class="music-controls">
+                                    <button class="expand-btn" onclick="toggleDetails('nitw')">ANALYZE</button>
+                                    <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-1-at-the-end-of-everything" target="_blank" class="play-btn">ACQUIRE V1</a>
+                                    <a href="https://infiniteammo.bandcamp.com/album/night-in-the-woods-vol-2-hold-onto-anything" target="_blank" class="play-btn">ACQUIRE V2</a>
+                                </div>
+                                <div class="music-details">
+                                    <p>Atmospheric resonance protocol for decaying urban simulation. Autumnal frequency modulation detected.</p>
+                                    <h4>PRIORITY SIGNATURES:</h4>
+                                    <ul class="track-list">
+                                        <li>Die Anywhere Else</li>
+                                        <li>Durkillesburg</li>
+                                        <li>Mallard's Tomb</li>
+                                        <li>Astral Alley</li>
+                                        <li>Rainy Day</li>
+                                    </ul>
+                                    <p>LOG DATE: 2017 // INDIE FOLK / ELECTRONIC HYBRID</p>
+                                </div>
                             </div>
-                            <h3>[ALBUM TITLE]</h3>
-                            <p>ARTIST: [ARTIST NAME]</p>
-                            <p>YEAR: [YEAR]</p>
-                            <p>FAVORITE TRACK: [TRACK NAME]</p>
-                            <div class="music-controls">
-                                <button class="expand-btn" onclick="toggleDetails('metal1')">ANALYZE</button>
-                                <a href="#" class="play-btn">[LINK]</a>
+
+                            <!-- ULTRAKILL -->
+                            <div class="music-item" id="ultrakill">
+                                <div class="album-art">
+                                    <img src="images/music/ultrakill-art.jpg" alt="ULTRAKILL Album Art">
+                                </div>
+                                <h3>ULTRAKILL OST</h3>
+                                <p>ARTIST: HEAVEN PIERCE HER (Hakita)</p>
+                                <p>GAME: ULTRAKILL // CORE DIRECTIVE</p>
+                                <p>FAVORITE TRACK: INFINITE HYPERDEATH</p>
+                                <div class="music-controls">
+                                    <button class="expand-btn" onclick="toggleDetails('ultrakill')">ANALYZE</button>
+                                    <a href="https://heavenpierceher.bandcamp.com/album/ultrakill-infinite-hyperdeath" target="_blank" class="play-btn">ACQUIRE</a>
+                                </div>
+                                <div class="music-details">
+                                    <p>Brutal chaotic waveform analysis. Industrial / DnB / Breakcore synthesis optimized for maximum bloodshed velocity.</p>
+                                    <h4>MAXIMUM VIOLENCE SIGNATURES:</h4>
+                                    <ul class="track-list">
+                                        <li>Into The Fire</li>
+                                        <li>A Thousand Greetings</li>
+                                        <li>The Fire Is Gone</li>
+                                        <li>A Cyber Grind</li>
+                                        <li>INFINITE HYPERDEATH</li>
+                                    </ul>
+                                    <p>COMBAT EFFECTIVENESS: //ULTRAKILL//</p>
+                                </div>
                             </div>
-                            <div class="music-details">
-                                <p>Description of sonic assault protocols.</p>
-                                <h4>SIGNIFICANT FREQUENCIES:</h4>
-                                <ul class="track-list">
-                                    <li>Track 1</li>
-                                    <li>Track 2</li>
-                                    <li>Track 3</li>
-                                </ul>
-                                <p>CLASSIFICATION: [SUBGENRE]</p>
+
+                            <!-- Undertale -->
+                            <div class="music-item" id="undertale">
+                                <div class="album-art">
+                                    <img src="images/music/undertale-art.jpg" alt="Undertale Album Art">
+                                </div>
+                                <h3>Undertale OST</h3>
+                                <p>ARTIST: Toby Fox</p>
+                                <p>GAME: Undertale</p>
+                                <p>FAVORITE TRACK: Hopes and Dreams</p>
+                                <div class="music-controls">
+                                    <button class="expand-btn" onclick="toggleDetails('undertale')">ANALYZE</button>
+                                    <a href="https://tobyfox.bandcamp.com/album/undertale-soundtrack" target="_blank" class="play-btn">ACQUIRE</a>
+                                </div>
+                                <div class="music-details">
+                                    <p>Analysis of emotionally resonant chiptune frequencies. Wide spectrum emotional data detected: Determination, Humor, Sorrow.</p>
+                                    <h4>SIGNATURE EMOTIONAL CORES:</h4>
+                                    <ul class="track-list">
+                                        <li>Spider Dance</li>
+                                        <li>Bonetrousle</li>
+                                        <li>ASGORE</li>
+                                        <li>Hopes and Dreams</li>
+                                        <li>Megalovania</li>
+                                    </ul>
+                                    <p>LOG DATE: 2015 // CHIPTUNE / RPG HYBRID</p>
+                                </div>
+                            </div>
+
+                            <!-- Terraria -->
+                            <div class="music-item" id="terraria">
+                                <div class="album-art">
+                                    <img src="images/music/terraria-art.jpg" alt="Terraria Album Art">
+                                </div>
+                                <h3>Terraria OST</h3>
+                                <p>ARTIST: Scott Lloyd Shelly / Re-Logic</p>
+                                <p>GAME: Terraria</p>
+                                <p>FAVORITE TRACK: Plantera</p>
+                                <div class="music-controls">
+                                    <button class="expand-btn" onclick="toggleDetails('terraria')">ANALYZE</button>
+                                    <a href="https://re-logic.bandcamp.com/album/terraria-soundtrack" target="_blank" class="play-btn">ACQUIRE V1</a>
+                                    <a href="https://re-logic.bandcamp.com/album/terraria-soundtrack-volume-2" target="_blank" class="play-btn">ACQUIRE V2</a>
+                                </div>
+                                <div class="music-details">
+                                    <p>Diverse sonic biome simulation protocols. Ambient exploration frequencies contrast sharply with high-intensity combat sequences.</p>
+                                    <h4>BIOME & COMBAT SIGNATURES:</h4>
+                                    <ul class="track-list">
+                                        <li>Overworld Day</li>
+                                        <li>Underground</li>
+                                        <li>Boss 2</li>
+                                        <li>Plantera</li>
+                                        <li>Lunar Boss (Moon Lord)</li>
+                                    </ul>
+                                    <p>LOG DATE: 2011+ // ADVENTURE / CHIPTUNE / AMBIENT / ROCK</p>
+                                </div>
+                            </div>
+
+                            <!-- Noita -->
+                            <div class="music-item" id="noita">
+                                <div class="album-art">
+                                    <img src="images/music/noita-art.jpg" alt="Noita Album Art">
+                                </div>
+                                <h3>Noita OST</h3>
+                                <p>ARTIST: From Grotto & Kämäri</p>
+                                <p>GAME: Noita</p>
+                                <p>FAVORITE TRACK: Noita Main Theme</p>
+                                <div class="music-controls">
+                                    <button class="expand-btn" onclick="toggleDetails('noita')">ANALYZE</button>
+                                    <a href="https://fromgrotto.bandcamp.com/album/noita-soundtrack-volume-1" target="_blank" class="play-btn">ACQUIRE V1</a>
+                                    <a href="https://kamarimusic.bandcamp.com/album/noita-soundtrack-volume-2" target="_blank" class="play-btn">ACQUIRE V2</a>
+                                    <a href="https://fromgrotto.bandcamp.com/album/noita-soundtrack-volume-3" target="_blank" class="play-btn">ACQUIRE V3</a>
+                                </div>
+                                <div class="music-details">
+                                    <p>Ambient signal analysis from deep geological strata. Experimental electronic synthesis mirrors chaotic environmental physics.</p>
+                                    <h4>DEEP CAVERN RESONANCES:</h4>
+                                    <ul class="track-list">
+                                        <li>Noita Main Theme</li>
+                                        <li>Fungal Caverns</li>
+                                        <li>The Work (Hell)</li>
+                                        <li>Chilly Scope</li>
+                                        <li>Coal Pits</li>
+                                    </ul>
+                                    <p>LOG DATE: 2019+ // AMBIENT / ELECTRONIC / EXPERIMENTAL</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Metal/Rock Pane -->
+                    <div class="music-tab-pane" id="metal-rock-pane" role="tabpanel" aria-labelledby="metal-rock-tab">
+                        <div class="music-list">
+                            <!-- Example metal album -->
+                            <div class="music-item" id="metal1">
+                                <div class="album-art">
+                                    <img src="images/music/metal-placeholder.jpg" alt="Metal Album Art">
+                                </div>
+                                <h3>[ALBUM TITLE]</h3>
+                                <p>ARTIST: [ARTIST NAME]</p>
+                                <p>YEAR: [YEAR]</p>
+                                <p>FAVORITE TRACK: [TRACK NAME]</p>
+                                <div class="music-controls">
+                                    <button class="expand-btn" onclick="toggleDetails('metal1')">ANALYZE</button>
+                                    <a href="#" class="play-btn">[LINK]</a>
+                                </div>
+                                <div class="music-details">
+                                    <p>Description of sonic assault protocols.</p>
+                                    <h4>SIGNIFICANT FREQUENCIES:</h4>
+                                    <ul class="track-list">
+                                        <li>Track 1</li>
+                                        <li>Track 2</li>
+                                        <li>Track 3</li>
+                                    </ul>
+                                    <p>CLASSIFICATION: [SUBGENRE]</p>
+                                </div>
+                            </div>
+                            <!-- Add more metal/rock items here -->
+                        </div>
+                    </div>
+                    <!-- Add more tab panes here if needed -->
                 </div>
             </section>
         </main>
@@ -156,9 +259,9 @@
     </footer>
 
     <!-- JavaScript Files -->
-    <script src="js/core.js"></script> <!-- Make sure dynamic date JS is in here -->
+    <script src="js/core.js"></script> <!-- Should contain tab switching logic -->
     <script src="js/audio.js"></script>
-    <script src="js/effects.js"></script> <!-- Ensure toggleDetails() is defined here or in core.js -->
+    <script src="js/effects.js"></script> <!-- Contains toggleDetails() -->
     <script src="js/terminal.js"></script>
 </body>
 </html>

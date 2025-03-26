@@ -6,81 +6,130 @@ document.addEventListener('DOMContentLoaded', function() {
         yearSpan.textContent = new Date().getFullYear();
     }
 
-    // Dynamic "Last Updated" Date Illusion
+    // Dynamic "Last Updated" Date
     const lastUpdatedP = document.getElementById('last-updated');
     if (lastUpdatedP) {
         const today = new Date();
         const day = today.getDate();
         const year = today.getFullYear();
-        // Array of month names in your desired style
         const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
                            "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-        const month = monthNames[today.getMonth()]; // getMonth() is 0-indexed
-
-        // Replace the date part of the text content
-        // This assumes the format "LAST UPDATED: Month Day, Year"
-        const prefix = "CREATED WITH BLOOD AND CSS // LAST SYSTEM UPDATE: "; // Or whatever your prefix is
+        const month = monthNames[today.getMonth()];
+        const prefix = "FORGED IN BLOOD AND CODE // LAST SYSTEM UPDATE: ";
         lastUpdatedP.textContent = `${prefix}${month} ${day}, ${year}`;
     }
 
-    // Create start screen to get user interaction first
-    const startScreen = document.createElement('div');
-    startScreen.className = 'start-screen';
-    startScreen.innerHTML = `
-        <div class="start-title">ULTRALAYER</div>
-        <div class="start-subtitle">ENTER HELL</div>
-        <div class="start-button">CLICK TO BEGIN</div>
-        <div class="start-note">
-            <span class="blink">!</span> AUDIO EXPERIENCE <span class="blink">!</span>
-        </div>
-    `;
-    document.body.appendChild(startScreen);
-
-    // Hide everything else until user clicks
-    document.querySelector('.container').style.display = 'none';
-
-    // When user clicks the start screen, remove it and show the site
-    startScreen.addEventListener('click', function() {
-        // Enable audio (this click will allow autoplay)
-        startScreen.remove();
-        document.querySelector('.container').style.display = 'block';
-
-        // Try to play intro music after user interaction
-        if (typeof initAudio === 'function') {
-            initAudio();
+    // Check if we've already been through the intro
+    const hasVisitedBefore = sessionStorage.getItem('ultraLayerVisited');
+    
+    if (!hasVisitedBefore) {
+        // First visit - show start screen
+        initFirstVisit();
+    } else {
+        // Returning visitor - skip intro and initialize features
+        initSiteFeatures();
+        
+        // If we have a hash in the URL (e.g. #music), scroll to it
+        if (window.location.hash) {
+            setTimeout(() => {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
         }
+    }
 
-        // Start the loading sequence
-        initLoadingScreen();
-    });
+    // Initialize first visit experience with start screen and loading
+    function initFirstVisit() {
+        // Create start screen to get user interaction first
+        const startScreen = document.createElement('div');
+        startScreen.className = 'start-screen';
+        startScreen.innerHTML = `
+            <div class="start-title">ULTRALAYER</div>
+            <div class="start-subtitle">ENTER HELL</div>
+            <div class="start-button">CLICK TO BEGIN</div>
+            <div class="start-note">
+                <span class="blink">!</span> AUDIO EXPERIENCE <span class="blink">!</span>
+            </div>
+        `;
+        document.body.appendChild(startScreen);
 
-    // Initialize the loading screen
+        // Hide everything else until user clicks
+        document.querySelector('.container').style.display = 'none';
+
+        // When user clicks the start screen, remove it and show the site
+        startScreen.addEventListener('click', function() {
+            // Enable audio (this click will allow autoplay)
+            startScreen.remove();
+            document.querySelector('.container').style.display = 'block';
+
+            // Set flag for visited
+            sessionStorage.setItem('ultraLayerVisited', 'true');
+
+            // Try to play intro music after user interaction
+            if (typeof initAudio === 'function') {
+                initAudio();
+            }
+
+            // Start the loading sequence
+            initLoadingScreen();
+        });
+    }
+
+    // Enhanced loading screen
     function initLoadingScreen() {
         // Create loading screen elements
         const loadingScreen = document.createElement('div');
         loadingScreen.className = 'loading-screen';
 
+        // Add stylized container for loading elements
+        const loadingContainer = document.createElement('div');
+        loadingContainer.className = 'loading-container';
+        
         const loadingTitle = document.createElement('div');
         loadingTitle.className = 'loading-title';
-        loadingTitle.textContent = 'ULTRALAYER';
+        loadingTitle.innerHTML = 'ULTRA<span class="loading-title-layer">LAYER</span>';
 
         const loadingBarContainer = document.createElement('div');
         loadingBarContainer.className = 'loading-bar-container';
 
         const loadingBar = document.createElement('div');
         loadingBar.className = 'loading-bar';
+        
+        // Add glitch overlay to loading bar
+        const loadingBarGlitch = document.createElement('div');
+        loadingBarGlitch.className = 'loading-bar-glitch';
 
         const loadingMessage = document.createElement('div');
         loadingMessage.className = 'loading-message';
+        
+        // Add decorative terminal prefix to loading messages
+        const loadingPrefix = document.createElement('span');
+        loadingPrefix.className = 'loading-prefix';
+        loadingPrefix.textContent = '>';
+        loadingMessage.appendChild(loadingPrefix);
+        
+        const loadingText = document.createElement('span');
+        loadingText.className = 'loading-text';
+        loadingMessage.appendChild(loadingText);
+
+        // Add percentage counter
+        const loadingPercent = document.createElement('div');
+        loadingPercent.className = 'loading-percent';
+        loadingPercent.textContent = '0%';
 
         const bloodDrips = document.createElement('div');
         bloodDrips.className = 'blood-drips';
 
         // Assemble loading screen
         loadingBarContainer.appendChild(loadingBar);
-        loadingScreen.appendChild(loadingTitle);
-        loadingScreen.appendChild(loadingBarContainer);
-        loadingScreen.appendChild(loadingMessage);
+        loadingBarContainer.appendChild(loadingBarGlitch);
+        loadingContainer.appendChild(loadingTitle);
+        loadingContainer.appendChild(loadingBarContainer);
+        loadingContainer.appendChild(loadingMessage);
+        loadingContainer.appendChild(loadingPercent);
+        loadingScreen.appendChild(loadingContainer);
         loadingScreen.appendChild(bloodDrips);
         document.body.appendChild(loadingScreen);
 
@@ -94,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             "INITIALIZING BLOOD PUMPS...",
             "CALIBRATING VIOLENCE...",
             "LOADING THE MACHINE...",
-            "PREPARING YOUR DESCENT...",
+            "COMPILING UNHOLY ASSETS...",
             "MANKIND IS DEAD...",
             "BLOOD IS FUEL...",
             "WEBSITE IS FULL..."
@@ -106,13 +155,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update loading progress
         const loadingInterval = setInterval(() => {
-            progress += Math.random() * 15;
+            // More consistent progress increment
+            const increment = Math.random() * 5 + 2; // 2-7% increment
+            progress += increment;
             if (progress > 100) progress = 100;
 
+            // Update bar width with smoother transition
+            loadingBar.style.transition = 'width 0.3s ease-out';
             loadingBar.style.width = progress + '%';
+            
+            // Update percentage text
+            loadingPercent.textContent = Math.floor(progress) + '%';
+            
+            // More dynamic glitch effect on the loading bar
+            if (Math.random() > 0.7) {
+                loadingBarGlitch.style.opacity = Math.random() * 0.5;
+                loadingBarGlitch.style.left = (Math.random() * progress) + '%';
+                loadingBarGlitch.style.width = (5 + Math.random() * 20) + '%';
+                
+                setTimeout(() => {
+                    loadingBarGlitch.style.opacity = '0';
+                }, 150);
+            }
 
+            // Update message with typing effect
             if (messageIndex < messages.length) {
-                loadingMessage.textContent = messages[messageIndex];
+                loadingText.textContent = messages[messageIndex];
                 messageIndex++;
             }
 
@@ -128,7 +196,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Add a weapon pickup animation/effect
                         const weaponPickup = document.createElement('div');
                         weaponPickup.className = 'weapon-pickup';
-                        weaponPickup.innerHTML = `<div class="weapon-icon"></div><div class="pickup-text">REVOLVER ACQUIRED</div>`;
+                        weaponPickup.innerHTML = `
+                            <div class="pickup-container">
+                                <div class="weapon-icon"></div>
+                                <div class="pickup-text">
+                                    <div class="pickup-title">REVOLVER ACQUIRED</div>
+                                    <div class="pickup-desc">THE HUMBLE BEGINNING OF ALL VIOLENCE</div>
+                                </div>
+                            </div>
+                        `;
                         loadingScreen.appendChild(weaponPickup);
 
                         // Create blood splatter effect
@@ -150,7 +226,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearInterval(loadingInterval);
                 // Final message - only after weapon pickup is gone
                 setTimeout(() => {
-                    loadingMessage.textContent = "WELCOME TO HELL";
+                    loadingText.textContent = "WELCOME TO HELL";
+                    
+                    // Final percentage pulse effect
+                    loadingPercent.classList.add('complete');
 
                     // Play the drop section of the music
                     if (typeof dropMusic !== 'undefined' && typeof playAudioWithFallback === 'function') {
@@ -177,6 +256,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Remove loading screen from DOM after transition
                         setTimeout(() => {
                             loadingScreen.remove();
+                            
+                            // Initialize site features after loading completes
+                            initSiteFeatures();
                         }, 1500);
                         
                         // Let drop.mp3 play until it naturally ends
@@ -197,6 +279,60 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 400);
     }
 
+    // Initialize site features (runs for both new and returning visitors)
+    function initSiteFeatures() {
+        // Initialize any page-specific features
+        initPageSpecific();
+        
+        // Add common site interactions and effects
+        initSiteInteractions();
+    }
+    
+    // Site-wide interactive elements
+    function initSiteInteractions() {
+        // Add hover effects to navigation
+        const navLinks = document.querySelectorAll('.nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (typeof createBloodSplatter === 'function') {
+                    const rect = this.getBoundingClientRect();
+                    createBloodSplatter({
+                        pageX: rect.left + rect.width/2,
+                        pageY: rect.bottom
+                    }, {
+                        size: '40px',
+                        opacity: 0.3
+                    });
+                }
+            });
+        });
+        
+        // Add scroll-to-top button if it doesn't exist
+        if (!document.querySelector('.scroll-top')) {
+            const scrollButton = document.createElement('div');
+            scrollButton.className = 'scroll-top';
+            scrollButton.innerHTML = '↑';
+            document.body.appendChild(scrollButton);
+            
+            // Show/hide scroll button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    scrollButton.classList.add('visible');
+                } else {
+                    scrollButton.classList.remove('visible');
+                }
+            });
+            
+            // Scroll to top when clicked
+            scrollButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
+
     // Initialize any page-specific features
     function initPageSpecific() {
         // Check if we're on the music page
@@ -210,10 +346,19 @@ document.addEventListener('DOMContentLoaded', function() {
             // Initialize sins page specific functionality
             initSinsPage();
         }
+        
+        // Check if we're on the blog page
+        if (document.getElementById('blog')) {
+            // Initialize blog page specific functionality
+            initBlogPage();
+        }
     }
 
     // Music page specific initialization
     function initMusicPage() {
+        // Initialize tab functionality
+        initTabs();
+        
         // Add event listeners for music controls if they exist
         const expandButtons = document.querySelectorAll('.expand-btn');
         
@@ -223,30 +368,92 @@ document.addEventListener('DOMContentLoaded', function() {
                 toggleDetails(musicItemId);
             });
         });
+    }
 
-        // Function to toggle details section visibility
-        function toggleDetails(id) {
-            const item = document.getElementById(id);
-            item.classList.toggle('expanded');
-            
-            const btn = item.querySelector('.expand-btn');
+    // Tab functionality for music page
+    function initTabs() {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Get the target pane ID from the data attribute
+                const targetId = this.getAttribute('data-tab-target');
+                
+                if (!targetId) {
+                    console.error('Tab button is missing data-tab-target attribute');
+                    return;
+                }
+                
+                // Remove active class from all tab buttons
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-selected', 'false');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                this.setAttribute('aria-selected', 'true');
+                
+                // Remove active class from all tab panes
+                const tabPanes = document.querySelectorAll('.music-tab-pane');
+                tabPanes.forEach(pane => {
+                    pane.classList.remove('active');
+                });
+                
+                // Add active class to targeted pane
+                const targetPane = document.querySelector(targetId);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                    
+                    // Create blood splatter effect when switching tabs
+                    if (typeof createBloodSplatterBurst === 'function') {
+                        const rect = targetPane.getBoundingClientRect();
+                        createBloodSplatterBurst(
+                            5, 
+                            rect.left + rect.width/2, 
+                            rect.top + rect.height/4, 
+                            100, 
+                            1000
+                        );
+                    }
+                } else {
+                    console.error(`Target tab pane ${targetId} not found`);
+                }
+            });
+        });
+        
+        // Make sure at least one tab is active
+        if (tabButtons.length > 0 && !document.querySelector('.tab-button.active')) {
+            tabButtons[0].click();
+        }
+    }
+
+    // Function to toggle details section visibility
+    function toggleDetails(id) {
+        const item = document.getElementById(id);
+        if (!item) return;
+        
+        item.classList.toggle('expanded');
+        
+        const btn = item.querySelector('.expand-btn');
+        if (btn) {
             if (item.classList.contains('expanded')) {
                 btn.textContent = 'SHOW LESS';
             } else {
-                btn.textContent = 'SHOW MORE';
+                btn.textContent = 'ANALYZE';
             }
+        }
+        
+        // Create extra blood splatters on expand/collapse
+        if (typeof createBloodSplatter === 'function') {
+            const rect = item.getBoundingClientRect();
             
-            // Create extra blood splatters on expand/collapse
-            if (typeof createBloodSplatter === 'function') {
-                const rect = item.getBoundingClientRect();
+            // Create 3 blood splatters at random positions within the element
+            for (let i = 0; i < 3; i++) {
+                const x = rect.left + Math.random() * rect.width;
+                const y = rect.top + Math.random() * rect.height;
                 
-                // Create 3 blood splatters at random positions within the element
-                for (let i = 0; i < 3; i++) {
-                    const x = rect.left + Math.random() * rect.width;
-                    const y = rect.top + Math.random() * rect.height;
-                    
-                    createBloodSplatter({pageX: x, pageY: y});
-                }
+                createBloodSplatter({pageX: x, pageY: y});
             }
         }
     }
@@ -274,8 +481,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    // Call page specific initializations
-    initPageSpecific();
+    
+    // Blog page specific initialization
+    function initBlogPage() {
+        // Blog post previews hover effects
+        const blogPosts = document.querySelectorAll('.blog-post-card');
+        
+        blogPosts.forEach(post => {
+            post.addEventListener('mouseenter', function() {
+                // Add subtle effects when hovering over blog posts
+                if (typeof createBloodSplatter === 'function') {
+                    const rect = this.getBoundingClientRect();
+                    const x = rect.right - 20;
+                    const y = rect.top + 20;
+                    
+                    createBloodSplatter({pageX: x, pageY: y}, {
+                        size: '60px',
+                        opacity: 0.2,
+                        duration: 1000
+                    });
+                }
+            });
+        });
+    }
 });
-
