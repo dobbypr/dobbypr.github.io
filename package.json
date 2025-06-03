@@ -1,0 +1,16 @@
+{
+  "name": "dobbypr.github.io",
+  "version": "1.0.0",
+  "description": "A chaotic, retro-styled personal website inspired by ULTRAKILL's aesthetic with a blood-red-on-black color scheme, interactive effects, and a dynamic blog.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.6.4"
+  }
+}
