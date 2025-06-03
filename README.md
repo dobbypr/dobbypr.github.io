@@ -92,6 +92,16 @@ dobbypr.github.io/
 2.  **Update `blog_data.json`**: Open `blog_data.json` in the root folder. Add a new JSON object for your post at the beginning of the array. Fill in the `title`, `date`, `summary`, `file` (e.g., `"posts/new-entry.html"`), and `tags`. Ensure correct JSON syntax (double quotes, commas between objects).
 3.  **Test**: View `blog.html` to see the new listing and click the link to verify the post page.
 
+## Running Tests
+
+This project uses [Jest](https://jestjs.io/). Install dependencies and run:
+```bash
+npm install
+npm test
+```
+The tests ensure that each entry in `blog_data.json` points to an existing file in the `posts/` directory.
+
+
 ## Credits
 
 -   Inspired by the aesthetic of [ULTRAKILL](https://store.steampowered.com/app/1229490/ULTRAKILL/) by Arsi "Hakita" Patala.
