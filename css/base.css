@@ -107,7 +107,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/v1-background.jpg');
+    /* Correct path for the background texture */
+    background-image: url('/v1-background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
