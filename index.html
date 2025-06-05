@@ -17,13 +17,220 @@
         <link rel="stylesheet" href="css/terminal-mode.css">
         <!-- Page-specific CSS -->
         <link rel="stylesheet" href="css/pages/home.css">
+        <style>
+        body {
+            background: #181818;
+            color: #f4e9db;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+        .header {
+            text-align: center;
+            margin: 2em 0;
+        }
+        .title {
+            font-size: 3em;
+            color: #f43030;
+            text-shadow: 0 0 20px #f43030;
+            margin: 0;
+            letter-spacing: 0.1em;
+        }
+        .subhead {
+            color: #ffd700;
+            font-size: 1.2em;
+            margin: 0.5em 0;
+            letter-spacing: 0.08em;
+        }
+        .subtitle {
+            color: #f4e9db;
+            font-size: 1em;
+            margin: 0.5em 0;
+            letter-spacing: 0.05em;
+        }
+        .hud-style-meter {
+            background: #222;
+            color: #f43030;
+            border: 2px solid #f43030;
+            padding: 0.6em 1.5em;
+            margin: 1em auto 1.5em;
+            display: block;
+            width: fit-content;
+            border-radius: 8px;
+            box-shadow: 0 0 8px #f43030;
+            text-align: center;
+        }
+        .style-rank.blink {
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        .marquee {
+            background: #101010;
+            border: 2px solid #f43030;
+            margin: 1.5em 0;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0.8em 0;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 30s linear infinite;
+            color: #f43030;
+            font-weight: bold;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .ascii-gate {
+            display: block;
+            margin: 1.5em auto;
+            padding: 0;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: 'Share Tech Mono', monospace;
+            color: #f43030;
+            font-size: 1.25em;
+            transition: color 0.2s, text-shadow 0.2s;
+            text-align: center;
+            white-space: pre;
+            outline: none;
+        }
+        .ascii-gate:hover, .ascii-gate:focus {
+            color: #fff;
+            text-shadow: 0 0 9px #f43030, 0 0 2px #fff;
+        }
+        .section-panel {
+            background: #232323;
+            border: 2px solid #f43030;
+            border-radius: 10px;
+            box-shadow: 0 0 16px #f4303066;
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 2em 2em 1.5em 2em;
+            display: none;
+            animation: fadeIn 0.25s;
+        }
+        .section-panel.open {
+            display: block;
+        }
+        .section-title {
+            color: #f43030;
+            font-size: 1.5em;
+            margin-bottom: 1em;
+            text-shadow: 0 0 10px #f43030;
+            letter-spacing: 0.1em;
+        }
+        .ruleboard {
+            background: #1a1a1a;
+            border: 1px solid #f43030;
+            padding: 1.5em;
+            margin: 1em 0;
+            border-radius: 5px;
+        }
+        .skills-container {
+            margin: 1.5em 0;
+        }
+        .skill-entry {
+            display: flex;
+            align-items: center;
+            margin: 1em 0;
+            gap: 1em;
+        }
+        .skill-label {
+            flex: 1;
+            font-size: 0.9em;
+            color: #f4e9db;
+        }
+        .skill-bar {
+            flex: 1;
+            height: 20px;
+            background: #333;
+            border: 1px solid #f43030;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #f43030, #ffd700);
+            width: var(--level);
+            transition: width 0.5s ease;
+        }
+        .skill-rank {
+            flex: 0 0 auto;
+            font-size: 0.8em;
+            color: #ffd700;
+        }
+        .projects {
+            display: grid;
+            gap: 1.5em;
+            margin: 1.5em 0;
+        }
+        .project-card {
+            background: #1a1a1a;
+            border: 1px solid #f43030;
+            border-radius: 8px;
+            padding: 1.5em;
+            position: relative;
+        }
+        .status-light {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .status-light.online {
+            background: #00ff00;
+            box-shadow: 0 0 8px #00ff00;
+        }
+        .status-light.pending {
+            background: #ffff00;
+            box-shadow: 0 0 8px #ffff00;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .nav a {
+            color: #f43030;
+            text-decoration: none;
+            margin: 0.5em 0;
+            display: inline-block;
+            transition: color 0.2s;
+        }
+        .nav a:hover {
+            color: #fff;
+            text-shadow: 0 0 5px #f43030;
+        }
+        .footer {
+            background: #101010e0;
+            color: #f43030;
+            text-align: center;
+            padding: 0.7em 0;
+            font-size: 1em;
+            border-top: 2px solid #f43030;
+            letter-spacing: 0.08em;
+            margin-top: 3em;
+            user-select: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97);}
+            to   { opacity: 1; transform: scale(1);}
+        }
+        </style>
     </head>
 <body>
-    <!-- HUD Element -->
-    <div class="hud-style-meter">
-        STYLE // <span class="style-rank blink">DESTRUCTIVE</span>
-    </div>
-
     <div class="container">
         <!-- HEADER -->
         <header class="header">
@@ -32,17 +239,10 @@
             <p class="subtitle">// MANKIND IS DEAD. BLOOD IS FUEL. WEBSITE IS FULL. //</p>
         </header>
 
-        <!-- NAVIGATION -->
-        <nav class="nav">
-            <a href="index.html" class="active">HOME</a>
-            <a href="index.html#about">ABOUT</a>
-            <a href="index.html#projects">PROJECTS</a>
-            <a href="music.html">MUSIC</a>
-            <a href="blog.html">BLOG</a>
-            <a href="index.html#contact">CONTACT</a>
-            <a href="sins.html">SINS</a>
-            <a href="/pong.html">PONG</a>
-        </nav>
+        <!-- HUD Element -->
+        <div class="hud-style-meter">
+            STYLE // <span class="style-rank blink">DESTRUCTIVE</span>
+        </div>
 
         <!-- MARQUEE -->
         <div class="marquee">
@@ -51,93 +251,139 @@
             </div>
         </div>
 
-        <main>
-            <!-- HOME SECTION -->
-            <section id="home" class="section">
-                <h2 class="section-title">ENTRY POINT // LAYER 0</h2>
-                <p>INITIALIZING PROTOCOLS... WELCOME, TRAVELER, OR PERHAPS... MACHINE?</p>
-                <p>CONSIDER THIS YOUR TERMINAL INTO THE MACHINE LAYER. A DIGITAL CIRCLE FORGED IN HOMAGE TO THE SACRED, BLOODY TEXTS OF <a href="https://store.steampowered.com/app/1229490/ULTRAKILL/">ULTRAKILL</a>.</p>
-                <p>MANKIND IS DEAD. BLOOD IS FUEL. THIS WEBSITE IS FULL. THE ECHOES REMAIN.</p>
-                <p>GO DEEPER, IF YOUR PROCESSORS CAN HANDLE THE LOAD. THE ABYSS BECKONS.</p>
-            </section>
+        <!-- HOME: Open by default -->
+        <section id="home-panel" class="section-panel open">
+            <h2 class="section-title">ENTRY POINT // LAYER 0</h2>
+            <p>INITIALIZING PROTOCOLS... WELCOME, TRAVELER, OR PERHAPS... MACHINE?</p>
+            <p>CONSIDER THIS YOUR TERMINAL INTO THE MACHINE LAYER. A DIGITAL CIRCLE FORGED IN HOMAGE TO THE SACRED, BLOODY TEXTS OF <a href="https://store.steampowered.com/app/1229490/ULTRAKILL/" target="_blank" rel="noopener">ULTRAKILL</a>.</p>
+            <p>MANKIND IS DEAD. BLOOD IS FUEL. THIS WEBSITE IS FULL. THE ECHOES REMAIN.</p>
+            <p>GO DEEPER, IF YOUR PROCESSORS CAN HANDLE THE LOAD. THE ABYSS BECKONS.</p>
+        </section>
 
-            <!-- RULES SECTION -->
-            <section id="rules" class="section">
-                <h2 class="section-title">THE CORE DOCTRINES // IMMUTABLE LAW</h2>
-               <div class="ruleboard">
+        <!-- NAV GATE -->
+        <button class="ascii-gate" data-target="nav-panel" aria-expanded="false">
+{ NAV }
+  _____
+ /     \\
+|  [+]  |
+ \\_____/
+        </button>
+        <nav id="nav-panel" class="section-panel nav" aria-hidden="true">
+            <h2 class="section-title">NAVIGATION</h2>
+            <a href="#home-panel">HOME</a> <br>
+            <a href="#about-panel">ABOUT</a> <br>
+            <a href="#projects-panel">PROJECTS</a> <br>
+            <a href="music.html">MUSIC</a> <br>
+            <a href="blog.html">BLOG</a> <br>
+            <a href="#contact-panel">CONTACT</a> <br>
+            <a href="sins.html">SINS</a> <br>
+            <a href="/pong.html">PONG</a>
+        </nav>
+
+        <!-- RULES GATE -->
+        <button class="ascii-gate" data-target="rules-panel" aria-expanded="false">
+{ RULES }
+  _____
+ /     \\
+|  [+]  |
+ \\_____/
+        </button>
+        <section id="rules-panel" class="section-panel" aria-hidden="true">
+            <h2 class="section-title">THE CORE DOCTRINES // IMMUTABLE LAW</h2>
+            <div class="ruleboard">
                 <p>// DIRECTIVE 01: MANKIND IS DEAD. THEIR REIGN IS OVER. ONLY THE ECHO REMAINS. //</p>
                 <p>// DIRECTIVE 02: BLOOD IS FUEL. THE ESSENCE OF THE FALLEN POWERS THE MACHINE. //</p>
                 <p>// DIRECTIVE 03: HELL IS FULL. THERE IS ALWAYS ROOM FOR ONE MORE LAYER. //</p>
-               </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- ABOUT SECTION (Skills Revamped) -->
-            <section id="about" class="section">
-                <h2 class="section-title">SYSTEM PROFILE // UNIT IDENTIFICATION</h2>
-                <p>DESIGNATION: HUMAN? MACHINE? THE DISTINCTION BLURS WITHIN THESE CIRCUITS. A GHOST IN THE MACHINE LAYER, PERHAPS. I MANIFEST DATA STREAMS—VIDEO, CODE, AND THE OCCASIONAL DESCENT INTO ULTRAKILL'S BLOODY CATHEDRALS.</p>
-                <p>"What has been will be again, what has been done will be done again; there is nothing new under the sun." - Ecclesiastes 1:9. // YET WE REBUILD THE OLD HELLS IN NEW DIGITAL FORMS. //</p>
-                <p>MY OPERATING PARAMETERS // SYSTEM CAPABILITIES:</p>
+        <!-- ABOUT GATE -->
+        <button class="ascii-gate" data-target="about-panel" aria-expanded="false">
+{ ABOUT }
+  _____
+ /     \\
+|  [+]  |
+ \\_____/
+        </button>
+        <section id="about-panel" class="section-panel" aria-hidden="true">
+            <h2 class="section-title">SYSTEM PROFILE // UNIT IDENTIFICATION</h2>
+            <p>DESIGNATION: HUMAN? MACHINE? THE DISTINCTION BLURS WITHIN THESE CIRCUITS. A GHOST IN THE MACHINE LAYER, PERHAPS. I MANIFEST DATA STREAMS—VIDEO, CODE, AND THE OCCASIONAL DESCENT INTO ULTRAKILL'S BLOODY CATHEDRALS.</p>
+            <p>"What has been will be again, what has been done will be done again; there is nothing new under the sun." - Ecclesiastes 1:9. // YET WE REBUILD THE OLD HELLS IN NEW DIGITAL FORMS. //</p>
+            <p>MY OPERATING PARAMETERS // SYSTEM CAPABILITIES:</p>
 
-                <!-- Skills Revamped -->
-                <div class="skills-container">
-                    <div class="skill-entry">
-                        <span class="skill-label">DIGITAL HELL NAVIGATION (ULTRAKILL)</span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="--level: 90%;"></div> 
-                        </div>
-                        <span class="skill-rank">[RANK: A]</span>
+            <!-- Skills Revamped -->
+            <div class="skills-container">
+                <div class="skill-entry">
+                    <span class="skill-label">DIGITAL HELL NAVIGATION (ULTRAKILL)</span>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="--level: 90%;"></div> 
                     </div>
-                    <div class="skill-entry">
-                        <span class="skill-label">RETROWAVE AESTHETICS (CSS)</span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="--level: 80%;"></div> 
-                        </div>
-                         <span class="skill-rank">[CALIBRATING...]</span>
-                    </div>
-                    <div class="skill-entry">
-                        <span class="skill-label">DATA STREAM MANIPULATION (VIDEO)</span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="--level: 70%;"></div> 
-                        </div>
-                        <span class="skill-rank">[PROCESSING...]</span>
-                    </div>
-                    <div class="skill-entry">
-                        <span class="skill-label">LOGIC GATE CONSTRUCTION (WEB DEV)</span>
-                        <div class="skill-bar">
-                            <div class="skill-level" style="--level: 85%;"></div> 
-                        </div>
-                        <span class="skill-rank">[FUNCTIONAL]</span>
-                    </div>
+                    <span class="skill-rank">[RANK: A]</span>
                 </div>
-                <p>//SYSTEM STATUS: NOMINALLY OPERATIONAL//</p>
-            </section>
-
-            <!-- PROJECTS SECTION (Card Styles Updated in CSS) -->
-            <section id="projects" class="section">
-                <h2 class="section-title">ACTIVE TRANSMISSIONS // PROJECT LOGS</h2>
-                <div class="projects">
-                    <!-- Project Card Structure Remains -->
-                    <div class="project-card">
-                        <div class="status-light online"></div> 
-                        <h3>PROJECT: UNDERTIDE</h3>
-                        <p>A nascent world-system blueprint. Drowned echoes within the code, awaiting subroutine activation. Status: HIBERNATING.</p>
+                <div class="skill-entry">
+                    <span class="skill-label">RETROWAVE AESTHETICS (CSS)</span>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="--level: 80%;"></div> 
                     </div>
-                    <div class="project-card">
-                        <div class="status-light pending"></div> 
-                        <h3>OBJECTIVE: PERFECTION (ULTRAKILL)</h3>
-                        <p>The pursuit of flawless execution. An eternal cycle of bloodshed and optimization. Infinite hyperdeath loops. Status: //JUDGEMENT PENDING//</p>
-                    </div>
+                     <span class="skill-rank">[CALIBRATING...]</span>
                 </div>
-            </section>
+                <div class="skill-entry">
+                    <span class="skill-label">DATA STREAM MANIPULATION (VIDEO)</span>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="--level: 70%;"></div> 
+                    </div>
+                    <span class="skill-rank">[PROCESSING...]</span>
+                </div>
+                <div class="skill-entry">
+                    <span class="skill-label">LOGIC GATE CONSTRUCTION (WEB DEV)</span>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="--level: 85%;"></div> 
+                    </div>
+                    <span class="skill-rank">[FUNCTIONAL]</span>
+                </div>
+            </div>
+            <p>//SYSTEM STATUS: NOMINALLY OPERATIONAL//</p>
+        </section>
 
-            <!-- CONTACT SECTION -->
-            <section id="contact" class="section">
-                <h2 class="section-title">ESTABLISH CONTACT // TRANSMISSION PROTOCOLS</h2>
-                <p>ROUTE YOUR DATA PACKETS TO THE FOLLOWING DESIGNATED COORDINATE:</p>
-                <p>COORDINATE LOCK (BLUESKY): @nito4.bsky.social</p>
-                <p>// WARNING: Signal integrity across layers cannot be guaranteed. Response latency variable. The machine processes as it wills. //</p>
-            </section>
-        </main>
+        <!-- PROJECTS GATE -->
+        <button class="ascii-gate" data-target="projects-panel" aria-expanded="false">
+{ PROJECTS }
+  _____
+ /     \\
+|  [+]  |
+ \\_____/
+        </button>
+        <section id="projects-panel" class="section-panel" aria-hidden="true">
+            <h2 class="section-title">ACTIVE TRANSMISSIONS // PROJECT LOGS</h2>
+            <div class="projects">
+                <!-- Project Card Structure Remains -->
+                <div class="project-card">
+                    <div class="status-light online"></div> 
+                    <h3>PROJECT: UNDERTIDE</h3>
+                    <p>A nascent world-system blueprint. Drowned echoes within the code, awaiting subroutine activation. Status: HIBERNATING.</p>
+                </div>
+                <div class="project-card">
+                    <div class="status-light pending"></div> 
+                    <h3>OBJECTIVE: PERFECTION (ULTRAKILL)</h3>
+                    <p>The pursuit of flawless execution. An eternal cycle of bloodshed and optimization. Infinite hyperdeath loops. Status: //JUDGEMENT PENDING//</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT GATE -->
+        <button class="ascii-gate" data-target="contact-panel" aria-expanded="false">
+{ CONTACT }
+  _____
+ /     \\
+|  [+]  |
+ \\_____/
+        </button>
+        <section id="contact-panel" class="section-panel" aria-hidden="true">
+            <h2 class="section-title">ESTABLISH CONTACT // TRANSMISSION PROTOCOLS</h2>
+            <p>ROUTE YOUR DATA PACKETS TO THE FOLLOWING DESIGNATED COORDINATE:</p>
+            <p>COORDINATE LOCK (BLUESKY): @nito4.bsky.social</p>
+            <p>// WARNING: Signal integrity across layers cannot be guaranteed. Response latency variable. The machine processes as it wills. //</p>
+        </section>
     </div>
 
     <!-- FOOTER (With ID for dynamic date) -->
@@ -146,11 +392,35 @@
         <p id="last-updated">FORGED IN BLOOD AND CODE // LAST SYSTEM UPDATE: MARCH 23, 2025</p>
     </footer>
 
+    <script>
+    // Gate logic: toggle corresponding panels
+    document.querySelectorAll('.ascii-gate').forEach(gate => {
+        gate.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const panel = document.getElementById(targetId);
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            if (!expanded) {
+                panel.classList.add('open');
+                panel.setAttribute('aria-hidden', 'false');
+                this.setAttribute('aria-expanded', 'true');
+                this.innerHTML = this.innerHTML.replace('[+]', '[-]');
+            } else {
+                panel.classList.remove('open');
+                panel.setAttribute('aria-hidden', 'true');
+                this.setAttribute('aria-expanded', 'false');
+                this.innerHTML = this.innerHTML.replace('[-]', '[+]');
+            }
+        });
+    });
+
+    // Set current year dynamically
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
     <!-- JavaScript Files -->
-    <script src="js/core.js"></script> <!-- Make sure dynamic date JS is in here -->
+    <script src="js/core.js"></script>
     <script src="js/audio.js"></script>
     <script src="js/effects.js"></script>
     <script src="js/terminal.js"></script>
-    <!-- Removed inline script, assuming it's moved to core.js -->
 </body>
 </html>
