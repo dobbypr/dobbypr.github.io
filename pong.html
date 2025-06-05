@@ -90,9 +90,13 @@
     let leftScore = 0, rightScore = 0;
     let ballX = canvas.width / 2 - ballSize / 2;
     let ballY = canvas.height / 2 - ballSize / 2;
-    let ballSpeedX = 7, ballSpeedY = 5;
-    let upPressed = false, downPressed = false;
+    let ballSpeedX = 4, ballSpeedY = 3; // Slower initial speed
     let wPressed = false, sPressed = false;
+
+    // AI variables
+    let aiSpeed = 4; // AI paddle movement speed
+    let aiReactionDelay = 0; // Frames to wait before AI reacts
+    let aiDelayCounter = 0;
 
     function drawBackground() {
       ctx.save();
@@ -139,12 +143,42 @@
       drawBall();
     }
 
+    function updateAI() {
+      // Simple AI: move paddle towards ball with some delay and imperfection
+      const ballCenterY = ballY + ballSize / 2;
+      const paddleCenterY = rightPaddleY + paddleHeight / 2;
+      
+      // Only react if ball is moving towards AI paddle
+      if (ballSpeedX > 0) {
+        if (aiDelayCounter <= 0) {
+          const diff = ballCenterY - paddleCenterY;
+          
+          // Add some randomness to make AI less perfect
+          const threshold = 15 + Math.random() * 10;
+          
+          if (Math.abs(diff) > threshold) {
+            if (diff > 0 && rightPaddleY < canvas.height - paddleHeight) {
+              rightPaddleY += aiSpeed;
+            } else if (diff < 0 && rightPaddleY > 0) {
+              rightPaddleY -= aiSpeed;
+            }
+          }
+          
+          // Reset delay counter
+          aiDelayCounter = aiReactionDelay;
+        } else {
+          aiDelayCounter--;
+        }
+      }
+    }
+
     function update() {
-      // Move paddles
+      // Move left paddle (player controlled)
       if (wPressed && leftPaddleY > 0) leftPaddleY -= 8;
       if (sPressed && leftPaddleY < canvas.height - paddleHeight) leftPaddleY += 8;
-      if (upPressed && rightPaddleY > 0) rightPaddleY -= 8;
-      if (downPressed && rightPaddleY < canvas.height - paddleHeight) rightPaddleY += 8;
+
+      // Update AI paddle
+      updateAI();
 
       // Ball movement
       ballX += ballSpeedX;
@@ -160,7 +194,7 @@
       if (ballX <= paddleWidth + 10 &&
           ballY + ballSize > leftPaddleY &&
           ballY < leftPaddleY + paddleHeight) {
-        ballSpeedX *= -1.15; // Speed up on each hit
+        ballSpeedX *= -1.08; // Slower speed increase
         ballX = paddleWidth + 11;
         paddleSound.currentTime = 0; paddleSound.play();
       }
@@ -168,7 +202,7 @@
       if (ballX + ballSize >= canvas.width - paddleWidth - 10 &&
           ballY + ballSize > rightPaddleY &&
           ballY < rightPaddleY + paddleHeight) {
-        ballSpeedX *= -1.15;
+        ballSpeedX *= -1.08; // Slower speed increase
         ballX = canvas.width - paddleWidth - ballSize - 11;
         paddleSound.currentTime = 0; paddleSound.play();
       }
@@ -193,8 +227,11 @@
     function resetBall() {
       ballX = canvas.width / 2 - ballSize / 2;
       ballY = canvas.height / 2 - ballSize / 2;
-      ballSpeedX = (Math.random() > 0.5 ? 7 : -7) * (1 + Math.random() * 0.3);
-      ballSpeedY = (Math.random() > 0.5 ? 5 : -5) * (1 + Math.random() * 0.2);
+      ballSpeedX = (Math.random() > 0.5 ? 4 : -4) * (1 + Math.random() * 0.2); // Slower reset speed
+      ballSpeedY = (Math.random() > 0.5 ? 3 : -3) * (1 + Math.random() * 0.2);
+      
+      // Reset AI delay
+      aiDelayCounter = 0;
     }
 
     function gameLoop() {
@@ -204,14 +241,10 @@
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === "ArrowUp") upPressed = true;
-      if (e.key === "ArrowDown") downPressed = true;
       if (e.key === "w" || e.key === "W") wPressed = true;
       if (e.key === "s" || e.key === "S") sPressed = true;
     });
     document.addEventListener('keyup', (e) => {
-      if (e.key === "ArrowUp") upPressed = false;
-      if (e.key === "ArrowDown") downPressed = false;
       if (e.key === "w" || e.key === "W") wPressed = false;
       if (e.key === "s" || e.key === "S") sPressed = false;
     });
