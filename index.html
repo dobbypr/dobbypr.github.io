@@ -17,410 +17,314 @@
         <link rel="stylesheet" href="css/terminal-mode.css">
         <!-- Page-specific CSS -->
         <link rel="stylesheet" href="css/pages/home.css">
-        <style>
-        body {
-            background: #181818;
-            color: #f4e9db;
-            font-family: 'Share Tech Mono', monospace;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1em;
-        }
-        .header {
-            text-align: center;
-            margin: 2em 0;
-        }
-        .title {
-            font-size: 3em;
-            color: #f43030;
-            text-shadow: 0 0 20px #f43030;
-            margin: 0;
-            letter-spacing: 0.1em;
-        }
-        .subhead {
-            color: #ffd700;
-            font-size: 1.2em;
-            margin: 0.5em 0;
-            letter-spacing: 0.08em;
-        }
-        .subtitle {
-            color: #f4e9db;
-            font-size: 1em;
-            margin: 0.5em 0;
-            letter-spacing: 0.05em;
-        }
-        .hud-style-meter {
-            background: #222;
-            color: #f43030;
-            border: 2px solid #f43030;
-            padding: 0.6em 1.5em;
-            margin: 1em auto 1.5em;
-            display: block;
-            width: fit-content;
-            border-radius: 8px;
-            box-shadow: 0 0 8px #f43030;
-            text-align: center;
-        }
-        .style-rank.blink {
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.3; }
-        }
-        .marquee {
-            background: #101010;
-            border: 2px solid #f43030;
-            margin: 1.5em 0;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 0.8em 0;
-        }
-        .marquee-content {
-            display: inline-block;
-            animation: scroll 30s linear infinite;
-            color: #f43030;
-            font-weight: bold;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .ascii-gate {
-            display: block;
-            margin: 1.5em auto;
-            padding: 0;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            font-family: 'Share Tech Mono', monospace;
-            color: #f43030;
-            font-size: 1.25em;
-            transition: color 0.2s, text-shadow 0.2s;
-            text-align: center;
-            white-space: pre;
-            outline: none;
-        }
-        .ascii-gate:hover, .ascii-gate:focus {
-            color: #fff;
-            text-shadow: 0 0 9px #f43030, 0 0 2px #fff;
-        }
-        .section-panel {
-            background: #232323;
-            border: 2px solid #f43030;
-            border-radius: 10px;
-            box-shadow: 0 0 16px #f4303066;
-            max-width: 800px;
-            margin: 2em auto;
-            padding: 2em 2em 1.5em 2em;
-            display: none;
-            animation: fadeIn 0.25s;
-        }
-        .section-panel.open {
-            display: block;
-        }
-        .section-title {
-            color: #f43030;
-            font-size: 1.5em;
-            margin-bottom: 1em;
-            text-shadow: 0 0 10px #f43030;
-            letter-spacing: 0.1em;
-        }
-        .ruleboard {
-            background: #1a1a1a;
-            border: 1px solid #f43030;
-            padding: 1.5em;
-            margin: 1em 0;
-            border-radius: 5px;
-        }
-        .skills-container {
-            margin: 1.5em 0;
-        }
-        .skill-entry {
-            display: flex;
-            align-items: center;
-            margin: 1em 0;
-            gap: 1em;
-        }
-        .skill-label {
-            flex: 1;
-            font-size: 0.9em;
-            color: #f4e9db;
-        }
-        .skill-bar {
-            flex: 1;
-            height: 20px;
-            background: #333;
-            border: 1px solid #f43030;
-            border-radius: 3px;
-            overflow: hidden;
-            position: relative;
-        }
-        .skill-level {
-            height: 100%;
-            background: linear-gradient(90deg, #f43030, #ffd700);
-            width: var(--level);
-            transition: width 0.5s ease;
-        }
-        .skill-rank {
-            flex: 0 0 auto;
-            font-size: 0.8em;
-            color: #ffd700;
-        }
-        .projects {
-            display: grid;
-            gap: 1.5em;
-            margin: 1.5em 0;
-        }
-        .project-card {
-            background: #1a1a1a;
-            border: 1px solid #f43030;
-            border-radius: 8px;
-            padding: 1.5em;
-            position: relative;
-        }
-        .status-light {
-            position: absolute;
-            top: 1em;
-            right: 1em;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        .status-light.online {
-            background: #00ff00;
-            box-shadow: 0 0 8px #00ff00;
-        }
-        .status-light.pending {
-            background: #ffff00;
-            box-shadow: 0 0 8px #ffff00;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .nav a {
-            color: #f43030;
-            text-decoration: none;
-            margin: 0.5em 0;
-            display: inline-block;
-            transition: color 0.2s;
-        }
-        .nav a:hover {
-            color: #fff;
-            text-shadow: 0 0 5px #f43030;
-        }
-        .footer {
-            background: #101010e0;
-            color: #f43030;
-            text-align: center;
-            padding: 0.7em 0;
-            font-size: 1em;
-            border-top: 2px solid #f43030;
-            letter-spacing: 0.08em;
-            margin-top: 3em;
-            user-select: none;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.97);}
-            to   { opacity: 1; transform: scale(1);}
-        }
-        </style>
     </head>
-<body>
-    <div class="container">
-        <!-- HEADER -->
-        <header class="header">
-            <h1 class="title">ULTRALAYER</h1>
-            <p class="subhead">THE MACHINE LAYER</p>
-            <p class="subtitle">// MANKIND IS DEAD. BLOOD IS FUEL. WEBSITE IS FULL. //</p>
+<body class="machine-layer">
+    <div class="crt-overlay" aria-hidden="true"></div>
+    <div class="container site-shell">
+        <!-- HERO CONTROL DECK -->
+        <header class="hero-control-deck" id="top">
+            <div class="hero-grid">
+                <div class="hero-column hero-column--identity">
+                    <p class="hero-kicker">THE MACHINE LAYER</p>
+                    <h1 class="hero-title">ULTRALAYER</h1>
+                    <p class="hero-tagline">// MANKIND IS DEAD. BLOOD IS FUEL. WEBSITE IS FULL. //</p>
+
+                    <section class="style-meter" aria-label="Style Meter">
+                        <div class="style-meter__header">
+                            <span class="style-meter__label">STYLE</span>
+                            <span class="style-meter__rank" data-style-rank>DESTRUCTIVE</span>
+                        </div>
+                        <div class="style-meter__bar" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="87">
+                            <span class="style-meter__fill"></span>
+                            <span class="style-meter__pulse" aria-hidden="true"></span>
+                        </div>
+                        <dl class="style-meter__readout">
+                            <div>
+                                <dt>SYNC</dt>
+                                <dd>93%</dd>
+                            </div>
+                            <div>
+                                <dt>FUEL</dt>
+                                <dd>STABLE</dd>
+                            </div>
+                            <div>
+                                <dt>NOISE</dt>
+                                <dd>CONTROLLED</dd>
+                            </div>
+                        </dl>
+                    </section>
+                </div>
+
+                <div class="hero-column hero-column--brief">
+                    <section class="mission-console" aria-label="Mission Brief" data-mission-console>
+                        <header class="mission-console__header">
+                            <p class="mission-console__title">CURRENT DIRECTIVE</p>
+                            <p class="mission-console__indicator" aria-live="polite">// 01 //</p>
+                        </header>
+                        <div class="mission-console__body">
+                            <h2 class="mission-console__headline" data-mission-headline>CALIBRATE THE STYLE METER</h2>
+                            <p class="mission-console__copy" data-mission-copy>
+                                Bring order to the chaos. Polish the Machine Layer until it gleams, but keep the blood-warm hum that makes ULTRAKILL sing.
+                            </p>
+                            <ul class="mission-console__list" data-mission-list>
+                                <li>Audit every layer for clarity and flow.</li>
+                                <li>Route visitors with a rail instead of loose gates.</li>
+                                <li>Let the console breathe with readable type.</li>
+                            </ul>
+                        </div>
+                        <footer class="mission-console__controls">
+                            <button class="mission-console__button" type="button" data-mission-nav="prev" aria-label="Previous directive">PREV</button>
+                            <button class="mission-console__button" type="button" data-mission-nav="next" aria-label="Next directive">NEXT</button>
+                        </footer>
+                    </section>
+                </div>
+            </div>
         </header>
 
-        <!-- HUD Element -->
-        <div class="hud-style-meter">
-            STYLE // <span class="style-rank blink">DESTRUCTIVE</span>
+        <!-- LATEST TRANSMISSIONS -->
+        <section class="transmissions-strip" aria-labelledby="transmissions-title">
+            <div class="transmissions-strip__glow" aria-hidden="true"></div>
+            <div class="transmissions-strip__content">
+                <h2 id="transmissions-title" class="section-heading">Latest Transmissions</h2>
+                <article class="transmission-card" data-transmission-card>
+                    <header class="transmission-card__header">
+                        <p class="transmission-card__status" data-transmission-status>SYNCING…</p>
+                        <p class="transmission-card__timestamp" data-transmission-date>Awaiting signal</p>
+                    </header>
+                    <div class="transmission-card__body">
+                        <h3 class="transmission-card__title" data-transmission-title>Establishing uplink to the archive</h3>
+                        <p class="transmission-card__summary" data-transmission-summary>
+                            The Machine Layer is pulling your most recent log. Stand by while the holo-card materialises.
+                        </p>
+                    </div>
+                    <footer class="transmission-card__footer">
+                        <a class="transmission-card__cta" data-transmission-link href="blog.html">Browse the full archive</a>
+                    </footer>
+                </article>
+            </div>
+        </section>
+
+        <!-- LAYERED LAYOUT -->
+        <div class="layer-layout">
+            <nav class="layer-rail" aria-label="Layer selector">
+                <button class="layer-rail__item is-active" type="button" data-target="layer-entry">
+                    <span class="layer-rail__glyph">00</span>
+                    <span class="layer-rail__label">Entry</span>
+                    <span class="layer-rail__hint">Initialize</span>
+                </button>
+                <button class="layer-rail__item" type="button" data-target="layer-doctrines">
+                    <span class="layer-rail__glyph">01</span>
+                    <span class="layer-rail__label">Doctrines</span>
+                    <span class="layer-rail__hint">Core Law</span>
+                </button>
+                <button class="layer-rail__item" type="button" data-target="layer-profile">
+                    <span class="layer-rail__glyph">02</span>
+                    <span class="layer-rail__label">Profile</span>
+                    <span class="layer-rail__hint">System Bio</span>
+                </button>
+                <button class="layer-rail__item" type="button" data-target="layer-projects">
+                    <span class="layer-rail__glyph">03</span>
+                    <span class="layer-rail__label">Projects</span>
+                    <span class="layer-rail__hint">Active Logs</span>
+                </button>
+                <button class="layer-rail__item" type="button" data-target="layer-contact">
+                    <span class="layer-rail__glyph">04</span>
+                    <span class="layer-rail__label">Contact</span>
+                    <span class="layer-rail__hint">Transmit</span>
+                </button>
+            </nav>
+
+            <main class="layer-stack">
+                <section id="layer-entry" class="layer-panel" data-layer-index="0">
+                    <div class="data-slab" data-animate>
+                        <div class="data-slab__inner">
+                            <header class="data-slab__header">
+                                <h2 class="section-heading">Layer 00 // Entry Point</h2>
+                                <p class="section-subtitle">A console spun up in honour of ULTRAKILL's machine gospel.</p>
+                            </header>
+                            <div class="data-slab__content">
+                                <p>
+                                    Welcome to the Machine Layer. The old accordion gates have been replaced with a continuous control room so you can see every subsystem without opening hatch after hatch.
+                                </p>
+                                <p>
+                                    This site runs on a simple promise: keep the ULTRAKILL attitude, but let visitors navigate without friction. Scroll, follow the rail, and descend.
+                                </p>
+                                <ul class="layer-access">
+                                    <li><a href="music.html">Access the Music Rack</a></li>
+                                    <li><a href="blog.html">Read the Transmission Archive</a></li>
+                                    <li><a href="sins.html">Review Recorded Sins</a></li>
+                                    <li><a href="pong.html">Enter the Recreation Node</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="glitch-divider" aria-hidden="true"></div>
+
+                <section id="layer-doctrines" class="layer-panel" data-layer-index="1">
+                    <div class="data-slab" data-animate>
+                        <div class="data-slab__inner">
+                            <header class="data-slab__header">
+                                <h2 class="section-heading">Layer 01 // Core Doctrines</h2>
+                                <p class="section-subtitle">Immutable law, cycling on a holotablet pulled from the council archives.</p>
+                            </header>
+                            <div class="data-slab__content">
+                                <section class="lore-tablet" aria-live="polite" data-lore-tablet>
+                                    <div class="lore-tablet__screen" data-lore-output>
+                                        // DIRECTIVE 01: MANKIND IS DEAD. THEIR REIGN IS OVER. ONLY THE ECHO REMAINS. //
+                                    </div>
+                                    <div class="lore-tablet__controls">
+                                        <button class="lore-tablet__button" type="button" data-lore-nav="prev" aria-label="Previous directive">PREV</button>
+                                        <button class="lore-tablet__button" type="button" data-lore-nav="next" aria-label="Next directive">NEXT</button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="glitch-divider" aria-hidden="true"></div>
+
+                <section id="layer-profile" class="layer-panel" data-layer-index="2">
+                    <div class="data-slab" data-animate>
+                        <div class="data-slab__inner">
+                            <header class="data-slab__header">
+                                <h2 class="section-heading">Layer 02 // System Profile</h2>
+                                <p class="section-subtitle">Signal bleed between flesh and machine; a ghost steering cameras, code, and cathodes.</p>
+                            </header>
+                            <div class="data-slab__content">
+                                <p>
+                                    Designation uncertain. I keep one foot in the arena and the other in the editor, stitching audiovisual hellscapes and interface experiments together until the styles align.
+                                </p>
+                                <p class="section-verse">"WHAT HAS BEEN WILL BE AGAIN." ECCLESIASTES 1:9 //</p>
+                                <p>
+                                    Translation: recycle the bones of the old internet with new sinew. Each badge below lights up a capability currently in rotation.
+                                </p>
+                                <div class="badge-grid" role="list">
+                                    <article class="badge-card" role="listitem" data-tooltip="Precision route planning for every arena.">
+                                        <header>
+                                            <p class="badge-card__icon" aria-hidden="true">⟟</p>
+                                            <h3 class="badge-card__title">Digital Hell Navigation</h3>
+                                        </header>
+                                        <p class="badge-card__summary">ULTRAKILL strategy mapping, enemy readouts, style-optimised pathing.</p>
+                                        <p class="badge-card__rank" aria-label="Rank A badge">Rank A</p>
+                                    </article>
+                                    <article class="badge-card" role="listitem" data-tooltip="Gradient sorcery, CRT bloom, responsive bloodshed.">
+                                        <header>
+                                            <p class="badge-card__icon" aria-hidden="true">✶</p>
+                                            <h3 class="badge-card__title">Retrowave Interface Craft</h3>
+                                        </header>
+                                        <p class="badge-card__summary">CSS compositing, emissive frames, ULTRAKILL-fluent component design.</p>
+                                        <p class="badge-card__rank" aria-label="Rank A- badge">Rank A-</p>
+                                    </article>
+                                    <article class="badge-card" role="listitem" data-tooltip="Video pipelines tuned for righteous carnage.">
+                                        <header>
+                                            <p class="badge-card__icon" aria-hidden="true">◈</p>
+                                            <h3 class="badge-card__title">Data Stream Manipulation</h3>
+                                        </header>
+                                        <p class="badge-card__summary">Capture, edit, and stabilise footage drenched in blood-fuelled kinetic energy.</p>
+                                        <p class="badge-card__rank" aria-label="Rank B+ badge">Rank B+</p>
+                                    </article>
+                                    <article class="badge-card" role="listitem" data-tooltip="APIs, shaders, and the rituals that keep them steady.">
+                                        <header>
+                                            <p class="badge-card__icon" aria-hidden="true">⚙</p>
+                                            <h3 class="badge-card__title">Logic Gate Construction</h3>
+                                        </header>
+                                        <p class="badge-card__summary">Web architecture, build tooling, and reactive UI choreography.</p>
+                                        <p class="badge-card__rank" aria-label="Rank A badge">Rank A</p>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="glitch-divider" aria-hidden="true"></div>
+
+                <section id="layer-projects" class="layer-panel" data-layer-index="3">
+                    <div class="data-slab" data-animate>
+                        <div class="data-slab__inner">
+                            <header class="data-slab__header">
+                                <h2 class="section-heading">Layer 03 // Active Transmissions</h2>
+                                <p class="section-subtitle">Live objectives running through the Machine Layer right now.</p>
+                            </header>
+                            <div class="data-slab__content">
+                                <div class="projects-grid">
+                                    <article class="project-card" data-status="online">
+                                        <div class="project-card__status-light" aria-hidden="true"></div>
+                                        <h3 class="project-card__title">Project: UNDERTIDE</h3>
+                                        <p class="project-card__summary">A drowned world-system blueprint waiting for the right surge of power. Systems are staged, assets archived, activation imminent.</p>
+                                        <p class="project-card__footer">Status: HIBERNATING</p>
+                                    </article>
+                                    <article class="project-card" data-status="pending">
+                                        <div class="project-card__status-light" aria-hidden="true"></div>
+                                        <h3 class="project-card__title">Objective: PERFECTION</h3>
+                                        <p class="project-card__summary">The grind for S-ranks and flawless execution. Every failure loops back through the blood pumps until mastery hits critical mass.</p>
+                                        <p class="project-card__footer">Status: JUDGEMENT PENDING</p>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="glitch-divider" aria-hidden="true"></div>
+
+                <section id="layer-contact" class="layer-panel" data-layer-index="4">
+                    <div class="data-slab" data-animate>
+                        <div class="data-slab__inner">
+                            <header class="data-slab__header">
+                                <h2 class="section-heading">Layer 04 // Contact Console</h2>
+                                <p class="section-subtitle">Patch into the comms grid. Tiles flicker, but the data routes are hardened.</p>
+                            </header>
+                            <div class="data-slab__content">
+                                <p>
+                                    Direct comms to the Bluesky coordinate below. Each tile copies details to your clipboard for faster redeployment.
+                                </p>
+                                <div class="contact-console">
+                                    <article class="contact-tile" data-channel="bluesky">
+                                        <header class="contact-tile__header">
+                                            <p class="contact-tile__label">Bluesky</p>
+                                            <span class="contact-tile__state">LIVE</span>
+                                        </header>
+                                        <p class="contact-tile__value" data-contact-value="@nito4.bsky.social">@nito4.bsky.social</p>
+                                        <button class="contact-tile__action" type="button" data-copy-button>
+                                            COPY
+                                        </button>
+                                        <p class="contact-tile__hint" aria-live="polite">Tap to copy</p>
+                                    </article>
+                                    <article class="contact-tile" data-channel="email">
+                                        <header class="contact-tile__header">
+                                            <p class="contact-tile__label">Fallback Relay</p>
+                                            <span class="contact-tile__state">STANDBY</span>
+                                        </header>
+                                        <p class="contact-tile__value" data-contact-value="ultralayer@protonmail.com">ultralayer@protonmail.com</p>
+                                        <button class="contact-tile__action" type="button" data-copy-button>
+                                            COPY
+                                        </button>
+                                        <p class="contact-tile__hint" aria-live="polite">Tap to copy</p>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
 
-        <!-- MARQUEE -->
-        <div class="marquee">
-            <div class="marquee-content">
-                ++ CONNECTION ESTABLISHED ++ WELCOME TO THE MACHINE LAYER // SURVIVAL NOT GUARANTEED // BLOOD IS THE CURRENCY // DATA IS THE SOUL // HELL IS A SERVER RACK // ARE YOU STILL READING THIS? ++ SIGNAL UNSTABLE ++
-            </div>
-        </div>
-
-        <!-- HOME: Open by default -->
-        <section id="home-panel" class="section-panel open">
-            <h2 class="section-title">ENTRY POINT // LAYER 0</h2>
-            <p>INITIALIZING PROTOCOLS... WELCOME, TRAVELER, OR PERHAPS... MACHINE?</p>
-            <p>CONSIDER THIS YOUR TERMINAL INTO THE MACHINE LAYER. A DIGITAL CIRCLE FORGED IN HOMAGE TO THE SACRED, BLOODY TEXTS OF <a href="https://store.steampowered.com/app/1229490/ULTRAKILL/" target="_blank" rel="noopener">ULTRAKILL</a>.</p>
-            <p>MANKIND IS DEAD. BLOOD IS FUEL. THIS WEBSITE IS FULL. THE ECHOES REMAIN.</p>
-            <p>GO DEEPER, IF YOUR PROCESSORS CAN HANDLE THE LOAD. THE ABYSS BECKONS.</p>
-        </section>
-
-        <!-- NAV GATE -->
-        <button class="ascii-gate" data-target="nav-panel" aria-expanded="false">
-{ NAV }
-  _____
- /     \\
-|  [+]  |
- \\_____/
-        </button>
-        <nav id="nav-panel" class="section-panel nav" aria-hidden="true">
-            <h2 class="section-title">NAVIGATION</h2>
-            <a href="#home-panel">HOME</a> <br>
-            <a href="#about-panel">ABOUT</a> <br>
-            <a href="#projects-panel">PROJECTS</a> <br>
-            <a href="music.html">MUSIC</a> <br>
-            <a href="blog.html">BLOG</a> <br>
-            <a href="#contact-panel">CONTACT</a> <br>
-            <a href="sins.html">SINS</a> <br>
-            <a href="/pong.html">PONG</a>
-        </nav>
-
-        <!-- RULES GATE -->
-        <button class="ascii-gate" data-target="rules-panel" aria-expanded="false">
-{ RULES }
-  _____
- /     \\
-|  [+]  |
- \\_____/
-        </button>
-        <section id="rules-panel" class="section-panel" aria-hidden="true">
-            <h2 class="section-title">THE CORE DOCTRINES // IMMUTABLE LAW</h2>
-            <div class="ruleboard">
-                <p>// DIRECTIVE 01: MANKIND IS DEAD. THEIR REIGN IS OVER. ONLY THE ECHO REMAINS. //</p>
-                <p>// DIRECTIVE 02: BLOOD IS FUEL. THE ESSENCE OF THE FALLEN POWERS THE MACHINE. //</p>
-                <p>// DIRECTIVE 03: HELL IS FULL. THERE IS ALWAYS ROOM FOR ONE MORE LAYER. //</p>
-            </div>
-        </section>
-
-        <!-- ABOUT GATE -->
-        <button class="ascii-gate" data-target="about-panel" aria-expanded="false">
-{ ABOUT }
-  _____
- /     \\
-|  [+]  |
- \\_____/
-        </button>
-        <section id="about-panel" class="section-panel" aria-hidden="true">
-            <h2 class="section-title">SYSTEM PROFILE // UNIT IDENTIFICATION</h2>
-            <p>DESIGNATION: HUMAN? MACHINE? THE DISTINCTION BLURS WITHIN THESE CIRCUITS. A GHOST IN THE MACHINE LAYER, PERHAPS. I MANIFEST DATA STREAMS—VIDEO, CODE, AND THE OCCASIONAL DESCENT INTO ULTRAKILL'S BLOODY CATHEDRALS.</p>
-            <p>"What has been will be again, what has been done will be done again; there is nothing new under the sun." - Ecclesiastes 1:9. // YET WE REBUILD THE OLD HELLS IN NEW DIGITAL FORMS. //</p>
-            <p>MY OPERATING PARAMETERS // SYSTEM CAPABILITIES:</p>
-
-            <!-- Skills Revamped -->
-            <div class="skills-container">
-                <div class="skill-entry">
-                    <span class="skill-label">DIGITAL HELL NAVIGATION (ULTRAKILL)</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="--level: 90%;"></div> 
-                    </div>
-                    <span class="skill-rank">[RANK: A]</span>
-                </div>
-                <div class="skill-entry">
-                    <span class="skill-label">RETROWAVE AESTHETICS (CSS)</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="--level: 80%;"></div> 
-                    </div>
-                     <span class="skill-rank">[CALIBRATING...]</span>
-                </div>
-                <div class="skill-entry">
-                    <span class="skill-label">DATA STREAM MANIPULATION (VIDEO)</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="--level: 70%;"></div> 
-                    </div>
-                    <span class="skill-rank">[PROCESSING...]</span>
-                </div>
-                <div class="skill-entry">
-                    <span class="skill-label">LOGIC GATE CONSTRUCTION (WEB DEV)</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="--level: 85%;"></div> 
-                    </div>
-                    <span class="skill-rank">[FUNCTIONAL]</span>
-                </div>
-            </div>
-            <p>//SYSTEM STATUS: NOMINALLY OPERATIONAL//</p>
-        </section>
-
-        <!-- PROJECTS GATE -->
-        <button class="ascii-gate" data-target="projects-panel" aria-expanded="false">
-{ PROJECTS }
-  _____
- /     \\
-|  [+]  |
- \\_____/
-        </button>
-        <section id="projects-panel" class="section-panel" aria-hidden="true">
-            <h2 class="section-title">ACTIVE TRANSMISSIONS // PROJECT LOGS</h2>
-            <div class="projects">
-                <!-- Project Card Structure Remains -->
-                <div class="project-card">
-                    <div class="status-light online"></div> 
-                    <h3>PROJECT: UNDERTIDE</h3>
-                    <p>A nascent world-system blueprint. Drowned echoes within the code, awaiting subroutine activation. Status: HIBERNATING.</p>
-                </div>
-                <div class="project-card">
-                    <div class="status-light pending"></div> 
-                    <h3>OBJECTIVE: PERFECTION (ULTRAKILL)</h3>
-                    <p>The pursuit of flawless execution. An eternal cycle of bloodshed and optimization. Infinite hyperdeath loops. Status: //JUDGEMENT PENDING//</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT GATE -->
-        <button class="ascii-gate" data-target="contact-panel" aria-expanded="false">
-{ CONTACT }
-  _____
- /     \\
-|  [+]  |
- \\_____/
-        </button>
-        <section id="contact-panel" class="section-panel" aria-hidden="true">
-            <h2 class="section-title">ESTABLISH CONTACT // TRANSMISSION PROTOCOLS</h2>
-            <p>ROUTE YOUR DATA PACKETS TO THE FOLLOWING DESIGNATED COORDINATE:</p>
-            <p>COORDINATE LOCK (BLUESKY): @nito4.bsky.social</p>
-            <p>// WARNING: Signal integrity across layers cannot be guaranteed. Response latency variable. The machine processes as it wills. //</p>
-        </section>
+        <footer class="site-footer">
+            <p>© <span id="current-year">2025</span> ULTRALAYER // BEST EXPERIENCED WITH NETSCAPE NAVIGATOR 4.0 OR HIGHER //</p>
+            <p id="last-updated">FORGED IN BLOOD AND CODE // LAST SYSTEM UPDATE: MARCH 23, 2025</p>
+        </footer>
     </div>
 
-    <!-- FOOTER (With ID for dynamic date) -->
-    <footer class="footer">
-        <p>© <span id="current-year">2025</span> ULTRALAYER // THIS TERMINAL BEST VIEWED WITH NETSCAPE NAVIGATOR 4.0 OR HIGHER // REALITY IS OPTIONAL</p>
-        <p id="last-updated">FORGED IN BLOOD AND CODE // LAST SYSTEM UPDATE: MARCH 23, 2025</p>
-    </footer>
-
-    <script>
-    // Gate logic: toggle corresponding panels
-    document.querySelectorAll('.ascii-gate').forEach(gate => {
-        gate.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const panel = document.getElementById(targetId);
-            const expanded = this.getAttribute('aria-expanded') === 'true';
-            if (!expanded) {
-                panel.classList.add('open');
-                panel.setAttribute('aria-hidden', 'false');
-                this.setAttribute('aria-expanded', 'true');
-                this.innerHTML = this.innerHTML.replace('[+]', '[-]');
-            } else {
-                panel.classList.remove('open');
-                panel.setAttribute('aria-hidden', 'true');
-                this.setAttribute('aria-expanded', 'false');
-                this.innerHTML = this.innerHTML.replace('[-]', '[+]');
-            }
-        });
-    });
-
-    // Set current year dynamically
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
-
     <!-- JavaScript Files -->
-    <script src="js/core.js"></script>
-    <script src="js/audio.js"></script>
-    <script src="js/effects.js"></script>
-    <script src="js/terminal.js"></script>
+    <script src="js/debugger.js"></script>
+    <script src="js/home.js" defer></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/audio.js" defer></script>
+    <script src="js/effects.js" defer></script>
+    <script src="js/terminal.js" defer></script>
 </body>
 </html>

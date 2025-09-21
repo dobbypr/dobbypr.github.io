@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
         lastUpdatedP.textContent = `${prefix}${month} ${day}, ${year}`;
     }
 
+    const siteShell = document.querySelector('.site-shell') || document.querySelector('.container');
+
     // Check if we've already been through the intro
     const hasVisitedBefore = sessionStorage.getItem('ultraLayerVisited');
     
@@ -56,13 +58,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(startScreen);
 
         // Hide everything else until user clicks
-        document.querySelector('.container').style.display = 'none';
+        if (siteShell) {
+            siteShell.style.display = 'none';
+        }
 
         // When user clicks the start screen, remove it and show the site
         startScreen.addEventListener('click', function() {
             // Enable audio (this click will allow autoplay)
             startScreen.remove();
-            document.querySelector('.container').style.display = 'block';
+            if (siteShell) {
+                siteShell.style.display = 'block';
+            }
 
             // Set flag for visited
             sessionStorage.setItem('ultraLayerVisited', 'true');
