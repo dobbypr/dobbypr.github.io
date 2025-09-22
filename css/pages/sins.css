@@ -1,404 +1,46 @@
-/* ==================== */
-/* SINS PAGE STYLES */
-/* ==================== */
+/* Sins page styling */
 
-/* Sins Section Header */
-#sins .section-title {
-    font-size: 40px;
-    letter-spacing: 5px;
-    margin-bottom: 25px;
-    text-align: center;
-    padding-bottom: 15px;
-    position: relative;
-    text-shadow: 0 0 10px var(--blood-red);
-    border-bottom: 2px solid var(--blood-red);
-}
-
-#sins .section-title::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 48, 0, 0.3) 50%, 
-        transparent 100%
-    );
-    z-index: -1;
-    animation: headerPulse 4s infinite alternate;
-}
-
-/* Sins Introduction Text */
-#sins .intro-text {
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    color: var(--blood-red);
-    text-shadow: 0 0 5px var(--blood-red);
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 18px;
-}
-
-#sins .intro-text::before, 
-#sins .intro-text::after {
-    content: "//";
-    padding: 0 10px;
-    opacity: 0.7;
-}
-
-#sins .intro-text:hover {
-    animation: glitchText 0.3s infinite;
-}
-
-/* Sins Grid Layout */
 .sins-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-/* Sin Card */
 .sin-card {
-    background: linear-gradient(to bottom, #1a0000, #0a0000);
-    border: 1px solid var(--dark-red);
-    padding: 25px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-panel);
+    padding: var(--space-xl);
+    display: grid;
+    gap: var(--space-sm);
     text-align: center;
 }
 
-.sin-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(255, 48, 0, 0.1), transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-}
-
-.sin-card::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    z-index: 1;
-}
-
-.sin-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 30px rgba(255, 48, 0, 0.3);
-    border-color: var(--blood-red);
-}
-
-.sin-card:hover::before {
-    opacity: 1;
-}
-
-/* Sin Icon */
 .sin-icon {
-    width: 100px;
-    height: 100px;
-    background-color: var(--dark-red);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 2;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    font-size: 1.8rem;
+    color: var(--color-accent);
 }
 
-.sin-icon i {
-    font-size: 40px;
-    color: var(--text-light);
-}
-
-.sin-card:hover .sin-icon {
-    background-color: var(--blood-red);
-    transform: scale(1.1);
-    box-shadow: 0 0 20px var(--blood-red);
-}
-
-/* Sin Title */
 .sin-title {
-    color: var(--blood-red);
-    font-size: 28px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-    position: relative;
-    z-index: 2;
-    text-shadow: 0 0 5px rgba(128, 0, 0, 0.5);
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-size: 1rem;
+    letter-spacing: 0.26em;
 }
 
-.sin-card:hover .sin-title {
-    color: var(--text-light);
-    text-shadow: 0 0 10px var(--blood-red);
-}
-
-/* Sin Description */
 .sin-description {
-    color: var(--text-dim);
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 2;
-    transition: color 0.3s ease;
+    margin: 0;
+    color: var(--color-text);
+    font-size: 0.9rem;
+    line-height: 1.7;
 }
 
-.sin-card:hover .sin-description {
-    color: var(--text-light);
-}
-
-/* Sin Quote */
 .sin-quote {
-    font-style: italic;
-    color: var(--blood-red-dim);
-    font-size: 13px;
-    position: relative;
-    z-index: 2;
-    padding: 0 10px;
-    transition: color 0.3s ease;
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
 }
 
-.sin-card:hover .sin-quote {
-    color: var(--blood-red);
-}
-
-/* Sin-specific styling */
-.sin-card.pride {
-    border-color: #d4af37;
-}
-
-.sin-card.pride .sin-icon {
-    background-color: #d4af37;
-}
-
-.sin-card.pride:hover {
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-    border-color: #ffcc00;
-}
-
-.sin-card.pride:hover .sin-icon {
-    background-color: #ffcc00;
-    box-shadow: 0 0 20px #ffcc00;
-}
-
-.sin-card.wrath {
-    border-color: #8b0000;
-}
-
-.sin-card.wrath .sin-icon {
-    background-color: #8b0000;
-}
-
-.sin-card.wrath:hover {
-    box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);
-    border-color: #ff0000;
-}
-
-.sin-card.wrath:hover .sin-icon {
-    background-color: #ff0000;
-    box-shadow: 0 0 20px #ff0000;
-}
-
-.sin-card.lust {
-    border-color: #800080;
-}
-
-.sin-card.lust .sin-icon {
-    background-color: #800080;
-}
-
-.sin-card.lust:hover {
-    box-shadow: 0 0 30px rgba(128, 0, 128, 0.3);
-    border-color: #cc00cc;
-}
-
-.sin-card.lust:hover .sin-icon {
-    background-color: #cc00cc;
-    box-shadow: 0 0 20px #cc00cc;
-}
-
-.sin-card.gluttony {
-    border-color: #8b4513;
-}
-
-.sin-card.gluttony .sin-icon {
-    background-color: #8b4513;
-}
-
-.sin-card.gluttony:hover {
-    box-shadow: 0 0 30px rgba(139, 69, 19, 0.3);
-    border-color: #cc6600;
-}
-
-.sin-card.gluttony:hover .sin-icon {
-    background-color: #cc6600;
-    box-shadow: 0 0 20px #cc6600;
-}
-
-.sin-card.greed {
-    border-color: #006400;
-}
-
-.sin-card.greed .sin-icon {
-    background-color: #006400;
-}
-
-.sin-card.greed:hover {
-    box-shadow: 0 0 30px rgba(0, 100, 0, 0.3);
-    border-color: #00aa00;
-}
-
-.sin-card.greed:hover .sin-icon {
-    background-color: #00aa00;
-    box-shadow: 0 0 20px #00aa00;
-}
-
-.sin-card.envy {
-    border-color: #006994;
-}
-
-.sin-card.envy .sin-icon {
-    background-color: #006994;
-}
-
-.sin-card.envy:hover {
-    box-shadow: 0 0 30px rgba(0, 105, 148, 0.3);
-    border-color: #0099cc;
-}
-
-.sin-card.envy:hover .sin-icon {
-    background-color: #0099cc;
-    box-shadow: 0 0 20px #0099cc;
-}
-
-.sin-card.sloth {
-    border-color: #708090;
-}
-
-.sin-card.sloth .sin-icon {
-    background-color: #708090;
-}
-
-.sin-card.sloth:hover {
-    box-shadow: 0 0 30px rgba(112, 128, 144, 0.3);
-    border-color: #a9a9a9;
-}
-
-.sin-card.sloth:hover .sin-icon {
-    background-color: #a9a9a9;
-    box-shadow: 0 0 20px #a9a9a9;
-}
-
-/* Terminal Mode Sins Page Styles */
-body.terminal-mode #sins .section-title::before {
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(0, 255, 0, 0.3) 50%, 
-        transparent 100%
-    );
-}
-
-body.terminal-mode .sin-card {
-    background: linear-gradient(to bottom, #001500, #000800);
-    border-color: var(--terminal-green);
-}
-
-body.terminal-mode .sin-card::before {
-    background: radial-gradient(circle at center, rgba(0, 255, 0, 0.1), transparent 70%);
-}
-
-body.terminal-mode .sin-icon {
-    background-color: var(--terminal-dark);
-}
-
-body.terminal-mode .sin-title {
-    color: var(--terminal-green);
-    font-family: monospace;
-}
-
-body.terminal-mode .sin-description {
-    color: var(--terminal-green-dim);
-    font-family: monospace;
-}
-
-body.terminal-mode .sin-quote {
-    color: var(--terminal-highlight);
-    font-family: monospace;
-}
-
-body.terminal-mode .sin-card:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
-}
-
-body.terminal-mode .sin-card:hover .sin-icon {
-    background-color: var(--terminal-green);
-    box-shadow: 0 0 20px var(--terminal-green);
-}
-
-/* Responsive Design for Sins Page */
-@media (max-width: 768px) {
-    .sins-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 20px;
-    }
-    
-    .sin-card {
-        height: 300px;
-        padding: 20px;
-    }
-    
-    .sin-icon {
-        width: 80px;
-        height: 80px;
-    }
-    
-    .sin-icon i {
-        font-size: 32px;
-    }
-    
-    .sin-title {
-        font-size: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    .sins-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .sin-card {
-        height: auto;
-        min-height: 280px;
-    }
-    
-    #sins .section-title {
-        font-size: 32px;
-    }
+@media (max-width: 720px) {
+    .sins-grid { grid-template-columns: 1fr; }
 }

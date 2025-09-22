@@ -1,848 +1,131 @@
-/* ========================= */
-/* MUSIC PAGE STYLES REVAMP */
-/* ========================= */
+/* Music page styling aligned with the Machine Layer palette */
 
-/* Music Introduction Text */
-.intro-text {
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    color: var(--blood-red);
-    text-shadow: 0 0 5px var(--blood-red);
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+.ultramusic-revamp {
+    display: grid;
+    gap: var(--space-xl);
+}
+
+.section-title {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 18px;
 }
 
-.intro-text::before, .intro-text::after {
-    content: "//";
-    padding: 0 10px;
-    opacity: 0.7;
+.intro-text {
+    text-align: center;
+    font-family: var(--font-display);
+    letter-spacing: 0.24em;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
 }
 
-.intro-text:hover {
-    animation: glitchText 0.3s infinite;
-}
-
-/* Tab Navigation */
 .music-tabs {
     display: flex;
+    gap: var(--space-xs);
     flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 25px;
-    border-bottom: 2px solid var(--dark-red);
-    padding-bottom: 10px;
-    position: relative;
-}
-
-/* Tab Scanline Effect */
-.music-tabs::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blood-red), transparent);
-    animation: scanline 6s linear infinite;
-    opacity: 0.6;
+    justify-content: center;
+    padding: var(--space-xs);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-panel);
 }
 
 .tab-button {
-    padding: 10px 20px;
+    border: 1px solid transparent;
+    background: none;
+    color: var(--color-muted);
+    letter-spacing: 0.2em;
+    padding: var(--space-xs) var(--space-md);
     cursor: pointer;
-    background: linear-gradient(to bottom, #1a0000, #0a0000);
-    border: 1px solid var(--dark-red);
-    border-bottom: none;
-    color: var(--blood-red);
-    font-family: var(--font-primary);
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    transition: all var(--transition-medium) ease;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    position: relative;
-    bottom: -2px;
-    margin-bottom: -2px;
-    opacity: 0.7;
 }
 
-.tab-button:hover {
-    background: linear-gradient(to bottom, #2a0000, #150000);
-    color: var(--text-light);
-    border-color: var(--blood-red);
-    opacity: 1;
-    transform: translateY(-2px);
-    text-shadow: 0 0 5px var(--blood-red);
+.tab-button.active,
+.tab-button:hover,
+.tab-button:focus {
+    border-color: var(--color-border-strong);
+    color: var(--color-heading);
 }
 
-.tab-button.active {
-    background: linear-gradient(to bottom, #3a0000, #220000);
-    color: var(--text-light);
-    border-width: 1px 1px 2px 1px;
-    border-color: var(--dark-red) var(--dark-red) transparent var(--dark-red);
-    opacity: 1;
-    z-index: 2;
-    transform: translateY(0);
-    text-shadow: 0 0 8px var(--blood-red);
-    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Tab Content Panes */
 .music-tab-content-container {
-    margin-top: -2px;
-    padding: 25px;
-    border: 1px solid var(--dark-red);
-    border-top: none;
-    background-color: rgba(5, 2, 2, 0.5);
-    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--color-panel);
+    padding: var(--space-xl);
 }
 
 .music-tab-pane {
     display: none;
-    animation: sectionReveal 0.5s ease-out forwards;
+    gap: var(--space-lg);
 }
 
 .music-tab-pane.active {
-    display: block;
+    display: grid;
 }
 
-/* Music List inside panes */
 .music-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 0;
+    gap: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
-/* Music Card Revamp */
 .music-item {
-    background: #0a0a0a;
-    border: 1px solid var(--dark-red);
-    padding: 20px;
-    transition: all 0.3s ease-out;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+    border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
+    padding: var(--space-lg);
+    background-color: var(--color-surface);
+    display: grid;
+    gap: var(--space-sm);
 }
 
-.music-item:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px var(--shadow-red);
-    border-color: var(--blood-red);
-    z-index: 5;
-    animation: cardHoverGlow 2s ease-in-out infinite;
-}
-
-/* Corner fold effect */
-.music-item::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(135deg, transparent 50%, var(--dark-red) 50%);
-    transition: all 0.3s ease;
-    z-index: 1;
-    opacity: 0.5;
-}
-
-.music-item:hover::after {
-    opacity: 1;
-    background: linear-gradient(135deg, transparent 50%, var(--blood-red) 50%);
+.album-art {
+    border: 1px solid var(--color-border);
+    padding: var(--space-xs);
+    background-color: var(--color-panel);
 }
 
 .music-item h3 {
-    margin-top: 0;
-    color: var(--blood-red);
-    font-size: 20px;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    position: relative;
-    padding-bottom: 8px;
-    text-shadow: 0 0 5px var(--shadow-red);
-    border-bottom: 1px dashed var(--dark-red);
-    transition: all 0.3s ease;
-    z-index: 2;
-}
-
-.music-item:hover h3 {
-    color: var(--text-light);
-    text-shadow: 0 0 8px var(--blood-red);
-    border-bottom-color: var(--blood-red);
+    font-size: 0.95rem;
+    letter-spacing: 0.24em;
 }
 
 .music-item p {
-    margin: 6px 0;
-    color: var(--text-dim);
-    font-size: 13px;
-    font-family: var(--font-secondary);
-    transition: color var(--transition-medium) ease;
-    position: relative;
-    z-index: 2;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-text);
 }
 
-.music-item:hover p {
-    color: var(--text-light);
-}
-
-/* Album Art */
-.album-art {
-    width: 100px;
-    height: 100px;
-    float: left;
-    margin-right: 15px;
-    margin-bottom: 10px;
-    border: 1px solid var(--dark-red);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
-    z-index: 2;
-}
-
-.album-art img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: saturate(0.8) contrast(1.1) brightness(0.9);
-    transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-/* Scanline Overlay */
-.album-art::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        rgba(10, 0, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.1) 50%
-    );
-    background-size: 100% 3px;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.6;
-    transition: opacity 0.4s ease, background-size 0.4s ease;
-}
-
-.music-item:hover .album-art {
-    transform: scale(1.03);
-    border-color: var(--blood-red);
-    box-shadow: 0 0 12px rgba(255, 48, 0, 0.3);
-}
-
-.music-item:hover .album-art img {
-    transform: scale(1.05);
-    filter: saturate(1) contrast(1.2) brightness(1);
-}
-
-.music-item:hover .album-art::before {
-    opacity: 0.4;
-    background-size: 100% 2px;
-}
-
-/* Music controls styling */
 .music-controls {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 8px;
-    border-top: 1px dashed var(--dark-red);
-    padding-top: 10px;
-    margin-top: 10px;
-    clear: both;
-    transition: border-color var(--transition-medium) ease;
-    position: relative;
-    z-index: 2;
+    gap: var(--space-xs);
 }
 
-/* Music details section that expands */
+.expand-btn,
+.play-btn {
+    border: 1px solid var(--color-border-strong);
+    background: none;
+    color: var(--color-heading);
+    padding: var(--space-2xs) var(--space-sm);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
 .music-details {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, border-color var(--transition-medium) ease;
-    margin-top: 10px;
-    clear: both;
-    border-top: 1px dashed transparent;
-    position: relative;
-    z-index: 2;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--color-muted);
 }
 
-.music-item.expanded .music-details {
-    max-height: 500px;
-    padding-top: 10px;
-    border-top-color: var(--dark-red);
-}
-
-.music-details h4 {
-    font-size: 14px;
-    margin: 10px 0 5px 0;
-    color: var(--blood-red);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Track list styling */
 .track-list {
-    list-style-type: none;
-    padding-left: 0;
-    margin: 10px 0;
-}
-
-.track-list li {
-    padding: 6px 5px 6px 20px;
-    border-bottom: 1px dotted var(--dark-red);
-    color: var(--text-dim);
-    font-size: 13px;
-    transition: all 0.3s ease;
-    position: relative;
-    font-family: var(--font-secondary);
-}
-
-.track-list li:last-child {
-    border-bottom: none;
-}
-
-.track-list li::before {
-    content: "+";
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--blood-red);
-    font-size: 14px;
-    font-weight: bold;
-    opacity: 0.7;
-    transition: opacity 0.3s, transform 0.3s, color 0.3s;
-}
-
-.track-list li:hover {
-    color: var(--text-light);
-    background-color: rgba(255, 48, 0, 0.05);
-    padding-left: 25px;
-}
-
-.track-list li:hover::before {
-    opacity: 1;
-    transform: translateY(-50%) rotate(90deg);
-    color: var(--text-light);
-}
-
-/* Remove old category h3 styling */
-.music-category {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: none;
-}
-
-.music-category h3 {
-    display: none;
-}
-
-/* --- Game-Specific Styles --- */
-/* NITW (Night in the Woods) */
-#nitw:hover {
-    border-color: #7762c6;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #7762c6;
-    animation: cardHoverGlowPurple 2s ease-in-out infinite;
-}
-
-#nitw:hover h3, 
-#nitw:hover .music-details h4 { 
-    color: #ffffff; 
-    text-shadow: 0 0 8px #7762c6; 
-}
-
-#nitw:hover p { 
-    color: #ffffff; 
-}
-
-#nitw:hover .track-list li { 
-    color: #ffffff; 
-}
-
-#nitw:hover .track-list li:hover { 
-    background-color: rgba(119, 98, 198, 0.1); 
-}
-
-#nitw:hover .track-list li::before { 
-    color: #ffffff; 
-}
-
-#nitw:hover::after { 
-    background: linear-gradient(135deg, transparent 50%, #7762c6 50%);
-}
-
-/* ULTRAKILL theme */
-#ultrakill:hover {
-    border-color: var(--blood-red);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px var(--blood-red);
-    animation: cardHoverGlow 2s ease-in-out infinite;
-}
-
-#ultrakill:hover::after { 
-    background: linear-gradient(135deg, transparent 50%, var(--blood-red) 50%);
-}
-
-#ultrakill:hover h3, 
-#ultrakill:hover .music-details h4 { 
-    color: var(--text-light); 
-}
-
-#ultrakill:hover p { 
-    color: var(--text-light); 
-}
-
-#ultrakill:hover .track-list li { 
-    color: var(--text-light); 
-}
-
-#ultrakill:hover .track-list li:hover { 
-    background-color: rgba(255, 48, 0, 0.1); 
-}
-
-#ultrakill:hover .track-list li::before { 
-    color: var(--text-light); 
-}
-
-/* Undertale theme */
-#undertale:hover {
-    border-color: #ffd700;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #ffd700;
-    animation: cardHoverGlowYellow 2s ease-in-out infinite;
-}
-
-#undertale:hover::after { 
-    background: linear-gradient(135deg, transparent 50%, #ffd700 50%);
-}
-
-#undertale:hover h3, 
-#undertale:hover .music-details h4 { 
-    color: #ffffff; 
-    text-shadow: 0 0 8px #ffd700; 
-}
-
-#undertale:hover p { 
-    color: #ffffff; 
-}
-
-#undertale:hover .track-list li { 
-    color: #ffffff; 
-}
-
-#undertale:hover .track-list li:hover { 
-    background-color: rgba(255, 215, 0, 0.1); 
-}
-
-#undertale:hover .track-list li::before { 
-    color: #ffffff; 
-}
-
-/* Terraria theme */
-#terraria:hover {
-    border-color: #558b2f;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #558b2f;
-    animation: cardHoverGlowGreen 2s ease-in-out infinite;
-}
-
-#terraria:hover::after { 
-    background: linear-gradient(135deg, transparent 50%, #558b2f 50%);
-}
-
-#terraria:hover h3, 
-#terraria:hover .music-details h4 { 
-    color: #ffffff; 
-    text-shadow: 0 0 8px #558b2f; 
-}
-
-#terraria:hover p { 
-    color: #ffffff; 
-}
-
-#terraria:hover .track-list li { 
-    color: #ffffff; 
-}
-
-#terraria:hover .track-list li:hover { 
-    background-color: rgba(85, 139, 47, 0.1); 
-}
-
-#terraria:hover .track-list li::before { 
-    color: #ffffff; 
-}
-
-/* Noita theme */
-#noita:hover {
-    border-color: #6a0dad;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #6a0dad;
-    animation: cardHoverGlowArcane 2s ease-in-out infinite;
-}
-
-#noita:hover::after { 
-    background: linear-gradient(135deg, transparent 50%, #6a0dad 50%);
-}
-
-#noita:hover h3, 
-#noita:hover .music-details h4 { 
-    color: #ffffff; 
-    text-shadow: 0 0 8px #6a0dad; 
-}
-
-#noita:hover p { 
-    color: #ffffff; 
-}
-
-#noita:hover .track-list li { 
-    color: #ffffff; 
-}
-
-#noita:hover .track-list li:hover { 
-    background-color: rgba(106, 13, 173, 0.1); 
-}
-
-#noita:hover .track-list li::before { 
-    color: #ffffff; 
-}
-
-/* Metal placeholder theme */
-#metal1:hover {
-    border-color: #666;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 12px #aaa;
-    animation: cardHoverGlowGrey 2s ease-in-out infinite;
-}
-
-#metal1:hover::after { 
-    background: linear-gradient(135deg, transparent 50%, #666 50%);
-}
-
-#metal1:hover h3, 
-#metal1:hover .music-details h4 { 
-    color: #ffffff; 
-    text-shadow: 0 0 8px #aaa; 
-}
-
-#metal1:hover p { 
-    color: #ffffff; 
-}
-
-#metal1:hover .track-list li { 
-    color: #ffffff; 
-}
-
-#metal1:hover .track-list li:hover { 
-    background-color: rgba(170, 170, 170, 0.1); 
-}
-
-#metal1:hover .track-list li::before { 
-    color: #ffffff; 
-}
-
-/* --- Keyframes --- */
-@keyframes cardHoverGlow { 
-    0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px var(--shadow-red); }
-    50% { box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 25px var(--blood-red); }
-}
-
-@keyframes cardHoverGlowPurple {
-    0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #4a3b78; }
-    50% { box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 25px #7762c6; }
-}
-
-@keyframes cardHoverGlowYellow {
-    0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #b8860b; }
-    50% { box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 25px #ffd700; }
-}
-
-@keyframes cardHoverGlowGreen {
-    0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #387002; }
-    50% { box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 25px #558b2f; }
-}
-
-@keyframes cardHoverGlowArcane {
-    0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px #4b0082; }
-    50% { box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 25px #6a0dad; }
-}
-
-@keyframes cardHoverGlowGrey {
-    0%, 100% { box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 12px #555; }
-    50% { box-shadow: 0 8px 20px rgba(0,0,0,0.5), 0 0 20px #aaa; }
-}
-
-/* Terminal Mode Music Page Styles */
-body.terminal-mode .music-tabs {
-    border-bottom-color: var(--terminal-dark);
-}
-
-body.terminal-mode .music-tabs::after {
-    background: linear-gradient(90deg, transparent, var(--terminal-green), transparent);
-}
-
-body.terminal-mode .tab-button {
-    background: linear-gradient(to bottom, #001a00, #000a00);
-    border-color: var(--terminal-dark);
-    color: var(--terminal-green);
-    font-family: var(--font-secondary);
-}
-
-body.terminal-mode .tab-button:hover {
-    background: linear-gradient(to bottom, #002a00, #001500);
-    color: var(--text-light);
-    border-color: var(--terminal-green);
-    text-shadow: 0 0 5px var(--terminal-green);
-}
-
-body.terminal-mode .tab-button.active {
-    background: linear-gradient(to bottom, #003a00, #002200);
-    color: var(--text-light);
-    border-color: var(--terminal-dark) var(--terminal-dark) transparent var(--terminal-dark);
-    text-shadow: 0 0 8px var(--terminal-green);
-    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.3);
-}
-
-body.terminal-mode .music-tab-content-container {
-    border-color: var(--terminal-dark);
-    background-color: rgba(0, 5, 0, 0.5);
-}
-
-body.terminal-mode .music-item {
-    background: linear-gradient(to bottom, #001500, #000800);
-    border: 1px solid var(--terminal-green);
-    border-left: 3px solid var(--terminal-highlight);
-    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
-}
-
-body.terminal-mode .music-item::after {
-    background: linear-gradient(135deg, transparent 50%, var(--terminal-dark) 50%);
-}
-
-body.terminal-mode .music-item:hover::after {
-    background: linear-gradient(135deg, transparent 50%, var(--terminal-green) 50%);
-}
-
-body.terminal-mode .music-item h3,
-body.terminal-mode .music-item .music-details h4 {
-    color: var(--terminal-green);
-    text-shadow: 0 0 5px var(--terminal-dark);
-    border-bottom-color: var(--terminal-dark);
-}
-
-body.terminal-mode .music-item:hover h3,
-body.terminal-mode .music-item:hover .music-details h4 {
-    color: var(--text-light);
-    text-shadow: 0 0 8px var(--terminal-green);
-    border-bottom-color: var(--terminal-green);
-}
-
-body.terminal-mode .music-item p {
-    color: var(--terminal-green-dim);
-}
-
-body.terminal-mode .music-item:hover p {
-    color: var(--terminal-green);
-}
-
-body.terminal-mode .album-art {
-    border-color: var(--terminal-dark);
-}
-
-body.terminal-mode .album-art::before {
-    background: linear-gradient(
-        rgba(0, 20, 0, 0.3) 50%,
-        rgba(0, 0, 0, 0.1) 50%
-    );
-    background-size: 100% 3px;
-}
-
-body.terminal-mode .music-item:hover .album-art {
-    border-color: var(--terminal-green);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-}
-
-body.terminal-mode .album-art img {
-    filter: grayscale(50%) sepia(0.5) hue-rotate(80deg) brightness(0.8) contrast(1.2);
-}
-
-body.terminal-mode .music-controls {
-    border-top-color: var(--terminal-dark);
-}
-
-body.terminal-mode .music-item.expanded .music-details {
-    border-top-color: var(--terminal-dark);
-}
-
-body.terminal-mode .track-list li {
-    border-bottom-color: var(--terminal-dark);
-    color: var(--terminal-green-dim);
-}
-
-body.terminal-mode .track-list li::before {
-    color: var(--terminal-green);
-}
-
-body.terminal-mode .track-list li:hover {
-    color: var(--terminal-green);
-    background-color: rgba(0, 255, 0, 0.05);
-}
-
-body.terminal-mode .track-list li:hover::before {
-    color: var(--text-light);
-}
-
-body.terminal-mode .music-item:hover {
-    border-color: var(--terminal-green);
-    border-left-color: var(--text-light);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 15px var(--terminal-green);
-    animation: cardHoverGlowGreen 2s ease-in-out infinite;
-}
-
-/* Button Styles */
-.expand-btn, .play-btn {
-    background: linear-gradient(to bottom, #3a0000, #220000);
-    color: var(--blood-red);
-    border: 1px solid var(--dark-red);
-    padding: 8px 12px;
-    cursor: pointer;
-    font-family: var(--font-primary);
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: all var(--transition-medium);
-    flex: 1;
-    min-width: 80px;
-    text-align: center;
-    border-radius: var(--radius-sm);
-    position: relative;
-    overflow: hidden;
-    font-size: 12px;
-}
-
-.expand-btn::before, .play-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 48, 0, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-.expand-btn:hover::before, .play-btn:hover::before {
-    left: 100%;
-}
-
-.expand-btn:hover, .play-btn:hover {
-    background: linear-gradient(to bottom, #4a0000, #330000);
-    color: #ffffff;
-    box-shadow: 0 0 10px rgba(255, 48, 0, 0.4);
-    border-color: var(--blood-red);
-}
-
-/* Terminal mode button overrides */
-body.terminal-mode .expand-btn,
-body.terminal-mode .play-btn {
-    background: linear-gradient(to bottom, #002200, #001100);
-    border-color: var(--terminal-dark);
-    color: var(--terminal-green);
-}
-
-body.terminal-mode .expand-btn:hover,
-body.terminal-mode .play-btn:hover {
-    background: linear-gradient(to bottom, #003300, #002200);
-    border-color: var(--terminal-green);
-    color: var(--text-light);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .music-list {
-        grid-template-columns: 1fr;
-    }
-
-    .album-art {
-        width: 80px;
-        height: 80px;
-        margin-right: 10px;
-    }
-
-    .tab-button {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-
-    .music-tab-content-container {
-        padding: 15px;
-    }
-
-    .music-item h3 {
-        font-size: 18px;
-    }
-    
-    .music-item p {
-        font-size: 12px;
-    }
-    
-    .track-list li {
-        font-size: 12px;
-        padding: 5px 5px 5px 18px;
-    }
-    
-    .track-list li::before {
-        left: 4px;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .album-art {
-        float: none;
-        margin: 0 auto 10px;
-        width: 120px;
-        height: 120px;
-    }
-
-    .music-item h3 {
-        text-align: center;
-    }
-
-    .music-controls {
-        flex-direction: column;
-    }
-
-    .tab-button {
-        flex-grow: 1;
-        text-align: center;
-    }
-    
-    .music-tabs {
-        justify-content: center;
-    }
-}
-
-/* Ensure required animations are defined */
-@keyframes sectionReveal {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes scanline {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-}
-
-@keyframes glitchText {
-    0% { transform: translate(0); }
-    25% { transform: translate(-2px, 2px); }
-    50% { transform: translate(2px, -2px); }
-    75% { transform: translate(-2px, -2px); }
-    100% { transform: translate(0); }
+    list-style: none;
+    padding: 0;
+    margin: var(--space-sm) 0;
+    display: grid;
+    gap: var(--space-2xs);
+}
+
+@media (max-width: 720px) {
+    .music-tab-content-container { padding: var(--space-lg); }
+    .music-list { grid-template-columns: 1fr; }
 }

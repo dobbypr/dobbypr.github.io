@@ -5,6 +5,26 @@
             this.logs = [];
             this.visible = false;
             this.autoAttach = options.autoAttach !== false;
+            this.showToggle = options.showToggle === true;
+            this.startVisible = options.startVisible === true;
+            this.enableShortcut = options.enableShortcut !== false;
+            this.hasDOM = typeof document !== 'undefined' && !!document.body;
+            this.boundShortcutHandler = null;
+
+            if (this.hasDOM) {
+                this.setupUI();
+                if (this.showToggle) {
+                    this.setupToggle();
+                }
+                if (this.enableShortcut) {
+                    this.setupShortcut();
+                }
+                if (this.autoAttach) {
+                    this.attachGlobalHandlers();
+                }
+                if (this.startVisible) {
+                    this.show();
+                }
             this.hasDOM = typeof document !== 'undefined' && !!document.body;
 
             if (this.hasDOM) {
@@ -66,13 +86,22 @@
             });
 
             document.body.appendChild(this.toggle);
+        }
+
+        setupShortcut() {
+            this.boundShortcutHandler = (event) => {
+                if (event.key.toLowerCase() === 'd' && event.ctrlKey && event.altKey) {
+                    event.preventDefault();
+                    this.visible ? this.hide() : this.show();
+                }
+            };
+            document.addEventListener('keydown', this.boundShortcutHandler);
 
             document.addEventListener('keydown', (event) => {
                 if (event.key.toLowerCase() === 'd' && (event.ctrlKey || event.metaKey)) {
                     event.preventDefault();
                     this.visible ? this.hide() : this.show();
                 }
-            });
         }
 
         attachGlobalHandlers() {
@@ -171,6 +200,9 @@
             if (!this.hasDOM) return;
             this.visible = true;
             this.panel.classList.add('is-visible');
+            if (this.toggle) {
+                this.toggle.setAttribute('aria-expanded', 'true');
+            }
             this.toggle.setAttribute('aria-expanded', 'true');
         }
 
@@ -178,6 +210,9 @@
             if (!this.hasDOM) return;
             this.visible = false;
             this.panel.classList.remove('is-visible');
+            if (this.toggle) {
+                this.toggle.setAttribute('aria-expanded', 'false');
+            }
             this.toggle.setAttribute('aria-expanded', 'false');
         }
 
@@ -195,6 +230,34 @@
     }
 
     if (global && typeof global.document !== 'undefined') {
+        const boot = (options = {}) => {
+            if (!global.machineDebugger) {
+                global.machineDebugger = new MachineDebugger(options);
+            }
+            return global.machineDebugger;
+        };
+
+        global.enableMachineDebugger = (options = {}) => boot({ startVisible: true, ...options });
+
+        const search = global.location && typeof global.location.search === 'string' ? global.location.search : '';
+        const hash = global.location && typeof global.location.hash === 'string' ? global.location.hash : '';
+        const fromStorage = (() => {
+            try {
+                return global.localStorage && global.localStorage.getItem('machineDebugger') === '1';
+            } catch (error) {
+                return false;
+            }
+        })();
+
+        const shouldBoot = /[?&]debug=1/.test(search) || hash.includes('debug') || fromStorage;
+
+        if (shouldBoot) {
+            const start = () => boot({ showToggle: true, startVisible: true });
+            if (global.document.readyState === 'loading') {
+                global.document.addEventListener('DOMContentLoaded', start);
+            } else {
+                start();
+            }
         const boot = () => {
             if (!global.machineDebugger) {
                 global.machineDebugger = new MachineDebugger();
