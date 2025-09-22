@@ -25,6 +25,14 @@
                 if (this.startVisible) {
                     this.show();
                 }
+            this.hasDOM = typeof document !== 'undefined' && !!document.body;
+
+            if (this.hasDOM) {
+                this.setupUI();
+                this.setupToggle();
+                if (this.autoAttach) {
+                    this.attachGlobalHandlers();
+                }
             }
         }
 
@@ -88,6 +96,12 @@
                 }
             };
             document.addEventListener('keydown', this.boundShortcutHandler);
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key.toLowerCase() === 'd' && (event.ctrlKey || event.metaKey)) {
+                    event.preventDefault();
+                    this.visible ? this.hide() : this.show();
+                }
         }
 
         attachGlobalHandlers() {
@@ -189,6 +203,7 @@
             if (this.toggle) {
                 this.toggle.setAttribute('aria-expanded', 'true');
             }
+            this.toggle.setAttribute('aria-expanded', 'true');
         }
 
         hide() {
@@ -198,6 +213,7 @@
             if (this.toggle) {
                 this.toggle.setAttribute('aria-expanded', 'false');
             }
+            this.toggle.setAttribute('aria-expanded', 'false');
         }
 
         static stringifyContext(context) {
@@ -242,6 +258,16 @@
             } else {
                 start();
             }
+        const boot = () => {
+            if (!global.machineDebugger) {
+                global.machineDebugger = new MachineDebugger();
+            }
+        };
+
+        if (global.document.readyState === 'loading') {
+            global.document.addEventListener('DOMContentLoaded', boot);
+        } else {
+            boot();
         }
     }
 })(typeof window !== 'undefined' ? window : globalThis);
